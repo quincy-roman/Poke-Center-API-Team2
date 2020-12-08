@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+    font-family: "pokemon-font", monospace;
+}
