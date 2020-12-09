@@ -19,7 +19,7 @@ public class StatusCondition {
 	private int statusId;
 
 	@Column(name="status_name")
-	private String statusName;
+	private String statusName; //Burn, Freeze, Sleep, Poison, paralysis, Fainted
 
 	public StatusCondition() {}
 

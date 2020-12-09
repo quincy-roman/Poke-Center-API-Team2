@@ -153,4 +153,5 @@ public class Pokemon {
 				+ ", ability=" + ability + ", category=" + category + "]";
 	}
 	
+	
 }
