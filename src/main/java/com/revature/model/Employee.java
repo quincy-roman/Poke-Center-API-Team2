@@ -26,7 +26,7 @@ public class Employee {
 	private String username;
 	
 	@Column(name="employee_password")
-	private String password;
+	private String password;	//TODO Check out Spring Security for encryption.
 	
 	public Employee() {}
 
