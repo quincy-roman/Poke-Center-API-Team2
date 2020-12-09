@@ -20,5 +20,9 @@ export class SigninComponent implements OnInit {
     this.titleService.setTitle(`PokeCenter API || ${newTitle}`);
   }
 
+  public signinUser(value: any){
+    console.log("logging in user...");
+    console.log(value);
+  }
 
 }
