@@ -1,9 +1,12 @@
 package com.revature.model;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,6 +29,9 @@ public class Employee {
 
 	@Column(name="employee_password")
 	private String password;	//TODO SpringSecurity for encryption?
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Role role;
 
 	public Employee() {}
 
@@ -45,6 +51,15 @@ public class Employee {
 		this.employeeName = employeeName;
 		this.username = username;
 		this.password = password;
+	}
+
+	public Employee(int employeeId, String employeeName, String username, String password, Role role) {
+		super();
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.username = username;
+		this.password = password;
+		this.role = role;
 	}
 
 	public int getEmployeeId() {
@@ -79,10 +94,18 @@ public class Employee {
 		this.password = password;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", username=" + username
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", role=" + role + "]";
 	}
 
 
