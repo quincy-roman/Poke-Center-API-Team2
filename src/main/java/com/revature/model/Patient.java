@@ -1,5 +1,5 @@
 package com.revature.model;
 
-public class Meds {
+public class Patient {
 
 }
