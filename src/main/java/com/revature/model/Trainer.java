@@ -23,6 +23,9 @@ public class Trainer {
 
 	@Column(name="trainer_name")
 	private String trainerName;
+	
+	@Column(name="hometown")
+	private String hometown;
 
 	// Trainers need login info. We could potentially make Login_Info a 
 	// separate table and have trainers and employees
