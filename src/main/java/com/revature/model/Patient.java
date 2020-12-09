@@ -51,6 +51,10 @@ public class Patient {
 	@Column(name = "release")
 	private Timestamp release;
 
+	public Patient() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Patient(int pateintid, Pokemon pokemon, int currentHP, int maxHP, StatusCondition status, Trainer trainer,
 			Timestamp admission, Employee nurseid, Medicine med, Timestamp release) {
 		super();
