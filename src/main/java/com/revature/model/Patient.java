@@ -18,6 +18,7 @@ public class Patient {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "pateintid")
 	private int pateintid;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
