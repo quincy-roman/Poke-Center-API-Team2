@@ -24,6 +24,12 @@ public class Patient {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Pokemon pokemon;
 	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Trainer trainer;
+	
+	@Column(name = "admission", nullable = false)
+	private Timestamp admission;
+
 	@Column(name="currentHP")
 	private int currentHP;
 	
@@ -34,16 +40,13 @@ public class Patient {
 	private StatusCondition status;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Trainer trainer;
-	
-	@Column(name = "admission", nullable = false)
-	private Timestamp admission;
-		
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Employee nurseid;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Medicine med;	
+	
+	@Column(name = "healthy", nullable = false)
+	private boolean healthy;
 	
 	@Column(name = "release")
 	private Timestamp release;
