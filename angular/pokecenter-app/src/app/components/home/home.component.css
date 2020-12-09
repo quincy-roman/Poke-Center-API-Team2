@@ -1,5 +1,4 @@
 #home-container{ 
-<<<<<<< HEAD
     background-image: url(./../../../assets/img/home-background.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,7 +12,6 @@ h1{
     color: #212529;
     font-size: 3rem;
     margin: 20px;
-=======
     background: url(home-background.png) no-repeat center center fixed;
     background-size: cover;
     width: 100%;
@@ -25,7 +23,6 @@ h1{
 h1{
     color: blue;
     font-size: large;
->>>>>>> 9f01672b351e972a5e7c112de5ca2c532e3fe58b
     font-weight: 100;
     letter-spacing: 2px;
 }
