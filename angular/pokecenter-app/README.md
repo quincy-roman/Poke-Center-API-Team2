@@ -1,27 +1,71 @@
-# PokeCenter App
+# PokeCenter API : Hospital Management System 
+<img style="float: right;" src="https://i.imgur.com/9WXfW7z.png" alt="pokecenter-api-icon">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+## Revature Project #2
 
-## Development server
+## Team Members:
+- Azhya Knox (FrontEnd Development)
+- Grayson McClellan (FrontEnd Development)
+- Quincy Roman (Team Lead, BackEnd Development)
+- Mareo Yapp  (BackEnd Development)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Summary
+* Send the trainer a message if their Pokemon has Pokerus.
+* Any PokeCenter employee calculates the most cost-efficient medication for the pokemon and adminster that treatment.
+* Any admitted pokemon has randomly generate stat values using calculations within PokeCenter API logic. This logic will consume the PokeAPI data and manipulate this data for the PokeCenter API.
+* Additional feature: Each trainer can modify current party and items at the PC Box Terminal.
 
-## Code scaffolding
+#### Trainer User Stories 
+- A Trainer can login
+- A Trainer can view the Trainer Homepage
+- A Trainer can logout
+- A Trainer can view their Pokemon
+- A Trainer can view the status of their Pokemon and stats.
+- A Trainer can get alerts when their Pokemon are healed via email or notification bar.
+- A Trainer can store excess pokemon in the the trainer's PC box (reminiscent of the PC in the games).
+- A Trainer can view their information
+- A Trainer can update their information
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Nurse User Stories 
+- A Nurse can login
+- A Nurse can view the Nurse Homepage
+- A Nurse can logout
+- A Nurse can view the Pokemon under their care
+- A Nurse can view the status of their Pokemon and stats.
+- A Nurse can administer treatment
+- A Nurse can calculate the best medical treatment based on HP lost and status effects.
+- A Nurse can approve release (with timestamp).
+- A Nurse can update their information 
+- A Nurse can view all admitted Pokemon.
+- A Nurse can view past records.
 
-## Build
+#### Admin User Stories
+- An Admin can login
+- An Admin can view the Admin Homepage
+- An Admin can logout
+- An Admin can view billing history
+- An Admin can view current medication stock.
+- An Admin can modify users roles.
+- An Admin can place orders for more medication.
+- An Admin can view all users (trainers, nurses, Pokemon, both).
+- An Admin can remove users/records if necessary.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Technical Requirements
 
-## Running unit tests
+* The back-end system uses **Hibernate** to connect to an **AWS RDS Postgres database**. 
+* The application is deployed onto an Apache Tomcat Server. 
+* The middle tier uses Spring MVC for dynamic Web application development. 
+* The front-end view uses Angular to make a single-page application that can call server-side components.
+* The API follows REST by making HTTP requests between client and server using Angular services and interceptors.
+* Passwords are encrypted in Java using BCrypt and securely stored in the database. 
+* The middle tier follows a front controller, layered architecture to achieve efficient Agile development.
+* The application has reasonable test coverage thanks to:
+    - JUnit and Mockito on the backend
+    - Jasmine and Karma on the frontend.
+* The application implements log4j for appropriate logging. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**User Types**
+Three User types: Admin, Nurse, Trainer
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Visual Aids
+- none available at this time
