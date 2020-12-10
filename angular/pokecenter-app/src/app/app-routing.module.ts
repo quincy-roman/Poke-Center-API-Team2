@@ -5,7 +5,7 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { AuthGuardGuard } from './guards/auth-guard.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -22,11 +22,8 @@ const routes: Routes = [
   },
   {
     path: "home",
-    component: HomeComponent
-<<<<<<< HEAD
-    // canActivate: [AuthGuardGuard]
-=======
->>>>>>> 9f01672b351e972a5e7c112de5ca2c532e3fe58b
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "",

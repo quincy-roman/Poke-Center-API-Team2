@@ -1,45 +1,43 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { Signin } from './../models/signin.model';
 import { User } from '../models/user.model';
 import { API_URL } from './../../environments/environment.prod';
-import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  //properties
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
+  private currentUserSubject: BehaviorSubject<any>;
+    public currentUser: Observable<any>;
 
-  //constructor
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
 
-  //CRUD method(s)
-  //sendUserDetails to server for authentication
-  getUserDetails(username: string, password: string) {
-    //post these details to API server
-    //return user info if correct
-    return this.http
-      .post<User>(`${API_URL}sigin`, {'username': username, 'password': password}, this.httpOptions)
-      .pipe(
-        catchError(this.handleError<any>('cannot sign in user'))
-      )
-  }
+    public get currentUserValue() {
+        return this.currentUserSubject.value;
+    }
 
-  //error handling methods
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    login(username: any, password: any) {
+        return this.http.post<any>(`${API_URL}/signin/authenticate`, { username, password })
+            .pipe(map(user => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+                return user;
+            }));
+    }
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
+    logout() {
+        // remove user from local storage and set current user to null
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+    }
 
 }

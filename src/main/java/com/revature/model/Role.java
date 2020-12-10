@@ -23,23 +23,6 @@ public class Role {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Role(int roleid, String role) {
-		super();
-		this.roleid = roleid;
-		this.role = role;
-	}
-
-	public Role(String role) {
-		super();
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		String result = "RoleID: " + roleid + " \t\tRole: " + role + "\n";
-		return result;
-	}
-
 	public int getRoleid() {
 		return roleid;
 	}
@@ -53,6 +36,22 @@ public class Role {
 	}
 
 	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "Role [roleid=" + roleid + ", role=" + role + "]";
+	}
+
+	public Role(int roleid, String role) {
+		super();
+		this.roleid = roleid;
+		this.role = role;
+	}
+
+	public Role(String role) {
+		super();
 		this.role = role;
 	}
 
@@ -83,5 +82,7 @@ public class Role {
 			return false;
 		return true;
 	}
+
+	
 
 }

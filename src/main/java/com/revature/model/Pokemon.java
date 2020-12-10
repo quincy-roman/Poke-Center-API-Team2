@@ -10,8 +10,8 @@ import javax.persistence.Table;
 public class Pokemon {
 
 	@Id
-	@Column(name="nationalid")
-	private int nationalid;
+	@Column(name="dexid")
+	private int dexid;
 	
 	@Column(name="name", nullable = false)
 	private String name;
@@ -25,34 +25,88 @@ public class Pokemon {
 	@Column(name="ability", nullable = false)
 	private String ability;
 	
-	@Column(name="category", nullable = false)
-	private String category;
+	//@Column(name="category", nullable = false)
+	//private String category;
 	
-	public Pokemon(String name, String type1, String type2, String ability, String category) {
+	public Pokemon() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Pokemon(int dexid, String name, String type1, String type2, String ability) {
+		super();
+		this.dexid = dexid;
+		this.name = name;
+		this.type1 = type1;
+		this.type2 = type2;
+		this.ability = ability;
+	}
+
+	public Pokemon(String name, String type1, String type2, String ability) {
 		super();
 		this.name = name;
 		this.type1 = type1;
 		this.type2 = type2;
 		this.ability = ability;
-		this.category = category;
 	}
 
-	public Pokemon(int nationalid, String name, String type1, String type2, String ability, String category) {
-		super();
-		this.nationalid = nationalid;
-		this.name = name;
-		this.type1 = type1;
-		this.type2 = type2;
-		this.ability = ability;
-		this.category = category;
+	@Override
+	public String toString() {
+		return "Pokemon [dexid=" + dexid + ", name=" + name + ", type1=" + type1 + ", type2=" + type2 + ", ability="
+				+ ability + "]";
 	}
 
-	public int getNationalid() {
-		return nationalid;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ability == null) ? 0 : ability.hashCode());
+		result = prime * result + dexid;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((type1 == null) ? 0 : type1.hashCode());
+		result = prime * result + ((type2 == null) ? 0 : type2.hashCode());
+		return result;
 	}
 
-	public void setNationalid(int nationalid) {
-		this.nationalid = nationalid;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pokemon other = (Pokemon) obj;
+		if (ability == null) {
+			if (other.ability != null)
+				return false;
+		} else if (!ability.equals(other.ability))
+			return false;
+		if (dexid != other.dexid)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (type1 == null) {
+			if (other.type1 != null)
+				return false;
+		} else if (!type1.equals(other.type1))
+			return false;
+		if (type2 == null) {
+			if (other.type2 != null)
+				return false;
+		} else if (!type2.equals(other.type2))
+			return false;
+		return true;
+	}
+
+	public int getDexid() {
+		return dexid;
+	}
+
+	public void setDexid(int dexid) {
+		this.dexid = dexid;
 	}
 
 	public String getName() {
@@ -86,72 +140,7 @@ public class Pokemon {
 	public void setAbility(String ability) {
 		this.ability = ability;
 	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ability == null) ? 0 : ability.hashCode());
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + nationalid;
-		result = prime * result + ((type1 == null) ? 0 : type1.hashCode());
-		result = prime * result + ((type2 == null) ? 0 : type2.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pokemon other = (Pokemon) obj;
-		if (ability == null) {
-			if (other.ability != null)
-				return false;
-		} else if (!ability.equals(other.ability))
-			return false;
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (nationalid != other.nationalid)
-			return false;
-		if (type1 == null) {
-			if (other.type1 != null)
-				return false;
-		} else if (!type1.equals(other.type1))
-			return false;
-		if (type2 == null) {
-			if (other.type2 != null)
-				return false;
-		} else if (!type2.equals(other.type2))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Pokemon [nationalid=" + nationalid + ", name=" + name + ", type1=" + type1 + ", type2=" + type2
-				+ ", ability=" + ability + ", category=" + category + "]";
-	}
+	
 	
 	
 }
