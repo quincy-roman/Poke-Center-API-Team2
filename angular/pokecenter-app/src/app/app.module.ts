@@ -1,3 +1,4 @@
+import { fakeBackendProvider, FakeBackendInterceptor } from './helpers/fake-pokecenter-backend';
 //modules
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { NavbarComponent } from './components/home/navbar/navbar.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { NavbarComponent } from './components/home/navbar/navbar.component';
     RegistrationComponent,
     HomeComponent,
     SigninComponent,
-    NavbarComponent
+    NavbarComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { NavbarComponent } from './components/home/navbar/navbar.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [Title],
+  providers: [Title, fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
