@@ -28,7 +28,7 @@
 
 
 	<bean name="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 
 
 		<property name="driverClassName"

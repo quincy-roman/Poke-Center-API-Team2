@@ -42,6 +42,10 @@ public class Medicine {
 		this.cost = cost;
 		this.status = status;
 	}
+	
+	public Medicine() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String toString() {
@@ -118,4 +122,6 @@ public class Medicine {
 			return false;
 		return true;
 	}
+
+	
 }
