@@ -37,8 +37,8 @@ public class Trainer {
 	@Column(name="trainer_password")
 	private String password;	//TODO incorporate BCrypt or something.
 
-	@OneToMany(mappedBy="pokemon")	//TODO this is fit to change, probably to Patients
-	private List<Pokemon> pokemon;
+	//@OneToMany(mappedBy="pokemon")	//TODO this is fit to change, probably to Patients
+	//private List<Pokemon> pokemon;
 
 	public Trainer() {}
 
@@ -48,7 +48,7 @@ public class Trainer {
 		this.trainerName = trainerName;
 		this.username = username;
 		this.password = password;
-		this.pokemon = pokemon;
+		//this.pokemon = pokemon;
 	}
 
 	// With id.
@@ -58,7 +58,7 @@ public class Trainer {
 		this.trainerName = trainerName;
 		this.username = username;
 		this.password = password;
-		this.pokemon = pokemon;
+		//this.pokemon = pokemon;
 	}
 
 
@@ -94,18 +94,18 @@ public class Trainer {
 		this.password = password;
 	}
 
-	public List<Pokemon> getPokemon() {
-		return pokemon;
-	}
-
-	public void setPokemon(List<Pokemon> pokemon) {
-		this.pokemon = pokemon;
-	}
+//	public List<Pokemon> getPokemon() {
+//		return pokemon;
+//	}
+//
+//	public void setPokemon(List<Pokemon> pokemon) {
+//		this.pokemon = pokemon;
+//	}
 
 	@Override
 	public String toString() {
 		return "Trainer [trainerId=" + trainerId + ", trainerName=" + trainerName + ", username=" + username
-				+ ", password=" + password + ", pokemon=" + pokemon + "]";
+				+ ", password=" + password;// + " pokemon=" + pokemon + "]";
 	}
 
 }
