@@ -19,7 +19,7 @@ public class Pokemon {
 	@Column(name="type1", nullable = false)
 	private String type1;
 	
-	@Column(name="type1")
+	@Column(name="type2")
 	private String type2;
 	
 	@Column(name="ability", nullable = false)

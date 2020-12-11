@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--  This simplifies the String representing the view that the controllers return... -->
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/static</value>
+		</property>
+		<property name="suffix">
+			<value>.html</value>
+		</property>
+	</bean>
+<!-- We use this bean configration to abstract Servlets with Spring MVC --> 
+
+<!-- Here we are going to create a bean called "viewResolver... -->
+
+<!-- Control Flow of our app: 
+
+HTTP Request arrives at this dispatcher servlet...
+
+Dispatchier servlet consults the HandlerMapping to determine which controller to delegate to
+
+Passes relevant info to the controller
+
+Controller consults the business llayer to process request
+
+Controller builds the response (Model / View)
+
+The response is handled BACK to the dispatcher servlet
+
+DispatcherServlet consults the ViewResolver to process the view
+
+DispatcherServlet sends the response back to the client.
+-->
+
+</beans>
