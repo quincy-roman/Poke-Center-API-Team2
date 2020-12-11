@@ -20,7 +20,7 @@ public class Main {
 
 		// registerTrainer(); //and login WORKED
 
-		registerEmpl();
+		//registerEmpl(); //roles and login WORKED
 
 		// PokeService.registerPokemon(new Pokemon(3, "Venasuar", "Grass", "Poison",
 		// "Overgrow"));
@@ -44,19 +44,19 @@ public class Main {
 		Role nurse = new Role(1, "Nurse");
 		Role admin = new Role(2, "Admin");
 
-		PokeService.registerRole(nurse);
-		PokeService.registerRole(admin);
+//		PokeService.registerRole(nurse);
+//		PokeService.registerRole(admin);
 
 		Employee n = new Employee(1, "Nurse", "1", "2", nurse);
 		Employee a = new Employee(2, "Admin", "3", "4", admin);
 
-		PokeService.registerEmpl(n);
-		PokeService.registerEmpl(a);
+//		PokeService.registerEmpl(n);
+//		PokeService.registerEmpl(a);
 
-		if (PokeService.loginEmpl(n.getUsername(), n.getPassword())) {
-			if (n.getRole() == nurse) {
+		if (PokeService.loginEmpl(a.getUsername(), a.getPassword())) {
+			if (a.getRole() == nurse) {
 				System.out.println("nurse homepage");
-			} else if (n.getRole() == admin) {
+			} else if (a.getRole() == admin) {
 				System.out.println("admin homepage");
 			} else {
 				System.out.println("Fail 2");
