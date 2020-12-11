@@ -7,40 +7,58 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="trainer")
+@Table(name = "trainer")
 public class Trainer {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="trainer_seq")
-	@SequenceGenerator(name="trainer_seq", sequenceName="trainer_seq", allocationSize=1)
-	@Column(name="trainer_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trainer_seq")
+	@SequenceGenerator(name = "trainer_seq", sequenceName = "trainer_seq", allocationSize = 1)
+	@Column(name = "trainer_id")
 	private int trainerId;
 
-	@Column(name="trainer_name")
+	@Column(name = "trainer_name")
 	private String trainerName;
-	
-	@Column(name="hometown")
+
+	@Column(name = "hometown")
 	private String hometown;
 
-	// Trainers need login info. We could potentially make Login_Info a 
+	// Trainers need login info. We could potentially make Login_Info a
 	// separate table and have trainers and employees
 	// have foreign keys to their related info.
 
-	@Column(name="trainer_username")
+	@Column(name = "trainer_username")
 	private String username;
 
-	@Column(name="trainer_password")
-	private String password;	//TODO incorporate BCrypt or something.
+	@Column(name = "trainer_password")
+	private String password; // TODO incorporate BCrypt or something.
 
-	//@OneToMany(mappedBy="pokemon")	//TODO this is fit to change, probably to Patients
-	//private List<Pokemon> pokemon;
+	// @OneToMany(mappedBy="pokemon") //TODO this is fit to change, probably to
+	// Patients
+	// private List<Pokemon> pokemon;
 
-	public Trainer() {}
+	public Trainer() {
+	}
+
+	public String getHometown() {
+		return hometown;
+	}
+
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
+	}
+
+	public Trainer(int trainerId, String trainerName, String hometown, String username, String password) {
+		super();
+		this.trainerId = trainerId;
+		this.trainerName = trainerName;
+		this.hometown = hometown;
+		this.username = username;
+		this.password = password;
+	}
 
 	// Without id.
 	public Trainer(String trainerName, String username, String password, List<Pokemon> pokemon) {
@@ -48,7 +66,7 @@ public class Trainer {
 		this.trainerName = trainerName;
 		this.username = username;
 		this.password = password;
-		//this.pokemon = pokemon;
+		// this.pokemon = pokemon;
 	}
 
 	// With id.
@@ -58,9 +76,8 @@ public class Trainer {
 		this.trainerName = trainerName;
 		this.username = username;
 		this.password = password;
-		//this.pokemon = pokemon;
+		// this.pokemon = pokemon;
 	}
-
 
 	public int getTrainerId() {
 		return trainerId;
@@ -104,8 +121,8 @@ public class Trainer {
 
 	@Override
 	public String toString() {
-		return "Trainer [trainerId=" + trainerId + ", trainerName=" + trainerName + ", username=" + username
-				+ ", password=" + password;// + " pokemon=" + pokemon + "]";
+		return "Trainer [trainerId=" + trainerId + ", trainerName=" + trainerName + ", hometown=" + hometown
+				+ ", username=" + username + ", password=" + password + "]";
 	}
 
 }
