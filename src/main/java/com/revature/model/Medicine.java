@@ -28,6 +28,10 @@ public class Medicine {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private StatusCondition status; //The status condition recommended for
 
+	// This needs to be added into the database.
+	@Column(name="stock", nullable=false)
+	private int stock;
+	
 	public Medicine(int medID, String medName, double cost, StatusCondition status) {
 		super();
 		this.medID = medID;
@@ -82,6 +86,14 @@ public class Medicine {
 
 	public void setStatus(StatusCondition status) {
 		this.status = status;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	@Override
