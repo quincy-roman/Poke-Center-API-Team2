@@ -1,4 +1,4 @@
-package com.revature.repo;
+package com.revature.repository;
 
 import com.revature.model.Pokemon;
 
