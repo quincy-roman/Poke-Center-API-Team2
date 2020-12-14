@@ -26,15 +26,16 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		registerTrainer(); //and login WORKED
-		System.out.println("REGISTERED TRAINER");
-		registerEmpl(); //roles and login WORKED
-		System.out.println("REGISTERED EMPL AND ROLES");
-		registerStatus(); //and meds
-		System.out.println("REGISTERED STATUS AND MEDS");
-		registerPokemon();
-		System.out.println("REGISTERED POKEDEX");
-		registerPatient();	
+//		registerTrainer(); //and login WORKED
+//		System.out.println("REGISTERED TRAINER");
+//		registerEmpl(); //roles and login WORKED
+//		System.out.println("REGISTERED EMPL AND ROLES");
+//		registerStatus(); //and meds WORKED
+//		System.out.println("REGISTERED STATUS AND MEDS");
+//		registerPokemon(); //and WORKED
+//		System.out.println("REGISTERED POKEDEX");
+		registerPatient(); //and WORKED
+		System.out.println("REGISTERED PATIENT");
 	}
 
 	private static void registerStatus() {
@@ -55,18 +56,54 @@ public class Main {
 	}
 
 	private static void registerPatient() {
+//		PokeService.registerPatient(new Patient(
+//				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
+//				new Trainer(1, "Ash", "Pallet Town", "fire", "red")
+//				, admission, 300, 300, 
+//				new StatusCondition(2, "Sleep")
+//				, null, null, false, null));
+
+		PokeService.registerPatient(new Patient(
+				new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
+				new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl")
+				, admission, 50, 100, 
+				new StatusCondition(1, "Burn")
+				, null, null, false, null));
+		
+		PokeService.registerPatient(new Patient(
+				new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
+				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby")
+				, admission, 0, 20, 
+				new StatusCondition(3, "Fainted")
+				, null, null, false, null));
+
 		PokeService.registerPatient(new Patient(
 				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
-				new Trainer(1, "Ash", "Pallet Town", "fire", "red"),
-				admission, 300, 300, 
-				new StatusCondition(2, "Sleep"),
-				null, null, false, null));
+				new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl")
+				, admission, 150, 300, 
+				new StatusCondition(1, "Burn")
+				, null, null, false, null));
+		
+		PokeService.registerPatient(new Patient(
+				new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
+				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby")
+				, admission, 0, 100, 
+				new StatusCondition(3, "Fainted")
+				, null, null, false, null));
+
+		PokeService.registerPatient(new Patient(
+				new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
+				new Trainer(1, "Ash", "Pallet Town", "fire", "red")
+				, admission, 10, 20, 
+				new StatusCondition(1, "Burn")
+				, null, null, false, null));
+
 	}
 
 	public static void registerTrainer() {
 		PokeService.registerTrainer(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
 		
-		PokeService.registerTrainer(new Trainer(4, "Lucas", "Littleroot Town", "Diamond", "pearl"));
+		PokeService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
 		
 		PokeService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
 
