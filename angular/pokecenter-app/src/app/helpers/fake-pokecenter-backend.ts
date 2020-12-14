@@ -73,9 +73,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         if (!user) return error('Username or password is incorrect');
         return ok({
             id: user.id,
+            name: user.name,
             username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
             token: 'fake-jwt-token'
         })
     }

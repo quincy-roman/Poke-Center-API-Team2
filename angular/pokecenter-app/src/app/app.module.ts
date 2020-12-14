@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { NavbarComponent } from './components/home/navbar/navbar.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AlertComponent } from './components/alert/alert.component';
     HomeComponent,
     SigninComponent,
     NavbarComponent,
-    AlertComponent
+    AlertComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

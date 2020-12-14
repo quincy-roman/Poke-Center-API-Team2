@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -10,10 +11,12 @@ import { API_URL } from 'src/environments/environment.prod';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+  username: string;
+  password: string;
 
   title: string = "Sign In";
   
-  constructor(private titleService: Title, private http: HttpClient, private authService: AuthenticationService) { }
+  constructor(private titleService: Title, private http: HttpClient, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.setTitle(this.title);
@@ -24,11 +27,14 @@ export class SigninComponent implements OnInit {
   }
 
   public signinUser(value: any){
-    console.log("logging in user...");
-    console.log(value);
-    //subscribe to auth service
-    //result: set currentUser localStorage item
-    //change route to home component
+    console.log(`Assigned: ${this.username}, ${this.password}`);
+    if(this.username == "aaknox" && this.password == "password"){
+      console.log('checking creds...')
+      this.authService.login(this.username, this.password);
+    }else{
+      console.log("user unauthorized");
+      this.router.navigate(["../"]);
+    }
   }
 
 }
