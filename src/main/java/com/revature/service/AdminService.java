@@ -3,7 +3,6 @@ package com.revature.service;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +12,9 @@ import com.revature.model.Trainer;
 import com.revature.repository.AdminRepository;
 
 @Service("AdminService")
-public class AdminService {
+public class AdminService implements EmplService{
 	
-	private static Logger log = Logger.getLogger(NurseService.class);
+	//private static Logger log = Logger.getLogger(NurseService.class);
 
 	@Autowired
 	private AdminRepository adminRepo;
@@ -25,8 +24,8 @@ public class AdminService {
 		adminRepo.update(user);
 	}
 	
-	// Retrieve a list of all medicines.
-	public List<Medicine> getMedicines() {
+	@Override // Retrieve a list of all medicines.
+	public List<Medicine> getAllMedicines() {
 		return adminRepo.getAllMedicines();
 	}
 	
@@ -50,4 +49,8 @@ public class AdminService {
 		adminRepo.remove(user);
 	}
 
+	@Override
+	public boolean loginEmpl(String username, String password) {
+		return adminRepo.loginEmpl(username, password);
+	}
 }

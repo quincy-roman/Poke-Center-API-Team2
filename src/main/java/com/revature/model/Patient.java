@@ -176,9 +176,9 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [pateintid=" + pateintid + ", pokemon=" + pokemon + ", trainer=" + trainer + ", admission="
-				+ admission + ", currentHP=" + currentHP + ", maxHP=" + maxHP + ", status=" + status + ", nurseid="
-				+ nurseid + ", med=" + med + ", healthy=" + healthy + ", release=" + release + "]";
+		return "\nPatient [\npateintid=" + pateintid + ", \npokemon=" + pokemon + ", \ntrainer=" + trainer + ", \nadmission="
+				+ admission + ", currentHP=" + currentHP + ", maxHP=" + maxHP + ", \nstatus=" + status + ", \nnurseid="
+				+ nurseid + ", \nmed=" + med + ", healthy=" + healthy + ", release=" + release + "]";
 	}
 
 	@Override
@@ -253,7 +253,6 @@ public class Patient {
 			return false;
 		return true;
 	}
-	
-	
 
+	
 }
