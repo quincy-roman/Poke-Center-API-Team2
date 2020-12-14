@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Employee;
+import com.revature.model.Medicine;
+import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Role;
+import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
 import com.revature.repo.PokeRepo;
 
@@ -27,6 +30,37 @@ public class PokeServiceImpl implements PokeService {
 		pokeRepo.save(pokemon);
 		return pokemon.getDexid() != 0;
 	}
+	
+	@Override
+	public boolean registerStatus(StatusCondition statusCondition) {
+		pokeRepo.save(statusCondition);
+		return statusCondition.getStatusId() != 0;
+	}
+
+	@Override
+	public boolean registerMedicine(Medicine med) {
+		pokeRepo.save(med);
+		return med.getMedID() != 0;
+
+	}
+
+	@Override
+	public boolean registerPatient(Patient patient) {
+		pokeRepo.save(patient);		
+		return patient.getPateintid() != 0;
+	}
+	
+	@Override
+	public boolean registerRole(Role role) {
+		pokeRepo.save(role);
+		return role.getRoleid() != 0;
+	}
+
+	@Override
+	public boolean registerEmpl(Employee empl) {
+		pokeRepo.save(empl);		
+		return empl.getEmployeeId() != 0;
+	}
 
 	@Override
 	public boolean registerTrainer(Trainer trainer) {
@@ -40,17 +74,8 @@ public class PokeServiceImpl implements PokeService {
 	}
 
 	@Override
-	public void registerRole(Role role) {
-		pokeRepo.save(role);
-	}
-
-	@Override
-	public void registerEmpl(Employee empl) {
-		pokeRepo.save(empl);		
-	}
-
-	@Override
 	public boolean loginEmpl(String username, String password) {
 		return pokeRepo.loginEmpl(username, password);
 	}
+	
 }

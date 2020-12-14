@@ -30,10 +30,10 @@ public class Patient {
 	@Column(name = "admission", nullable = false)
 	private Timestamp admission;
 
-	@Column(name="currentHP")
+	@Column(name="currentHP", nullable = false)
 	private int currentHP;
 	
-	@Column(name="maxHP")
+	@Column(name="maxHP", nullable = false)
 	private int maxHP;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -54,41 +54,36 @@ public class Patient {
 	public Patient() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Patient(int pateintid, Pokemon pokemon, int currentHP, int maxHP, StatusCondition status, Trainer trainer,
-			Timestamp admission, Employee nurseid, Medicine med, Timestamp release) {
+
+	public Patient(int pateintid, Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
+			StatusCondition status, Employee nurseid, Medicine med, boolean healthy, Timestamp release) {
 		super();
 		this.pateintid = pateintid;
 		this.pokemon = pokemon;
+		this.trainer = trainer;
+		this.admission = admission;
 		this.currentHP = currentHP;
 		this.maxHP = maxHP;
 		this.status = status;
-		this.trainer = trainer;
-		this.admission = admission;
 		this.nurseid = nurseid;
 		this.med = med;
+		this.healthy = healthy;
 		this.release = release;
 	}
 
-	public Patient(Pokemon pokemon, int currentHP, int maxHP, StatusCondition status, Trainer trainer,
-			Timestamp admission, Employee nurseid, Medicine med, Timestamp release) {
+	public Patient(Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
+			StatusCondition status, Employee nurseid, Medicine med, boolean healthy, Timestamp release) {
 		super();
 		this.pokemon = pokemon;
+		this.trainer = trainer;
+		this.admission = admission;
 		this.currentHP = currentHP;
 		this.maxHP = maxHP;
 		this.status = status;
-		this.trainer = trainer;
-		this.admission = admission;
 		this.nurseid = nurseid;
 		this.med = med;
+		this.healthy = healthy;
 		this.release = release;
-	}
-
-	@Override
-	public String toString() {
-		return "Patient [pateintid=" + pateintid + ", pokemon=" + pokemon + ", currentHP=" + currentHP + ", maxHP="
-				+ maxHP + ", status=" + status + ", trainer=" + trainer + ", admission=" + admission + ", nurseid="
-				+ nurseid + ", med=" + med + ", release=" + release + "]";
 	}
 
 	public int getPateintid() {
@@ -105,6 +100,22 @@ public class Patient {
 
 	public void setPokemon(Pokemon pokemon) {
 		this.pokemon = pokemon;
+	}
+
+	public Trainer getTrainer() {
+		return trainer;
+	}
+
+	public void setTrainer(Trainer trainer) {
+		this.trainer = trainer;
+	}
+
+	public Timestamp getAdmission() {
+		return admission;
+	}
+
+	public void setAdmission(Timestamp admission) {
+		this.admission = admission;
 	}
 
 	public int getCurrentHP() {
@@ -131,22 +142,6 @@ public class Patient {
 		this.status = status;
 	}
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
-
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
-
-	public Timestamp getAdmission() {
-		return admission;
-	}
-
-	public void setAdmission(Timestamp admission) {
-		this.admission = admission;
-	}
-
 	public Employee getNurseid() {
 		return nurseid;
 	}
@@ -163,6 +158,14 @@ public class Patient {
 		this.med = med;
 	}
 
+	public boolean isHealthy() {
+		return healthy;
+	}
+
+	public void setHealthy(boolean healthy) {
+		this.healthy = healthy;
+	}
+
 	public Timestamp getRelease() {
 		return release;
 	}
@@ -172,11 +175,19 @@ public class Patient {
 	}
 
 	@Override
+	public String toString() {
+		return "Patient [pateintid=" + pateintid + ", pokemon=" + pokemon + ", trainer=" + trainer + ", admission="
+				+ admission + ", currentHP=" + currentHP + ", maxHP=" + maxHP + ", status=" + status + ", nurseid="
+				+ nurseid + ", med=" + med + ", healthy=" + healthy + ", release=" + release + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((admission == null) ? 0 : admission.hashCode());
 		result = prime * result + currentHP;
+		result = prime * result + (healthy ? 1231 : 1237);
 		result = prime * result + maxHP;
 		result = prime * result + ((med == null) ? 0 : med.hashCode());
 		result = prime * result + ((nurseid == null) ? 0 : nurseid.hashCode());
@@ -203,6 +214,8 @@ public class Patient {
 		} else if (!admission.equals(other.admission))
 			return false;
 		if (currentHP != other.currentHP)
+			return false;
+		if (healthy != other.healthy)
 			return false;
 		if (maxHP != other.maxHP)
 			return false;

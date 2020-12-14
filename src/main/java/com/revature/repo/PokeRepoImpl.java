@@ -13,8 +13,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Employee;
+import com.revature.model.Medicine;
+import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Role;
+import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
 
 @Repository("pokeRepo")
@@ -34,6 +37,12 @@ public class PokeRepoImpl implements PokeRepo {
 	public void save(Pokemon pokemon) {
 		sf.getCurrentSession().save(pokemon);
 	}
+	
+	@Override
+	public void save(StatusCondition statusCondition) {
+		sf.getCurrentSession().save(statusCondition);
+	}
+
 
 	@Override
 	public void save(Trainer trainer) {
@@ -48,6 +57,16 @@ public class PokeRepoImpl implements PokeRepo {
 	@Override
 	public void save(Employee empl) {
 		sf.getCurrentSession().save(empl);
+	}
+	
+	@Override
+	public void save(Medicine med) {
+		sf.getCurrentSession().save(med);
+	}
+
+	@Override
+	public void save(Patient patient) {
+		sf.getCurrentSession().save(patient);		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -99,5 +118,6 @@ public class PokeRepoImpl implements PokeRepo {
 		}
 		return false;
 	}
+
 
 }

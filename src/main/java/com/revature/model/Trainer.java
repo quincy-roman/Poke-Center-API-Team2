@@ -125,4 +125,51 @@ public class Trainer {
 				+ ", username=" + username + ", password=" + password + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hometown == null) ? 0 : hometown.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + trainerId;
+		result = prime * result + ((trainerName == null) ? 0 : trainerName.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Trainer other = (Trainer) obj;
+		if (hometown == null) {
+			if (other.hometown != null)
+				return false;
+		} else if (!hometown.equals(other.hometown))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (trainerId != other.trainerId)
+			return false;
+		if (trainerName == null) {
+			if (other.trainerName != null)
+				return false;
+		} else if (!trainerName.equals(other.trainerName))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+
+	
 }
