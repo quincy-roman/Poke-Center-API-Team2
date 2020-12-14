@@ -1,4 +1,4 @@
-package com.revature.repo;
+package com.revature.repository.impl;
 
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Pokemon;
+import com.revature.repository.PokeRepo;
 
 @Repository("pokeRepo")
 @Transactional
