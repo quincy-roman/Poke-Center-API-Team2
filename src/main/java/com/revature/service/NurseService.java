@@ -26,7 +26,11 @@ public class NurseService implements EmplService{
 	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) {	//TODO add medicine update.
 		
 		// Set the release time to now.
-		nurseRepo.treatmentAndRelease(patient, m, b);
+		
+		patient.setMed(m);
+		patient.setHealthy(b);
+
+		nurseRepo.treatmentAndRelease(patient);
 		
 		// Check to make sure the update was a success.
 		return patient.getRelease() != null;

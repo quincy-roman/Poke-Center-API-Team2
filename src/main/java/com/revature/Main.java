@@ -54,9 +54,9 @@ public class Main {
 //		
 //		getList(); //WORKED
 //		
-		//releasePatient();
-		
-		getMeds();
+//		releasePatient(); //Maybe working
+//		
+//		getMeds(); //WORKED
 	}
 
 	private static void getMeds() {

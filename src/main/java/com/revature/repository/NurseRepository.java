@@ -10,7 +10,7 @@ import com.revature.model.StatusCondition;
 public interface NurseRepository {
 	
 	// Update the patient's status, health, and release time.
-	void treatmentAndRelease(Patient patient, Medicine m, boolean b);	
+	void treatmentAndRelease(Patient patient);	
 	
 	// Retrieve all records, current and past.
 	List<Patient> findAllPatients();

@@ -13,9 +13,8 @@ import javax.persistence.Table;
 public class StatusCondition {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="status_seq")
-//	@SequenceGenerator(name="status_seq", sequenceName="status_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="status_seq")
+	@SequenceGenerator(name="status_seq", sequenceName="status_seq", allocationSize=1)
 	@Column(name="status_id")
 	private int statusId;
 

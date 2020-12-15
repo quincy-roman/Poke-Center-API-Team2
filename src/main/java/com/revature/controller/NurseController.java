@@ -27,14 +27,14 @@ public class NurseController {
 	private NurseService nurseService;
 	
 	@GetMapping("/gettreatment")
-	public ResponseEntity<List<Medicine>> selectmeds(@RequestBody StatusCondition s){
-		List<Medicine> m = nurseService.selectTreatment(s);
-		return ResponseEntity.ok(m);
+	public ResponseEntity<List<Medicine>> selectmeds(@RequestBody StatusCondition status){
+		List<Medicine> medicine = nurseService.selectTreatment(status);
+		return ResponseEntity.ok(medicine);
 	}
 	
 	@PostMapping("/treatment")					
-	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
-		ClientMessage body = (nurseService.treatmentAndRelease(patient, null, false)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
+	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient, Medicine medicine) {
+		ClientMessage body = (nurseService.treatmentAndRelease(patient, medicine, true)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 	
