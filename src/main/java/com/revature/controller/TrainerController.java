@@ -2,19 +2,22 @@ package com.revature.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
+import com.revature.util.ClientMessage;
 
 public interface TrainerController {
 
-	List<Patient> getPokemon(Trainer trainer);
+	ResponseEntity<List<Patient>> getPokemon(Trainer trainer);
 	
-	public boolean loginTrainer(String username, String password);
+	ResponseEntity<ClientMessage> loginTrainer(String username, String password);
 
-	Trainer getProfile(Trainer trainer);
+	ResponseEntity<Trainer> getProfile(Trainer trainer);
 
-	Trainer updateProfile(Trainer trainer);
+	ResponseEntity<Trainer> updateProfile(Trainer trainer);
 	
-	public boolean registerTrainer(Trainer trainer);
+	ResponseEntity<ClientMessage> registerTrainer(Trainer trainer);
 
 }
