@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
+import com.revature.model.Patient;
 import com.revature.model.Trainer;
 import com.revature.repository.AdminRepository;
 
@@ -59,6 +60,11 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@Override
 	public <T> void remove(T user) {
 		sf.getCurrentSession().delete(user);
+	}
+
+	@Override
+	public void assignNurse(Patient patient) {
+		sf.getCurrentSession().update(patient);
 	}
 
 }

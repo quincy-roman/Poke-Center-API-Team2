@@ -11,7 +11,7 @@ import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
-import com.revature.repo.PokeRepo;
+import com.revature.repository.PokeRepo;
 
 @Service("PokeService")
 public class PokeServiceImpl implements PokeService {

@@ -1,4 +1,4 @@
-package com.revature.repo;
+package com.revature.repository.impl;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
+import com.revature.repository.PokeRepo;
 
 @Repository("pokeRepo")
 @Transactional

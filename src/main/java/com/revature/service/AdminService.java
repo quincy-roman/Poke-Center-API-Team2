@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
+import com.revature.model.Patient;
 import com.revature.model.Trainer;
 import com.revature.repository.AdminRepository;
 
@@ -43,6 +44,13 @@ public class AdminService {
 	// View all trainers TODO switch this to the TrainerDTO.
 	public List<Trainer> viewTrainers() {
 		return adminRepo.viewTrainers();
+	}
+	
+	// Assign a nurse to a patient.
+	public boolean assignNurse(Patient patient, Employee nurse) {
+		patient.setNurseid(nurse);
+		adminRepo.assignNurse(patient);
+		return patient.getNurseid().getEmployeeId() != 0;
 	}
 	
 	// Remove a user.

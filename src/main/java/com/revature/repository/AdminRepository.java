@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
+import com.revature.model.Patient;
 import com.revature.model.Trainer;
 
 public interface AdminRepository {
@@ -23,6 +24,9 @@ public interface AdminRepository {
 	
 	// View all trainers.
 	List<Trainer> viewTrainers();
+	
+	// Update a patient with a new nurse.
+	void assignNurse(Patient patient);
 	
 	// Remove a user, utilizing generics here.
 	<T> void remove(T user);
