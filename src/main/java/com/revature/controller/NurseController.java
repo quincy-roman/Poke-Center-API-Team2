@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
+import com.revature.model.StatusCondition;
 import com.revature.service.NurseService;
 import com.revature.util.ClientMessage;
 
@@ -25,9 +26,15 @@ public class NurseController {
 	@Autowired
 	private NurseService nurseService;
 	
+	@GetMapping("/gettreatment")
+	public ResponseEntity<List<Medicine>> selectmeds(@RequestBody StatusCondition s){
+		List<Medicine> m = nurseService.selectTreatment(s);
+		return ResponseEntity.ok(m);
+	}
+	
 	@PostMapping("/treatment")					
 	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
-		ClientMessage body = (nurseService.treatmentAndRelease(patient, null, null, false)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
+		ClientMessage body = (nurseService.treatmentAndRelease(patient, null, false)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 	

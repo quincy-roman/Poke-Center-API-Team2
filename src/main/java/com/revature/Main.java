@@ -54,7 +54,15 @@ public class Main {
 //		
 //		getList(); //WORKED
 //		
-		releasePatient();
+		//releasePatient();
+		
+		getMeds();
+	}
+
+	private static void getMeds() {
+		StatusCondition s = NurseService.problem("Burn");
+		List<Medicine> m = NurseService.selectTreatment(s);
+		System.out.println(m);
 	}
 
 	private static void getList() {
@@ -70,18 +78,21 @@ public class Main {
 	}
 
 	private static void releasePatient() {
-		Patient p = NurseService.findPatient(7);
+		Patient p = NurseService.findPatient(8);
+		StatusCondition s = NurseService.problem("Burn");
+		Medicine m = NurseService.treatment(s);
+//		System.out.println(p+"\n"+s+"\n"+m);
 
-		Role nurse = new Role(1, "Nurse");
-		Employee n = new Employee(1, "Nurse1", "1", "1", nurse);
-		Medicine m = new Medicine("Revive", 250, 10, new StatusCondition(3, "Fainted"));
-		boolean h = true;
 		
-		//p.setCurrentHP(p.getMaxHP()/2);
 		
-		//new Patient(p.getPateintid(), p.getPokemon(), p.getTrainer(), p.getAdmission(), p.setCurrentHP(10), p.getMaxHP(), p.getStatus(), p.setNurseid(n), p.getMed(m), p.set, release)
-		
-		if(NurseService.treatmentAndRelease(p, n, m, h)) {
+//		Role nurse = new Role(1, "Nurse");
+//		Employee n = new Employee(1, "Nurse1", "1", "1", nurse);
+//		Medicine m = new Medicine(3, "Revive", 250, 10, new StatusCondition(3, "Fainted"));
+//		boolean h = true;
+//				
+//		//new Patient(p.getPateintid(), p.getPokemon(), p.getTrainer(), p.getAdmission(), p.setCurrentHP(10), p.getMaxHP(), p.getStatus(), p.setNurseid(n), p.getMed(m), p.set, release)
+//		
+		if(NurseService.treatmentAndRelease(p, m, true)) {
 			System.out.println("WORKED");
 		}else {
 			System.out.println("FAIL");

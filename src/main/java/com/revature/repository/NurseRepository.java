@@ -5,11 +5,12 @@ import java.util.List;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
+import com.revature.model.StatusCondition;
 
 public interface NurseRepository {
 	
 	// Update the patient's status, health, and release time.
-	void treatmentAndRelease(Patient patient, Employee n, Medicine m, boolean b);	
+	void treatmentAndRelease(Patient patient, Medicine m, boolean b);	
 	
 	// Retrieve all records, current and past.
 	List<Patient> findAllPatients();
@@ -26,4 +27,10 @@ public interface NurseRepository {
 	boolean loginEmpl(String username, String password);
 
 	Patient findPatient(int patient);
+
+	Medicine treatment(StatusCondition s);
+
+	StatusCondition problem(String string);
+
+	List<Medicine> selectTreatment(StatusCondition s);
 }

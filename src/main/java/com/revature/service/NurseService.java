@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
+import com.revature.model.StatusCondition;
 import com.revature.repository.NurseRepository;
 
 @Service("NurseService")
@@ -22,11 +23,10 @@ public class NurseService implements EmplService{
 		return nurseRepo.findPatient(patient);
 	}
 	
-	public boolean treatmentAndRelease(Patient patient, Employee n, Medicine m, boolean b) {	//TODO add medicine update.
+	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) {	//TODO add medicine update.
 		
 		// Set the release time to now.
-		
-		nurseRepo.treatmentAndRelease(patient, n, m, b);
+		nurseRepo.treatmentAndRelease(patient, m, b);
 		
 		// Check to make sure the update was a success.
 		return patient.getRelease() != null;
@@ -58,6 +58,20 @@ public class NurseService implements EmplService{
 	@Override
 	public boolean loginEmpl(String username, String password) {
 		return nurseRepo.loginEmpl(username, password);
+	}
+
+	
+	public Medicine treatment(StatusCondition s) {
+		return nurseRepo.treatment(s);
+	}
+	
+	public List<Medicine> selectTreatment(StatusCondition s) {
+		return nurseRepo.selectTreatment(s);
+	}
+
+
+	public StatusCondition problem(String string) {
+		return nurseRepo.problem(string);
 	}
 
 }
