@@ -48,7 +48,7 @@ public class Main {
 //		
 //		getPokemon(); //WORKED
 //		
-//		updateProfile(); //WORKED	
+		updateProfile(); //WORKED	
 //		
 //		getPatients(); //UPDATED
 //		
@@ -81,17 +81,7 @@ public class Main {
 		Patient p = NurseService.findPatient(8);
 		StatusCondition s = NurseService.problem("Burn");
 		Medicine m = NurseService.treatment(s);
-//		System.out.println(p+"\n"+s+"\n"+m);
 
-		
-		
-//		Role nurse = new Role(1, "Nurse");
-//		Employee n = new Employee(1, "Nurse1", "1", "1", nurse);
-//		Medicine m = new Medicine(3, "Revive", 250, 10, new StatusCondition(3, "Fainted"));
-//		boolean h = true;
-//				
-//		//new Patient(p.getPateintid(), p.getPokemon(), p.getTrainer(), p.getAdmission(), p.setCurrentHP(10), p.getMaxHP(), p.getStatus(), p.setNurseid(n), p.getMed(m), p.set, release)
-//		
 		if(NurseService.treatmentAndRelease(p, m, true)) {
 			System.out.println("WORKED");
 		}else {
@@ -100,8 +90,14 @@ public class Main {
 	}
 
 	private static void updateProfile() {
-		Trainer t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
-		System.out.println(t);
+//		Trainer t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+//		System.out.println(t);
+		Role nurse = new Role(1, "Nurse");
+		Role admin = new Role(2, "Admin");
+
+		Employee n = new Employee(1, "TEST1", "1", "1", nurse); //WORKED
+		n = new Employee(2, "TEST2", "5", "5", admin);
+		NurseService.update(n);
 	}
 
 	private static void getProfile() {

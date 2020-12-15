@@ -12,67 +12,65 @@ import com.revature.model.StatusCondition;
 import com.revature.repository.NurseRepository;
 
 @Service("NurseService")
-public class NurseService implements EmplService{
-	
+public class NurseService implements EmplService {
+
 //	private static Logger log = Logger.getLogger(NurseService.class);
 
 	@Autowired
 	private NurseRepository nurseRepo;
-	
+
 	public Patient findPatient(int patient) {
 		return nurseRepo.findPatient(patient);
 	}
-	
-	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) {	//TODO add medicine update.
-		
+
+	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) { // TODO add medicine update.
+
 		// Set the release time to now.
-		
+
 		patient.setMed(m);
 		patient.setHealthy(b);
 
 		nurseRepo.treatmentAndRelease(patient);
-		
+
 		// Check to make sure the update was a success.
 		return patient.getRelease() != null;
 	}
-	
+
 	// Get all patients.
-	public List<Patient> getAllPatients(){
+	public List<Patient> getAllPatients() {
 		return nurseRepo.findAllPatients();
 	}
-	
+
 	// Get patients for the logged in nurse.
-	public List<Patient> getNursePatients(Employee nurse_id){
+	public List<Patient> getNursePatients(Employee nurse_id) {
 		return nurseRepo.findPatients(nurse_id);
 	}
-	
+
 	@Override // Get all medicines.
-	public List<Medicine> getAllMedicines(){
+	public List<Medicine> getAllMedicines() {
 		return nurseRepo.getAllMedicines();
 	}
-	
+
 	// Update the nurse's information.
 	public boolean update(Employee nurse) {
-		String username = nurse.getUsername();
+		String username = nurse.getUsername(); //Not relevant to code working
 		nurseRepo.update(nurse);
-		//TODO This condition could be improved.
+		// TODO This condition could be improved.
 		return nurse.getUsername() != username;
 	}
-	
+
 	@Override
 	public boolean loginEmpl(String username, String password) {
 		return nurseRepo.loginEmpl(username, password);
 	}
 
-	
 	public Medicine treatment(StatusCondition s) {
 		return nurseRepo.treatment(s);
 	}
-	
+
 	public List<Medicine> selectTreatment(StatusCondition s) {
 		return nurseRepo.selectTreatment(s);
 	}
-
 
 	public StatusCondition problem(String string) {
 		return nurseRepo.problem(string);

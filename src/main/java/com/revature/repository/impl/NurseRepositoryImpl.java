@@ -87,11 +87,6 @@ public class NurseRepositoryImpl implements NurseRepository{
 		return sf.getCurrentSession().createCriteria(Medicine.class).list();
 	}
 
-	@Override
-	public void update(Employee nurse) {
-		sf.getCurrentSession().update(nurse);		
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> findPatients(Employee nurse_id) {
@@ -101,6 +96,11 @@ public class NurseRepositoryImpl implements NurseRepository{
 		return p;
 	}
 	
+	@Override
+	public void update(Employee nurse) {
+		sf.getCurrentSession().update(nurse);		
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean loginEmpl(String username, String password) {
