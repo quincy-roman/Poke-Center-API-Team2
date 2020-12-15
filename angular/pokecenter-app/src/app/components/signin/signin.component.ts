@@ -37,4 +37,16 @@ export class SigninComponent implements OnInit {
     }
   }
 
+  public signInTest(value: any){
+   // console.log(`Assigned: ${this.username}, ${this.password}`);
+    if(this.username == "aaknox" && this.password == "password"){
+      console.log('checking creds...')
+    //  this.authService.login(this.username, this.password);
+    this.router.navigate(['home'])
+    }else{
+      console.log("user unauthorized");
+      this.router.navigate(["../"]);
+    }
+  }
+
 }

@@ -1,3 +1,5 @@
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdmissionComponent } from './components/admission/admission.component';
 import { TableComponent } from './components/table/table.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -22,6 +24,14 @@ const routes: Routes = [
     component: SigninComponent
   },
   {
+    path: "dashboard",
+    component: DashboardComponent
+  },
+  {
+    path: "admission",
+    component: AdmissionComponent
+  },
+  {
     path: "home",
     component: HomeComponent,
   },
@@ -43,6 +53,10 @@ const routes: Routes = [
   },
   {
     path: "table/view-my-pokepatient-charts",
+    component: TableComponent
+  },
+  {
+    path: "table/get-poketreatment-by-patient-id",
     component: TableComponent
   },
   {

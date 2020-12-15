@@ -14,3 +14,23 @@ table{
     background-color: black;
     color: #0dc285;
 }
+
+.goBack{
+    display: block !important;
+    background-color: yellow;
+    color: blue;
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: 0.4s ease-in-out;
+    font-size: 0.9rem;
+    margin-top:25px;
+    margin :auto;
+
+}
+
+.goBack:hover {
+    background-color: blue;
+    text-decoration: underline;
+    color: yellow;
+}
+
