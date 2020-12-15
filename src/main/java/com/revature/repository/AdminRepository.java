@@ -25,6 +25,9 @@ public interface AdminRepository {
 	// View all trainers.
 	List<Trainer> viewTrainers();
 	
+	// View all patients.
+	List<Patient> viewPatients();
+	
 	// Update a patient with a new nurse.
 	void assignNurse(Patient patient);
 	

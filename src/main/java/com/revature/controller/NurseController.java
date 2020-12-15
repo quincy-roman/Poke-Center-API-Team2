@@ -6,12 +6,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Employee;
@@ -22,8 +19,6 @@ import com.revature.util.ClientMessage;
 
 @RestController
 public class NurseController {
-	
-	// TODO Update to use ResponseEntity return type.
 	
 	@Autowired
 	private NurseService nurseService;
@@ -58,6 +53,9 @@ public class NurseController {
 		return ResponseEntity.ok(body);
 	}
 	
-	// TODO implement login function here.
-
+	@PostMapping("/login")
+	public ResponseEntity<ClientMessage> loginEmpl(String username, String password) {
+		ClientMessage body = (nurseService.loginEmpl(username, password)) ? USER_LOGIN : LOGIN_FAILED;
+		return ResponseEntity.ok(body);
+	}
 }
