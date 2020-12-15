@@ -54,7 +54,19 @@ public class Patient {
 	public Patient() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public Patient(Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
+			StatusCondition status, boolean healthy) { //INFO TO register a patient
+		super();
+		this.pokemon = pokemon;
+		this.trainer = trainer;
+		this.admission = admission;
+		this.currentHP = currentHP;
+		this.maxHP = maxHP;
+		this.status = status;
+		this.healthy = healthy;
+	}
+	
 	public Patient(int pateintid, Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
 			StatusCondition status, Employee nurseid, Medicine med, boolean healthy, Timestamp release) {
 		super();

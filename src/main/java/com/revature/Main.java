@@ -29,6 +29,8 @@ public class Main {
 	static NurseService NurseService = ac.getBean("NurseService", NurseService.class);
 	
 	static Timestamp admission = new Timestamp(System.currentTimeMillis());
+	
+	static Timestamp release = new Timestamp(System.currentTimeMillis());
 
 	public static void main(String[] args) {
 
@@ -47,6 +49,21 @@ public class Main {
 		getPokemon(); //WORKED
 		
 		updateProfile(); //WORKED	
+		
+		releasePatient();
+	}
+
+	private static void releasePatient() {
+//		NurseService.releasePatient(new Patient(
+//				4,
+//				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
+//				new Trainer(1, "Ash", "Pallet Town", "fire", "red"),
+//				300, 
+//				new StatusCondition(2, "Sleep"),
+//				new Employee(1, "Nurse1", "1", "1", new Role(1, "Nurse")), 
+//				new Medicine("Awakening", 100, 5, new StatusCondition(2, "Sleep")),
+//				true, 
+//				release));
 	}
 
 	private static void updateProfile() {
@@ -93,8 +110,8 @@ public class Main {
 				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
 				new Trainer(1, "Ash", "Pallet Town", "fire", "red")
 				, admission, 300, 300, 
-				new StatusCondition(2, "Sleep")
-				, null, null, false, null));
+				new StatusCondition(2, "Sleep"),
+				false));
 
 		PokeService.registerPatient(new Patient(
 				new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
