@@ -1,4 +1,4 @@
-package com.revature.repository;
+package com.revature.repository.impl;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
+import com.revature.repository.TrainerRepo;
 
 @Repository("trainerRepo")
 @Transactional

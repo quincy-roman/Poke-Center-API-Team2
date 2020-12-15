@@ -1,4 +1,4 @@
-package com.revature.repository;
+package com.revature.repository.impl;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
+import com.revature.repository.NurseRepository;
 
 @Repository("nurseRepo")
 @Transactional
