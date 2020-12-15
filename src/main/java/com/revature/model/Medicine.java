@@ -11,45 +11,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Medicine")
+@Table(name = "Medicine")
 public class Medicine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="medid")
+	@Column(name = "medid")
 	private int medID;
-	
-	@Column(name="medname", nullable = false)
+
+	@Column(name = "medname", nullable = false)
 	private String medName;
-	
-	@Column(name="cost", nullable = false)
+
+	@Column(name = "cost", nullable = false)
 	private double cost;
-	
+
+	@Column(name = "stock", nullable = false)
+	private int stock;
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private StatusCondition status; //The status condition recommended for
+	private StatusCondition status; // The status condition recommended for
 
-	public Medicine(int medID, String medName, double cost, StatusCondition status) {
-		super();
-		this.medID = medID;
-		this.medName = medName;
-		this.cost = cost;
-		this.status = status;
-	}
-
-	public Medicine(String medName, double cost, StatusCondition status) {
-		super();
-		this.medName = medName;
-		this.cost = cost;
-		this.status = status;
-	}
-	
 	public Medicine() {
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Medicine [medID=" + medID + ", medName=" + medName + ", cost=" + cost + ", status=" + status + "]";
 	}
 
 	public int getMedID() {
@@ -76,6 +59,14 @@ public class Medicine {
 		this.cost = cost;
 	}
 
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	public StatusCondition getStatus() {
 		return status;
 	}
@@ -94,6 +85,7 @@ public class Medicine {
 		result = prime * result + medID;
 		result = prime * result + ((medName == null) ? 0 : medName.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + stock;
 		return result;
 	}
 
@@ -120,8 +112,32 @@ public class Medicine {
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
+		if (stock != other.stock)
+			return false;
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Medicine [medID=" + medID + ", medName=" + medName + ", cost=" + cost + ", stock=" + stock + ", status="
+				+ status + "]";
+	}
+
+	public Medicine(int medID, String medName, double cost, int stock, StatusCondition status) {
+		super();
+		this.medID = medID;
+		this.medName = medName;
+		this.cost = cost;
+		this.stock = stock;
+		this.status = status;
+	}
+
+	public Medicine(String medName, double cost, int stock, StatusCondition status) {
+		super();
+		this.medName = medName;
+		this.cost = cost;
+		this.stock = stock;
+		this.status = status;
+	}
+
 }

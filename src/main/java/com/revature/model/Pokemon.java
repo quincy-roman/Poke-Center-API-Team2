@@ -55,6 +55,46 @@ public class Pokemon {
 				+ ability + "]";
 	}
 
+	public int getDexid() {
+		return dexid;
+	}
+
+	public void setDexid(int dexid) {
+		this.dexid = dexid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType1() {
+		return type1;
+	}
+
+	public void setType1(String type1) {
+		this.type1 = type1;
+	}
+
+	public String getType2() {
+		return type2;
+	}
+
+	public void setType2(String type2) {
+		this.type2 = type2;
+	}
+
+	public String getAbility() {
+		return ability;
+	}
+
+	public void setAbility(String ability) {
+		this.ability = ability;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,47 +140,6 @@ public class Pokemon {
 			return false;
 		return true;
 	}
-
-	public int getDexid() {
-		return dexid;
-	}
-
-	public void setDexid(int dexid) {
-		this.dexid = dexid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType1() {
-		return type1;
-	}
-
-	public void setType1(String type1) {
-		this.type1 = type1;
-	}
-
-	public String getType2() {
-		return type2;
-	}
-
-	public void setType2(String type2) {
-		this.type2 = type2;
-	}
-
-	public String getAbility() {
-		return ability;
-	}
-
-	public void setAbility(String ability) {
-		this.ability = ability;
-	}
-	
 	
 	
 }
