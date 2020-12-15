@@ -15,4 +15,4 @@ export const environment = {
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
-export const API_URL = `http://localhost:8080/project-2/`;
+export const API_URL = `http://localhost:8080/Poke-Center-API/`;
