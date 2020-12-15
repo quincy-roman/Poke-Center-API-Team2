@@ -15,4 +15,6 @@ public interface TrainerRepo {
 	
 	Trainer updateProfile(Trainer trainer);
 
+	void save(Trainer trainer);
+
 }

@@ -32,21 +32,21 @@ public class Main {
 
 	public static void main(String[] args) {
 
-//		registerTrainer(); //and login WORKED
-//
-//		registerEmpl(); //roles and login WORKED
-//
-//		registerStatus(); //and meds WORKED
-//
-//		registerPokemon(); //and WORKED
-//
-//		registerPatient(); //and WORKED
-//		
-//		getProfile(); //WORKED
-//		
-//		getPokemon(); //WORKED
-//		
-//		updateProfile(); //WORKED	
+		registerTrainer(); //and login WORKED
+
+		registerEmpl(); //roles and login WORKED
+
+		registerStatus(); //and meds WORKED
+
+		registerPokemon(); //and WORKED
+
+		registerPatient(); //and WORKED
+		
+		getProfile(); //WORKED
+		
+		getPokemon(); //WORKED
+		
+		updateProfile(); //WORKED	
 	}
 
 	private static void updateProfile() {
@@ -133,11 +133,11 @@ public class Main {
 	}
 
 	public static void registerTrainer() {
-		PokeService.registerTrainer(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+		TrainerService.registerTrainer(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
 		
-		PokeService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
+		TrainerService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
 		
-		PokeService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
+		TrainerService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
 
 //		if (PokeService.loginTrainer(t.getUsername(), t.getPassword())) {
 //			System.out.println("logged into trainer");

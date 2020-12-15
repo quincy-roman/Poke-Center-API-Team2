@@ -10,18 +10,19 @@ import com.revature.model.Trainer;
 import com.revature.repository.TrainerRepo;
 
 @Service("TrainerService")
-public class TrainerServiceImpl implements TrainerService{
+public class TrainerServiceImpl implements TrainerService {
 
 	@Autowired
 	private TrainerRepo trainerRepo;
-	
+
 	public TrainerServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
-	public List<Patient> getPokemon(Trainer trainer) {
-		return trainerRepo.getPatient(trainer);
+	public boolean registerTrainer(Trainer trainer) {
+		trainerRepo.save(trainer);
+		return trainer.getTrainerId() != 0;
 	}
 
 	@Override
@@ -37,6 +38,11 @@ public class TrainerServiceImpl implements TrainerService{
 	@Override
 	public Trainer updateProfile(Trainer trainer) {
 		return trainerRepo.updateProfile(trainer);
+	}
+
+	@Override
+	public List<Patient> getPokemon(Trainer trainer) {
+		return trainerRepo.getPatient(trainer);
 	}
 
 }

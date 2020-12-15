@@ -1,17 +1,17 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.*;
+import static com.revature.util.ClientMessageUtil.FAILED_UPDATE;
+import static com.revature.util.ClientMessageUtil.SUCCESSFULLY_TREATED;
+import static com.revature.util.ClientMessageUtil.SUCCESSFUL_UPDATE;
+import static com.revature.util.ClientMessageUtil.TREATMENT_FAILED;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Employee;

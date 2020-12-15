@@ -1,13 +1,14 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.*;
+import static com.revature.util.ClientMessageUtil.FAILED_UPDATE;
+import static com.revature.util.ClientMessageUtil.ORDER_FAILED;
+import static com.revature.util.ClientMessageUtil.ORDER_PLACED;
+import static com.revature.util.ClientMessageUtil.SUCCESSFUL_UPDATE;
 
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

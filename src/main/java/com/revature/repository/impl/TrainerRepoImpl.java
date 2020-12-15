@@ -24,6 +24,11 @@ public class TrainerRepoImpl implements TrainerRepo {
 	@Autowired
 	private SessionFactory sf;
 
+	@Override
+	public void save(Trainer trainer) {
+		sf.getCurrentSession().save(trainer);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean loginTrainer(String username, String password) {
