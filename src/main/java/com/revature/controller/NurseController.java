@@ -5,6 +5,7 @@ import static com.revature.util.ClientMessageUtil.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,27 +29,29 @@ public class NurseController {
 	private NurseService nurseService;
 	
 	@PostMapping("/treatment")
-	public @ResponseBody ClientMessage treatement(@RequestBody Patient patient) {
-		return (nurseService.treatmentAndRelease(patient)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
+	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
+		ClientMessage body = (nurseService.treatmentAndRelease(patient)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
+		return ResponseEntity.ok(body);
 	}
 	
 	@GetMapping("/getAllPatients")
-	public @ResponseBody List<Patient> getAllPatients() {
-		return nurseService.getAllPatients();
+	public  ResponseEntity<List<Patient>> getAllPatients() {
+		List<Patient> patients = nurseService.getAllPatients();
+		return ResponseEntity.ok(patients);
 	}
 	
 	@PostMapping("/getMyPatients")
-	public @ResponseBody List<Patient> getNursePatients(@RequestBody Employee nurse) {
+	public List<Patient> getNursePatients(@RequestBody Employee nurse) {
 		return nurseService.getNursePatients(nurse.getEmployeeId());
 	}
 	
 	@GetMapping("/getAllMedicine")
-	public @ResponseBody List<Medicine> getAllMeds() {
+	public List<Medicine> getAllMeds() {
 		return nurseService.getAllMedicines();
 	}
 	
 	@PostMapping("/update")
-	public @ResponseBody ClientMessage updateNurse(@RequestBody Employee nurse) {
+	public ClientMessage updateNurse(@RequestBody Employee nurse) {
 		return (nurseService.update(nurse)) ? SUCCESSFUL_UPDATE : FAILED_UPDATE;
 	}
 	
