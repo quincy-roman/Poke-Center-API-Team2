@@ -9,7 +9,6 @@ import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
-import com.revature.model.Trainer;
 import com.revature.repository.PokeRepo;
 
 @Service("PokeService")
@@ -57,12 +56,5 @@ public class PokeServiceImpl implements PokeService {
 	public boolean registerEmpl(Employee empl) {
 		pokeRepo.save(empl);		
 		return empl.getEmployeeId() != 0;
-	}
-
-	@Override
-	public boolean registerTrainer(Trainer trainer) {
-		pokeRepo.save(trainer);
-		return trainer.getTrainerId() != 0;
-	}
-	
+	}	
 }

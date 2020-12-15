@@ -1,14 +1,14 @@
-package com.revature.service;
+package com.revature.controller;
 
 import java.util.List;
 
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
 
-public interface TrainerService {
+public interface TrainerController {
 
 	List<Patient> getPokemon(Trainer trainer);
-
+	
 	public boolean loginTrainer(String username, String password);
 
 	Trainer getProfile(Trainer trainer);

@@ -11,7 +11,6 @@ import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
-import com.revature.model.Trainer;
 import com.revature.repository.PokeRepo;
 
 @Repository("pokeRepo")
@@ -37,10 +36,7 @@ public class PokeRepoImpl implements PokeRepo {
 		sf.getCurrentSession().save(statusCondition);
 	}
 
-	@Override
-	public void save(Trainer trainer) {
-		sf.getCurrentSession().save(trainer);
-	}
+
 
 	@Override
 	public void save(Role role) {
