@@ -1,8 +1,8 @@
 package com.revature.repository.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.QueryException;
 import org.hibernate.SessionFactory;
@@ -21,13 +21,28 @@ import com.revature.repository.NurseRepository;
 @Transactional
 public class NurseRepositoryImpl implements NurseRepository{
 
-	private static Logger log = Logger.getLogger(NurseRepositoryImpl.class);
+//	private static Logger log = Logger.getLogger(NurseRepositoryImpl.class);
 
 	@Autowired
 	private SessionFactory sf;
 	
+	@SuppressWarnings("unchecked")
+	public Patient findPatient(int patient) {
+		Criteria crit = sf.getCurrentSession().createCriteria(Patient.class);
+		crit.add(Restrictions.idEq(patient));
+		List<Patient> p = crit.list();
+		return p.get(0);
+	}
+	
 	@Override
-	public void treatmentAndRelease(Patient patient) {
+	public void treatmentAndRelease(Patient patient, Employee n, Medicine m, boolean b) {
+		sf.getCurrentSession().evict(patient);
+		patient.setStatus(null);
+		patient.setMed(m);
+		patient.setHealthy(b);
+		patient.setNurseid(n);
+		patient.setRelease(new Timestamp(System.currentTimeMillis()));
+
 		sf.getCurrentSession().update(patient);	// TODO Might want to set a trigger to lower med count.
 		// Or we can update the med count directly in this same method.
 	}

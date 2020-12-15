@@ -27,7 +27,7 @@ public class NurseController {
 	
 	@PostMapping("/treatment")					
 	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
-		ClientMessage body = (nurseService.treatmentAndRelease(patient)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
+		ClientMessage body = (nurseService.treatmentAndRelease(patient, null, null, false)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 	

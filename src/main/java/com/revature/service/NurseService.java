@@ -1,6 +1,5 @@
 package com.revature.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,15 @@ public class NurseService implements EmplService{
 	@Autowired
 	private NurseRepository nurseRepo;
 	
-	public boolean treatmentAndRelease(Patient patient) {	//TODO add medicine update.
+	public Patient findPatient(int patient) {
+		return nurseRepo.findPatient(patient);
+	}
+	
+	public boolean treatmentAndRelease(Patient patient, Employee n, Medicine m, boolean b) {	//TODO add medicine update.
 		
 		// Set the release time to now.
-		patient.setRelease(new Timestamp(System.currentTimeMillis()));
 		
-		nurseRepo.treatmentAndRelease(patient);
+		nurseRepo.treatmentAndRelease(patient, n, m, b);
 		
 		// Check to make sure the update was a success.
 		return patient.getRelease() != null;

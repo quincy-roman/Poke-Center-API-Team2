@@ -9,7 +9,7 @@ import com.revature.model.Patient;
 public interface NurseRepository {
 	
 	// Update the patient's status, health, and release time.
-	void treatmentAndRelease(Patient patient);	
+	void treatmentAndRelease(Patient patient, Employee n, Medicine m, boolean b);	
 	
 	// Retrieve all records, current and past.
 	List<Patient> findAllPatients();
@@ -24,4 +24,6 @@ public interface NurseRepository {
 	List<Patient> findPatients(Employee nurse_id);
 
 	boolean loginEmpl(String username, String password);
+
+	Patient findPatient(int patient);
 }

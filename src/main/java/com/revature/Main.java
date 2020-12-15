@@ -50,28 +50,42 @@ public class Main {
 //		
 //		updateProfile(); //WORKED	
 //		
-		getNurses();
+//		getPatients(); //UPDATED
 //		
-//		releasePatient();
+//		getList(); //WORKED
+//		
+		releasePatient();
 	}
 
-	private static void getNurses() {
+	private static void getList() {
+		List<Medicine> m = NurseService.getAllMedicines();
+		List<Patient> p = NurseService.getAllPatients();
+		System.out.println(m+"\n"+p);
+	}
+
+	private static void getPatients() {
 		List<Patient> p = NurseService.getNursePatients(new Employee(1, "Nurse1", "1", "1", new Role(1, "Nurse")));
 //		List<Patient> p = NurseService.getNursePatients(1);
 		System.out.println(p);
 	}
 
 	private static void releasePatient() {
-//		NurseService.releasePatient(new Patient(
-//				4,
-//				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
-//				new Trainer(1, "Ash", "Pallet Town", "fire", "red"),
-//				300, 
-//				new StatusCondition(2, "Sleep"),
-//				new Employee(1, "Nurse1", "1", "1", new Role(1, "Nurse")), 
-//				new Medicine("Awakening", 100, 5, new StatusCondition(2, "Sleep")),
-//				true, 
-//				release));
+		Patient p = NurseService.findPatient(7);
+
+		Role nurse = new Role(1, "Nurse");
+		Employee n = new Employee(1, "Nurse1", "1", "1", nurse);
+		Medicine m = new Medicine("Revive", 250, 10, new StatusCondition(3, "Fainted"));
+		boolean h = true;
+		
+		//p.setCurrentHP(p.getMaxHP()/2);
+		
+		//new Patient(p.getPateintid(), p.getPokemon(), p.getTrainer(), p.getAdmission(), p.setCurrentHP(10), p.getMaxHP(), p.getStatus(), p.setNurseid(n), p.getMed(m), p.set, release)
+		
+		if(NurseService.treatmentAndRelease(p, n, m, h)) {
+			System.out.println("WORKED");
+		}else {
+			System.out.println("FAIL");
+		}
 	}
 
 	private static void updateProfile() {

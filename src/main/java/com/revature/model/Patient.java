@@ -67,6 +67,21 @@ public class Patient {
 		this.healthy = healthy;
 	}
 	
+	public Patient(int pateintid, Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP,
+			/*StatusCondition status,*/ Employee nurseid, Medicine med, boolean healthy/*, Timestamp release*/) { //Treat and release a patient
+		super();
+		this.pateintid = pateintid;
+		this.pokemon = pokemon;
+		this.trainer = trainer;
+		this.currentHP = currentHP;
+		this.admission = admission;
+		//this.status = status;
+		this.nurseid = nurseid;
+		this.med = med;
+		this.healthy = healthy;
+		//this.release = release;
+	}
+	
 	public Patient(int pateintid, Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
 			StatusCondition status, Employee nurseid, Medicine med, boolean healthy, Timestamp release) {
 		super();
@@ -197,7 +212,7 @@ public class Patient {
 				+ ", \nstatus=" + status 
 				+ ", \nnurseid=" + nurseid 
 				+ ", \nmed=" + med 
-				+ ", healthy=" + healthy + ", release=" + release + "]";
+				+ ", \nhealthy=" + healthy + ", release=" + release + "]";
 	}
 
 	@Override
