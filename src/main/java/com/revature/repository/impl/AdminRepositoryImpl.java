@@ -74,7 +74,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 		try {
 			Criteria crit = sf.getCurrentSession().createCriteria(Employee.class);
 			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-				.add(Restrictions.like("password", password, MatchMode.EXACT));
+					.add(Restrictions.like("password", password, MatchMode.EXACT));
 
 			List<Employee> empl = crit.list();
 			System.out.println(empl);
@@ -82,7 +82,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 			if (empl.get(0) != null) {
 				return true;
 			}
-			
+
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("FAIL 3");
 			return false;
@@ -92,8 +92,6 @@ public class AdminRepositoryImpl implements AdminRepository {
 		}
 		return false;
 	}
-
-
 
 	public void assignNurse(Patient patient) {
 		sf.getCurrentSession().update(patient);

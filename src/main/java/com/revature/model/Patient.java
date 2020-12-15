@@ -21,10 +21,10 @@ public class Patient {
 	@Column(name = "pateintid")
 	private int pateintid;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Pokemon pokemon;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Trainer trainer;
 	
 	@Column(name = "admission", nullable = false)
@@ -36,13 +36,13 @@ public class Patient {
 	@Column(name="maxHP", nullable = false)
 	private int maxHP;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private StatusCondition status;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Employee nurseid;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Medicine med;	
 	
 	@Column(name = "healthy", nullable = false)
@@ -176,82 +176,13 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "\nPatient [\npateintid=" + pateintid + ", \npokemon=" + pokemon + ", \ntrainer=" + trainer + ", \nadmission="
+		return "\nPatient ["
+				+ "\npateintid=" + pateintid
+				+ ", \npokemon=" + pokemon 
+				+ ", \ntrainer=" + trainer 
+				+ ", \nadmission="
 				+ admission + ", currentHP=" + currentHP + ", maxHP=" + maxHP + ", \nstatus=" + status + ", \nnurseid="
 				+ nurseid + ", \nmed=" + med + ", healthy=" + healthy + ", release=" + release + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((admission == null) ? 0 : admission.hashCode());
-		result = prime * result + currentHP;
-		result = prime * result + (healthy ? 1231 : 1237);
-		result = prime * result + maxHP;
-		result = prime * result + ((med == null) ? 0 : med.hashCode());
-		result = prime * result + ((nurseid == null) ? 0 : nurseid.hashCode());
-		result = prime * result + pateintid;
-		result = prime * result + ((pokemon == null) ? 0 : pokemon.hashCode());
-		result = prime * result + ((release == null) ? 0 : release.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((trainer == null) ? 0 : trainer.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Patient other = (Patient) obj;
-		if (admission == null) {
-			if (other.admission != null)
-				return false;
-		} else if (!admission.equals(other.admission))
-			return false;
-		if (currentHP != other.currentHP)
-			return false;
-		if (healthy != other.healthy)
-			return false;
-		if (maxHP != other.maxHP)
-			return false;
-		if (med == null) {
-			if (other.med != null)
-				return false;
-		} else if (!med.equals(other.med))
-			return false;
-		if (nurseid == null) {
-			if (other.nurseid != null)
-				return false;
-		} else if (!nurseid.equals(other.nurseid))
-			return false;
-		if (pateintid != other.pateintid)
-			return false;
-		if (pokemon == null) {
-			if (other.pokemon != null)
-				return false;
-		} else if (!pokemon.equals(other.pokemon))
-			return false;
-		if (release == null) {
-			if (other.release != null)
-				return false;
-		} else if (!release.equals(other.release))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
-			return false;
-		if (trainer == null) {
-			if (other.trainer != null)
-				return false;
-		} else if (!trainer.equals(other.trainer))
-			return false;
-		return true;
 	}
 
 	
