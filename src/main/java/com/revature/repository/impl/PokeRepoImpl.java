@@ -70,8 +70,8 @@ public class PokeRepoImpl implements PokeRepo {
 		sf.getCurrentSession().save(patient);		
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public boolean loginTrainer(String username, String password) {
 		try {
 			Criteria crit = sf.getCurrentSession().createCriteria(Trainer.class);

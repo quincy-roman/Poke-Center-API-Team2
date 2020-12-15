@@ -16,16 +16,11 @@ public interface PokeService {
 	
 	public boolean registerRole(Role nurse);
 
-	public boolean loginTrainer(String username, String password);
-
 	public boolean registerEmpl(Employee n);
-
-	public boolean loginEmpl(String username, String password);
 
 	public boolean registerStatus(StatusCondition statusCondition);
 
 	public boolean registerMedicine(Medicine med);
 
 	public boolean registerPatient(Patient patient);
-
 }

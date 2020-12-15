@@ -14,13 +14,9 @@ public interface PokeRepo {
 
 	void save(Trainer trainer);
 
-	boolean loginTrainer(String username, String password);
-
 	void save(Role role);
 
 	void save(Employee empl);
-
-	boolean loginEmpl(String username, String password);
 
 	void save(StatusCondition statusCondition);
 
@@ -28,7 +24,8 @@ public interface PokeRepo {
 	
 	void save(Patient patient);
 
-	
-	
+	boolean loginTrainer(String username, String password);
+
+	boolean loginEmpl(String username, String password);
 
 }

@@ -1,8 +1,8 @@
 package com.revature;
 
 import java.sql.Timestamp;
+import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,14 +13,20 @@ import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
+import com.revature.service.NurseService;
 import com.revature.service.PokeService;
+import com.revature.service.TrainerService;
 
 public class Main {
-	private static Logger log = Logger.getLogger(Main.class);
+//	private static Logger log = Logger.getLogger(Main.class);
 
 	static ApplicationContext ac = new ClassPathXmlApplicationContext("application-context.xml");
 
 	static PokeService PokeService = ac.getBean("PokeService", PokeService.class);
+	
+	static TrainerService TrainerService = ac.getBean("TrainerService", TrainerService.class);
+	
+	static NurseService NurseService = ac.getBean("NurseService", NurseService.class);
 	
 	static Timestamp admission = new Timestamp(System.currentTimeMillis());
 
@@ -34,8 +40,40 @@ public class Main {
 //		System.out.println("REGISTERED STATUS AND MEDS");
 //		registerPokemon(); //and WORKED
 //		System.out.println("REGISTERED POKEDEX");
-		registerPatient(); //and WORKED
-		System.out.println("REGISTERED PATIENT");
+//		registerPatient(); //and WORKED
+//		System.out.println("REGISTERED PATIENT");
+		
+//		getProfile(); //WORKED
+//		
+		getPokemon(); //Couldn't connect to trainer
+		
+//		updateProfile(); //WORKED
+//		
+//		getMedByName();
+//		
+//		getMedByStatus();		
+	}
+
+	private static void updateProfile() {
+		Trainer t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pewter City", "fire", "red"));
+		System.out.println(t);
+	}
+
+	private static void getProfile() {
+		Trainer t = TrainerService.getProfile(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+		System.out.println(t);
+	}
+
+	private static void getPokemon() {
+		List<Patient> pokemon = TrainerService.getPokemon(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+		System.out.println(pokemon);
+	}
+
+	private static void getMedByName() {
+		
+	}
+
+	private static void getMedByStatus() {
 	}
 
 	private static void registerStatus() {

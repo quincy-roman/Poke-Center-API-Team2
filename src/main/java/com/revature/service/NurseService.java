@@ -3,7 +3,6 @@ package com.revature.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +12,9 @@ import com.revature.model.Patient;
 import com.revature.repository.NurseRepository;
 
 @Service("NurseService")
-public class NurseService {
+public class NurseService implements EmplService{
 	
-	private static Logger log = Logger.getLogger(NurseService.class);
+//	private static Logger log = Logger.getLogger(NurseService.class);
 
 	@Autowired
 	private NurseRepository nurseRepo;
@@ -41,7 +40,7 @@ public class NurseService {
 		return nurseRepo.findPatients(nurse_id);
 	}
 	
-	// Get all medicines.
+	@Override // Get all medicines.
 	public List<Medicine> getAllMedicines(){
 		return nurseRepo.getAllMedicines();
 	}
@@ -51,6 +50,11 @@ public class NurseService {
 		nurseRepo.update(nurse);
 		//TODO This could be made into a boolean, we'd have to
 		// duplicate the nurse and check them against each other.
+	}
+	
+	@Override
+	public boolean loginEmpl(String username, String password) {
+		return nurseRepo.loginEmpl(username, password);
 	}
 
 }

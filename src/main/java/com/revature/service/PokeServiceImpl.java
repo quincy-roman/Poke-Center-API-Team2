@@ -1,6 +1,5 @@
 package com.revature.service;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,6 @@ import com.revature.repository.PokeRepo;
 
 @Service("PokeService")
 public class PokeServiceImpl implements PokeService {
-
-	private static Logger log = Logger.getLogger(PokeServiceImpl.class);
 
 	@Autowired
 	private PokeRepo pokeRepo;
@@ -66,16 +63,6 @@ public class PokeServiceImpl implements PokeService {
 	public boolean registerTrainer(Trainer trainer) {
 		pokeRepo.save(trainer);
 		return trainer.getTrainerId() != 0;
-	}
-
-	@Override
-	public boolean loginTrainer(String username, String password) {
-		return pokeRepo.loginTrainer(username, password);
-	}
-
-	@Override
-	public boolean loginEmpl(String username, String password) {
-		return pokeRepo.loginEmpl(username, password);
 	}
 	
 }
