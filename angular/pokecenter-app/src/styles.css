@@ -4,3 +4,13 @@ body{
     -webkit-font-smoothing: none;
     font-family: "pokemon-font", monospace;
 }
+
+@font-face {
+    font-family: "Pokemon Solid";
+    src: local("Pokemon Solid"), url(./assets/fonts/pokemonFont/Pokemon-Solid.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Pokemon Hollow";
+    src: local("Pokemon Hollow"), url(./assets/fonts/pokemonFont/Pokemon-Hollow.ttf) format("truetype");
+}
