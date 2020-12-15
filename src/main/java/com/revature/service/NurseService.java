@@ -46,10 +46,11 @@ public class NurseService implements EmplService{
 	}
 	
 	// Update the nurse's information.
-	public void update(Employee nurse) {
+	public boolean update(Employee nurse) {
+		String username = nurse.getUsername();
 		nurseRepo.update(nurse);
-		//TODO This could be made into a boolean, we'd have to
-		// duplicate the nurse and check them against each other.
+		//TODO This condition could be improved.
+		return nurse.getUsername() != username;
 	}
 	
 	@Override
