@@ -28,7 +28,7 @@ public class NurseController {
 	@Autowired
 	private NurseService nurseService;
 	
-	@PostMapping("/treatment")
+	@PostMapping("/treatment")					// TODO might need to change @RequestBody
 	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
 		ClientMessage body = (nurseService.treatmentAndRelease(patient)) ? SUCCESSFULLY_TREATED : TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
@@ -41,18 +41,21 @@ public class NurseController {
 	}
 	
 	@PostMapping("/getMyPatients")
-	public List<Patient> getNursePatients(@RequestBody Employee nurse) {
-		return nurseService.getNursePatients(nurse.getEmployeeId());
+	public ResponseEntity<List<Patient>> getNursePatients(@RequestBody Employee nurse) {
+		List<Patient> nursesPatients = nurseService.getNursePatients(nurse.getEmployeeId());
+		return ResponseEntity.ok(nursesPatients);
 	}
 	
 	@GetMapping("/getAllMedicine")
-	public List<Medicine> getAllMeds() {
-		return nurseService.getAllMedicines();
+	public ResponseEntity<List<Medicine>> getAllMeds() {
+		List<Medicine> medicines = nurseService.getAllMedicines();
+		return ResponseEntity.ok(medicines);
 	}
 	
 	@PostMapping("/update")
-	public ClientMessage updateNurse(@RequestBody Employee nurse) {
-		return (nurseService.update(nurse)) ? SUCCESSFUL_UPDATE : FAILED_UPDATE;
+	public ResponseEntity<ClientMessage> updateNurse(@RequestBody Employee nurse) {
+		ClientMessage body = (nurseService.update(nurse)) ? SUCCESSFUL_UPDATE : FAILED_UPDATE;
+		return ResponseEntity.ok(body);
 	}
 	
 	// TODO implement login function here.
