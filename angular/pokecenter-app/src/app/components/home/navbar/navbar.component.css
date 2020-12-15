@@ -1,0 +1,25 @@
+.navbar .flex-column{
+    display: block;
+    font-size: 0.8rem;
+    background: black;
+    width: 20%;
+    padding: 20px;
+    margin: 0 20px;
+}
+
+
+h3{
+    color: white;
+    font-size: 1.1rem;
+}
+.title{
+    font-family: 'Pokemon Solid', sans-serif;
+    letter-spacing: 2.5px;
+    display: contents;
+    text-align: center;
+}
+
+#menu-head{
+    margin-bottom: 50px;
+    font-size: 3rem;
+}

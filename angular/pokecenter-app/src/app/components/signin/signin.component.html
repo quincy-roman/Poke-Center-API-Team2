@@ -1,0 +1,24 @@
+<div id="root-body">
+  <div class="jumbotron">
+      <h1 class="display-4 text-center">Hello, Employee!</h1>
+      <p class="lead text-center">Please Sign In</p>
+      <form id="signin-form" #form="ngForm" (submit)="signinUser(form.value)">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="email" class="form-control" id="username" name="username" [(ngModel)]="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password">
+        </div>
+        <div class="text-center"> 
+          <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+       </div>
+      </form>
+      <a (click)="setTitle('Password Recovery')" routerLink="/password-recovery" class="btn btn-lg help-link" href="#" role="button">Forgot Your Password?</a>
+      <a (click)="setTitle('Registration')" routerLink="/registration" class="btn btn-lg register-link" href="#" role="button">Sign Up Now!</a>
+      <a (click)="setTitle('Home')" routerLink="/home" class="btn btn-lg register-link" href="#" role="button">Home Page</a>
+      <br>
+      <img src="../assets/img/pokecenter-icon.png" class="rounded mx-auto d-block" alt="PokeCenter API logo">
+    </div>
+</div>

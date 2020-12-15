@@ -1,0 +1,25 @@
+<<div class="container">
+    <div class="jumbotron">
+
+        <h1> New Patient Portal</h1>
+        <p> Please specify the name of the pokemon of the pokemon you wish to admit:</p>
+
+
+        <form id="credentials" (submit)='admitNewPatient()'>
+            <div class="form-group">
+                <label for="pokemonName">Pokemon Name:</label>
+                <input type="text" class="form-control" id="pokemonName" name="pokemonName" [(ngModel)]="pokemonName">
+            </div>
+
+
+
+            <button type="submit" class="btn submitButton">Submit</button>
+
+
+
+
+            <button routerLink="/home" class="goBack">Go Back</button>
+
+        </form>
+    </div>
+    </div>

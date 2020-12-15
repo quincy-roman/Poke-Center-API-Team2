@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="jumbotron">
+
+        <h1> Welcome to the Pokemon API</h1>
+        <p> Please fill out the following information to register a new user!</p>
+
+
+
+        <form id = "credentials">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName">
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+
+
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <label for="trainer"> Trainer </label>
+                                <input type="radio" name="role">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <label for="nurse"> Nurse </label>
+                                <input type="radio" name="role">
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <button type="submit" class="btn submitButton">Submit</button>
+                    
+                </div>
+                
+                    
+                    <button routerLink="/signin" class="goBack">Go Back</button>
+            </div>
+        </form>
+    </div>
+</div>
