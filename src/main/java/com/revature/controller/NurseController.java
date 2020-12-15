@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
@@ -19,9 +19,10 @@ import com.revature.model.Patient;
 import com.revature.service.NurseService;
 import com.revature.util.ClientMessage;
 
-@Controller
-@CrossOrigin()
+@RestController
 public class NurseController {
+	
+	// TODO Update to use ResponseEntity return type.
 	
 	@Autowired
 	private NurseService nurseService;

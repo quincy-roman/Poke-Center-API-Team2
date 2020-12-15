@@ -21,18 +21,21 @@ public class AdminService implements EmplService{
 	private AdminRepository adminRepo;
 	
 	// Update users.
-	public <T> void updateUser(T user) {
+	public <T> boolean updateUser(T user) {
 		adminRepo.update(user);
+		return true;	// TODO this is obviously bad.
 	}
 	
-	@Override // Retrieve a list of all medicines.
+	// Retrieve a list of all medicines.
 	public List<Medicine> getAllMedicines() {
 		return adminRepo.getAllMedicines();
 	}
 	
 	// Order medicines.
-	public void orderMeds(HashMap<Medicine, Integer> orderList) {		
+	public boolean orderMeds(HashMap<Medicine, Integer> orderList) {		
+		//orderList.
 		adminRepo.orderMeds(orderList);
+		return true; // TODO fix this. 
 	}
 	
 	// View all employees TODO switch this to the EmployeeDTO.
@@ -57,7 +60,7 @@ public class AdminService implements EmplService{
 		adminRepo.remove(user);
 	}
 
-	@Override
+	
 	public boolean loginEmpl(String username, String password) {
 		return adminRepo.loginEmpl(username, password);
 	}

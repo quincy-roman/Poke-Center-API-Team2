@@ -9,5 +9,9 @@ public class ClientMessageUtil {
 	public static final ClientMessage SUCCESSFUL_UPDATE = new ClientMessage("Successfully updated your account information.");
 	
 	public static final ClientMessage FAILED_UPDATE = new ClientMessage("User update failed");
+	
+	public static final ClientMessage ORDER_PLACED = new ClientMessage("Order has been placed successfully.");
+	
+	public static final ClientMessage ORDER_FAILED = new ClientMessage("Order failed, please try again.");
 
 }
