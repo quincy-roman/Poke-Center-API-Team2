@@ -36,7 +36,7 @@ public class NurseService implements EmplService{
 	}
 	
 	// Get patients for the logged in nurse.
-	public List<Patient> getNursePatients(int nurse_id){
+	public List<Patient> getNursePatients(Employee nurse_id){
 		return nurseRepo.findPatients(nurse_id);
 	}
 	

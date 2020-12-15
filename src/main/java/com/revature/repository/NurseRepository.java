@@ -21,8 +21,7 @@ public interface NurseRepository {
 	void update(Employee nurse);
 	
 	// Retrieve the nurse's patients.
-	List<Patient> findPatients(int nurse_id);
+	List<Patient> findPatients(Employee nurse_id);
 
 	boolean loginEmpl(String username, String password);
-
 }

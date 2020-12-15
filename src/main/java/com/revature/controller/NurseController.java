@@ -39,7 +39,7 @@ public class NurseController {
 	
 	@PostMapping("/getMyPatients")
 	public ResponseEntity<List<Patient>> getNursePatients(@RequestBody Employee nurse) {
-		List<Patient> nursesPatients = nurseService.getNursePatients(nurse.getEmployeeId());
+		List<Patient> nursesPatients = nurseService.getNursePatients(nurse);
 		return ResponseEntity.ok(nursesPatients);
 	}
 	

@@ -51,16 +51,20 @@ public class NurseRepositoryImpl implements NurseRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Patient> findPatients(int nurse_id) {
-		try {	// TODO Shouldn't be using casting here.
-			return (List<Patient>) sf.getCurrentSession().createCriteria(Patient.class)
-							.add(Restrictions.like("nurseid", nurse_id))
-							.list()
-							.get(0);
-		}catch(IndexOutOfBoundsException e) {
-			log.debug(e);
-			return null;
-		}
+	public List<Patient> findPatients(Employee nurse_id) {
+		Criteria crit = sf.getCurrentSession().createCriteria(Patient.class);
+		crit.add(Restrictions.eq("nurseid", nurse_id));
+		List<Patient> p = crit.list();
+		return p;
+//		try {	// TODO Shouldn't be using casting here.
+//			return (List<Patient>) sf.getCurrentSession().createCriteria(Patient.class)
+//							.add(Restrictions.like("nurseid", nurse_id))
+//							.list()
+//							.get(0);
+//		}catch(IndexOutOfBoundsException e) {
+//			log.debug(e);
+//			return null;
+//		}
 	}
 	
 	@Override

@@ -34,23 +34,31 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		registerTrainer(); //and login WORKED
+//		registerTrainer(); //and login WORKED
+//
+//		registerEmpl(); //roles and login WORKED
+//
+//		registerStatus(); //and meds WORKED
+//
+//		registerPokemon(); //and WORKED
+//
+//		registerPatient(); //and WORKED
+//		
+//		getProfile(); //WORKED
+//		
+//		getPokemon(); //WORKED
+//		
+//		updateProfile(); //WORKED	
+//		
+		getNurses();
+//		
+//		releasePatient();
+	}
 
-		registerEmpl(); //roles and login WORKED
-
-		registerStatus(); //and meds WORKED
-
-		registerPokemon(); //and WORKED
-
-		registerPatient(); //and WORKED
-		
-		getProfile(); //WORKED
-		
-		getPokemon(); //WORKED
-		
-		updateProfile(); //WORKED	
-		
-		releasePatient();
+	private static void getNurses() {
+		List<Patient> p = NurseService.getNursePatients(new Employee(1, "Nurse1", "1", "1", new Role(1, "Nurse")));
+//		List<Patient> p = NurseService.getNursePatients(1);
+		System.out.println(p);
 	}
 
 	private static void releasePatient() {

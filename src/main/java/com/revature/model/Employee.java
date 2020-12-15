@@ -30,7 +30,7 @@ public class Employee {
 	@Column(name="employee_password")
 	private String password;	//TODO SpringSecurity for encryption?
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Role role;
 
 	public Employee() {}
