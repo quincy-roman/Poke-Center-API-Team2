@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Patient;
-import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
 import com.revature.repository.TrainerRepo;
 
@@ -20,6 +19,8 @@ import com.revature.repository.TrainerRepo;
 @Transactional
 public class TrainerRepoImpl implements TrainerRepo {
 
+//	private static Logger log = Logger.getLogger(TrainerRepoImpl.class);
+	
 	@Autowired
 	private SessionFactory sf;
 
@@ -50,12 +51,11 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Patient> getPatient(Trainer trainer) {
+	public List<Patient> getPatient(Trainer trainer) { //Changed fetch to eager to work
 		Criteria crit = sf.getCurrentSession().createCriteria(Patient.class);
-//		crit.add(Restrictions.eq("trainer", trainer));
-		List<Patient> patient = crit.list();
-		System.out.println(patient);
-		return sf.getCurrentSession().createCriteria(Patient.class).list();
+		crit.add(Restrictions.eq("trainer", trainer));
+		List<Patient> p = crit.list();
+		return p;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -140,6 +140,6 @@ public class Pokemon {
 			return false;
 		return true;
 	}
-
+	
 	
 }
