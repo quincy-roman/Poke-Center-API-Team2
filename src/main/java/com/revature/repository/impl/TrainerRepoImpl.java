@@ -20,6 +20,8 @@ import com.revature.repository.TrainerRepo;
 @Transactional
 public class TrainerRepoImpl implements TrainerRepo {
 
+//	private static Logger log = Logger.getLogger(TrainerRepoImpl.class);
+	
 	@Autowired
 	private SessionFactory sf;
 
@@ -50,11 +52,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Patient> getPatient(Trainer trainer) {
-		Criteria crit = sf.getCurrentSession().createCriteria(Patient.class);
-//		crit.add(Restrictions.eq("trainer", trainer));
-		List<Patient> patient = crit.list();
-		System.out.println(patient);
+	public List<Patient> getPatient(Trainer trainer) {	
 		return sf.getCurrentSession().createCriteria(Patient.class).list();
 	}
 

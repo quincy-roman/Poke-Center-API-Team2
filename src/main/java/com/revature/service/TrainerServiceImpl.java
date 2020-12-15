@@ -31,13 +31,11 @@ public class TrainerServiceImpl implements TrainerService{
 
 	@Override
 	public Trainer getProfile(Trainer trainer) {
-		// TODO Auto-generated method stub
 		return trainerRepo.getProfile(trainer);
 	}
 
 	@Override
 	public Trainer updateProfile(Trainer trainer) {
-		// TODO Auto-generated method stub
 		return trainerRepo.updateProfile(trainer);
 	}
 
