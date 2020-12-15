@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SigninComponent } from '../../../../../../src/app/components/signin/signin.component';
+import { SigninComponent } from '../../../../src/app/components/signin/signin.component';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;

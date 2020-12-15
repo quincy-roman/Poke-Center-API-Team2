@@ -1,7 +1,6 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.LOGIN_FAILED;
-import static com.revature.util.ClientMessageUtil.USER_LOGIN;
+import static com.revature.util.ClientMessageUtil.*;
 
 import java.util.List;
 
@@ -61,6 +60,12 @@ public class TrainerControllerImpl implements TrainerController {
 	public ResponseEntity<ClientMessage> registerTrainer(@RequestBody Trainer trainer) {
 		ClientMessage body = (trainerService.registerTrainer(trainer)) ? USER_LOGIN : LOGIN_FAILED;;
 		return ResponseEntity.ok(body);
+	}
+
+	@Override
+	public ResponseEntity<ClientMessage> admitPokemon(Patient patient) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
