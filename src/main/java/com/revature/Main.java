@@ -43,9 +43,9 @@ public class Main {
 //		registerPatient(); //and WORKED
 //		
 //		getProfile(); //WORKED
-		
-		getPokemon(); //WORKED
-		
+//		
+//		getPokemon(); //WORKED
+//		
 //		updateProfile(); //WORKED	
 	}
 
