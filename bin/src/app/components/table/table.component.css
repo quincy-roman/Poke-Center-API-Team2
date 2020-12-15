@@ -1,0 +1,16 @@
+#home-container{ 
+    background-image: url(./../../../assets/img/lab-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+}
+table{
+    width: 80%;
+    text-align: center;
+    margin: 100px auto;
+    background-color: black;
+    color: #0dc285;
+}
