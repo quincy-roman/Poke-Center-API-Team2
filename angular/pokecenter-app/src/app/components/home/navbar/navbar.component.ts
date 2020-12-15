@@ -1,6 +1,6 @@
 import { UserService } from './../../../services/user.service';
 import { DashboardService } from './../../../services/dashboard.service';
-import { User } from './../../../../../../../src/app/models/user.model';
+import { User } from './../../../../../src/app/models/user.model';
 import { TableService } from './../../../services/table.service';
 import { Component, OnInit } from '@angular/core';
 

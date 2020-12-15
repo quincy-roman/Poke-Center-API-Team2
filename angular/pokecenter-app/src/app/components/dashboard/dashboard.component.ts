@@ -1,4 +1,4 @@
-import { User } from './../../../../../../src/app/models/user.model';
+import { User } from './../../../../src/app/models/user.model';
 import { DashboardService } from './../../services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 
