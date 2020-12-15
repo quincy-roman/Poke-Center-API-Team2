@@ -48,6 +48,11 @@ public class AdminService implements EmplService{
 		return adminRepo.viewTrainers();
 	}
 	
+	// View all patients.
+	public List<Patient> viewPatients() {
+		return adminRepo.viewPatients();
+	}
+	
 	// Assign a nurse to a patient.
 	public boolean assignNurse(Patient patient, Employee nurse) {
 		patient.setNurseid(nurse);
@@ -56,8 +61,11 @@ public class AdminService implements EmplService{
 	}
 	
 	// Remove a user.
-	public <T> void removeUser(T user) {
+	public <T> boolean removeUser(T user) {
 		adminRepo.remove(user);
+		
+		//I think this works.
+		return user == null;
 	}
 
 	

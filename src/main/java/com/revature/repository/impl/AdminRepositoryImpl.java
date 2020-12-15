@@ -62,6 +62,12 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public List<Trainer> viewTrainers() {
 		return sf.getCurrentSession().createCriteria(Trainer.class).list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Patient> viewPatients() {
+		return sf.getCurrentSession().createCriteria(Patient.class).list();
+	}
 
 	@Override
 	public <T> void remove(T user) {
@@ -96,5 +102,6 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public void assignNurse(Patient patient) {
 		sf.getCurrentSession().update(patient);
 	}
+
 
 }
