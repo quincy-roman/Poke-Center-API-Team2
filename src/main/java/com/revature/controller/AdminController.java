@@ -39,7 +39,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/medicine/order")
-	public ResponseEntity<ClientMessage> orderMeds(HashMap<Medicine, Integer> orderList) {
+	public ResponseEntity<ClientMessage> orderMeds(@RequestBody HashMap<Medicine, Integer> orderList) {
 		ClientMessage body = (adminService.orderMeds(orderList)) ? ORDER_PLACED : ORDER_FAILED;
 		return ResponseEntity.ok(body);
 	}
@@ -64,7 +64,7 @@ public class AdminController {
 	
 	// Nurse id in the URL. Could be PutMapping.
 	@PostMapping("/admin/patients/nurse/{id}")
-	public ResponseEntity<ClientMessage> assignNurse(Patient patient, Employee nurse) {
+	public ResponseEntity<ClientMessage> assignNurse(@RequestBody Patient patient, Employee nurse) {
 		ClientMessage body = (adminService.assignNurse(patient, nurse)) ? NURSE_ASSIGNED : NURSE_FAILED;
 		return ResponseEntity.ok(body);
 	}
@@ -76,7 +76,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<ClientMessage> loginEmpl(String username, String password) {
+	public ResponseEntity<ClientMessage> loginEmpl(@RequestBody String username, String password) {
 		ClientMessage body = (adminService.loginEmpl(username, password)) ? USER_LOGIN : LOGIN_FAILED;
 		return ResponseEntity.ok(body);
 	}
