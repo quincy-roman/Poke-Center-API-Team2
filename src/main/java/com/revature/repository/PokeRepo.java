@@ -23,9 +23,4 @@ public interface PokeRepo {
 	void save(Medicine med);
 	
 	void save(Patient patient);
-
-	boolean loginTrainer(String username, String password);
-
-	boolean loginEmpl(String username, String password);
-
 }

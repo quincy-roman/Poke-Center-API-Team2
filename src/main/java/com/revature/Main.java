@@ -33,29 +33,24 @@ public class Main {
 	public static void main(String[] args) {
 
 //		registerTrainer(); //and login WORKED
-//		System.out.println("REGISTERED TRAINER");
+//
 //		registerEmpl(); //roles and login WORKED
-//		System.out.println("REGISTERED EMPL AND ROLES");
+//
 //		registerStatus(); //and meds WORKED
-//		System.out.println("REGISTERED STATUS AND MEDS");
+//
 //		registerPokemon(); //and WORKED
-//		System.out.println("REGISTERED POKEDEX");
+//
 //		registerPatient(); //and WORKED
-//		System.out.println("REGISTERED PATIENT");
-		
+//		
 //		getProfile(); //WORKED
 //		
-		getPokemon(); //Couldn't connect to trainer
-		
-//		updateProfile(); //WORKED
+//		getPokemon(); //WORKED
 //		
-//		getMedByName();
-//		
-//		getMedByStatus();		
+//		updateProfile(); //WORKED	
 	}
 
 	private static void updateProfile() {
-		Trainer t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pewter City", "fire", "red"));
+		Trainer t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
 		System.out.println(t);
 	}
 
@@ -65,15 +60,16 @@ public class Main {
 	}
 
 	private static void getPokemon() {
-		List<Patient> pokemon = TrainerService.getPokemon(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+		Trainer t = new Trainer(1, "Ash", "Pallet Town", "fire", "red");
+		List<Patient> pokemon = TrainerService.getPokemon(t);
 		System.out.println(pokemon);
-	}
+//		for(Patient p: pokemon) {
+//			if(p.getTrainer().getTrainerId()==t.getTrainerId()) {
+//				System.out.println(p);
+//			}
+//		}
+//		System.out.println(TrainerService.getPokemon(t));
 
-	private static void getMedByName() {
-		
-	}
-
-	private static void getMedByStatus() {
 	}
 
 	private static void registerStatus() {
@@ -90,16 +86,15 @@ public class Main {
 		PokeService.registerPokemon(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"));
 		PokeService.registerPokemon(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"));
 		PokeService.registerPokemon(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"));
-
 	}
 
 	private static void registerPatient() {
-//		PokeService.registerPatient(new Patient(
-//				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
-//				new Trainer(1, "Ash", "Pallet Town", "fire", "red")
-//				, admission, 300, 300, 
-//				new StatusCondition(2, "Sleep")
-//				, null, null, false, null));
+		PokeService.registerPatient(new Patient(
+				new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"), 
+				new Trainer(1, "Ash", "Pallet Town", "fire", "red")
+				, admission, 300, 300, 
+				new StatusCondition(2, "Sleep")
+				, null, null, false, null));
 
 		PokeService.registerPatient(new Patient(
 				new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
@@ -135,7 +130,6 @@ public class Main {
 				, admission, 10, 20, 
 				new StatusCondition(1, "Burn")
 				, null, null, false, null));
-
 	}
 
 	public static void registerTrainer() {
@@ -150,7 +144,6 @@ public class Main {
 //		} else {
 //			System.out.println("FAIL 2");
 //		}
-
 	}
 
 	public static void registerEmpl() {
@@ -179,7 +172,6 @@ public class Main {
 //		} else {
 //			System.out.println("Fail 1");
 //		}
-
 	}
 
 }

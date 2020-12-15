@@ -21,10 +21,10 @@ public class Patient {
 	@Column(name = "pateintid")
 	private int pateintid;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Pokemon pokemon;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Trainer trainer;
 	
 	@Column(name = "admission", nullable = false)
@@ -36,13 +36,13 @@ public class Patient {
 	@Column(name="maxHP", nullable = false)
 	private int maxHP;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private StatusCondition status;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Employee nurseid;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Medicine med;	
 	
 	@Column(name = "healthy", nullable = false)
@@ -176,9 +176,16 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "\nPatient [\npateintid=" + pateintid + ", \npokemon=" + pokemon + ", \ntrainer=" + trainer + ", \nadmission="
-				+ admission + ", currentHP=" + currentHP + ", maxHP=" + maxHP + ", \nstatus=" + status + ", \nnurseid="
-				+ nurseid + ", \nmed=" + med + ", healthy=" + healthy + ", release=" + release + "]";
+		return "\nPatient ["
+				+ "\npateintid=" + pateintid
+				+ ", \npokemon=" + pokemon 
+				+ ", \ntrainer=" + trainer 
+				+ ", \nadmission=" + admission 
+				+ ", currentHP=" + currentHP + ", maxHP=" + maxHP 
+				+ ", \nstatus=" + status 
+				+ ", \nnurseid=" + nurseid 
+				+ ", \nmed=" + med 
+				+ ", healthy=" + healthy + ", release=" + release + "]";
 	}
 
 	@Override
@@ -253,6 +260,5 @@ public class Patient {
 			return false;
 		return true;
 	}
-
 	
 }
