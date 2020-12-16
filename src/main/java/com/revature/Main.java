@@ -66,7 +66,7 @@ public class Main {
 		Patient p = NurseService.findPatient(14);
 		StatusCondition s = NurseService.problem("Sleep");
 		Medicine m = NurseService.treatment(s);
-		NurseService.treat(p, m);
+		NurseService.applytreatment(p, m);
 	}
 
 	private static void assignnurse() {
@@ -124,7 +124,7 @@ public class Main {
 //		StatusCondition s = NurseService.problem("Sleep");
 //		Medicine m = NurseService.treatment(s);
 
-		if (NurseService.treatmentAndRelease(p)) {
+		if (AdminService.release(p)) {
 			System.out.println("WORKED");
 		} else {
 			System.out.println("FAIL");

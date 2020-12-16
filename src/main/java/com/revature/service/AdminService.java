@@ -73,4 +73,11 @@ public class AdminService implements EmplService {
 	public Employee getNurse(String username) {
 		return adminRepo.getNurse(username);
 	}
+
+	public boolean release(Patient patient) {
+		adminRepo.release(patient);
+
+		// Check to make sure the update was a success.
+		return patient.getRelease() != null;
+	}	
 }

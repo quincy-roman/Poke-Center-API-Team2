@@ -1,6 +1,9 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.*;
+import static com.revature.util.ClientMessageUtil.FAILED_UPDATE;
+import static com.revature.util.ClientMessageUtil.SUCCESSFULLY_TREATED;
+import static com.revature.util.ClientMessageUtil.SUCCESSFUL_UPDATE;
+import static com.revature.util.ClientMessageUtil.TREATMENT_FAILED;
 
 import java.util.List;
 
@@ -27,15 +30,22 @@ public class NurseController implements EmployeeController {
 	@Autowired
 	private NurseService nurseService;
 
-	@GetMapping("/gettreatment")
+	@GetMapping("/nurse/treatment/select")
 	public ResponseEntity<List<Medicine>> selectmeds(@RequestBody StatusCondition status) {
 		List<Medicine> medicine = nurseService.selectTreatment(status);
 		return ResponseEntity.ok(medicine);
 	}
-
-	@PostMapping("/treatment")
-	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
-		ClientMessage body = (nurseService.treatmentAndRelease(patient)) ? SUCCESSFULLY_TREATED
+	
+	@PostMapping("/nurse/treatment/apply")
+	public ResponseEntity<ClientMessage> applymeds(@RequestBody Patient p, Medicine med){
+		ClientMessage body = (nurseService.applytreatment(p, med)) ? SUCCESSFULLY_TREATED
+				: TREATMENT_FAILED;
+		return ResponseEntity.ok(body);
+	}
+	
+	@PostMapping("/nurse/patient/healthy")
+	public ResponseEntity<ClientMessage> declarehealthy(@RequestBody Patient p){
+		ClientMessage body = (nurseService.declarehealthy(p)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
