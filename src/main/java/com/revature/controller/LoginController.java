@@ -10,28 +10,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Trainer;
+import com.revature.model.dto.TrainerDTO;
 import com.revature.model.dto.EmployeeDTO;
 import com.revature.model.dto.LoginDTO;
 import com.revature.service.LoginService;
 
 @RestController
-@RequestMapping(path = "/login/employee", consumes = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/login", consumes = {MediaType.APPLICATION_JSON_VALUE})
 @CrossOrigin(origins="http://localhost:4200")
 public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
 	
-	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(path = "/employee", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody ResponseEntity<EmployeeDTO> loginEmployee(@RequestBody LoginDTO loginTemplate) {
 		return ResponseEntity.ok(loginService.loginEmployee(loginTemplate.getUsername(), loginTemplate.getPassword()));
 	}
 	
-//	@PostMapping("/trainer")
-//	public ResponseEntity<Trainer> loginTrainer(@RequestBody LoginDTO loginTemplate) {
-//		return ResponseEntity.ok(loginService.loginTrainer(loginTemplate.getUsername(), loginTemplate.getPassword()));
-//	}
+	@PostMapping(path = "/trainer", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<TrainerDTO> loginTrainer(@RequestBody LoginDTO loginTemplate) {
+		return ResponseEntity.ok(loginService.loginTrainer(loginTemplate.getUsername(), loginTemplate.getPassword()));
+	}
 	
 
 }

@@ -2,6 +2,7 @@ package com.revature.model.dto;
 
 public class EmployeeDTO {
 
+	private int empid;
 	private String username;
 	private String password;
 	private String name;
@@ -11,6 +12,15 @@ public class EmployeeDTO {
 
 	public EmployeeDTO(String username, String password, String name, int roleid) {
 		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.roleid = roleid;
+	}
+
+	public EmployeeDTO(int empid, String username, String password, String name, int roleid) {
+		super();
+		this.empid = empid;
 		this.username = username;
 		this.password = password;
 		this.name = name;
@@ -49,10 +59,18 @@ public class EmployeeDTO {
 		this.roleid = roleId;
 	}
 
-	@Override
-	public String toString() {
-		return "NurseDTO [username=" + username + ", password=" + password + ", name=" + name + ", roleid=" + roleid
-				+ "]";
+	public int getEmpid() {
+		return empid;
+	}
+	
+	public void setEmpid(int empid) {
+		this.empid = empid;
 	}
 
+	@Override
+	public String toString() {
+		return "EmployeeDTO [empid=" + empid + ", username=" + username + ", password=" + password + ", name=" + name
+				+ ", roleid=" + roleid + "]";
+	}
+	
 }
