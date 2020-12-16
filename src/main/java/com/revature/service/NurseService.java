@@ -109,7 +109,7 @@ public class NurseService implements EmplService {
 		}
 	}
 
-	public Boolean declarehealthy(Patient p) {
+	public boolean declarehealthy(Patient p) {
 		nurseRepo.declarehealthy(p);
 
 		if (p.isHealthy()) {

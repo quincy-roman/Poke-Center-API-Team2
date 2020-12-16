@@ -37,7 +37,7 @@ public class Main {
 	static Timestamp admission = new Timestamp(System.currentTimeMillis());
 
 	public static void main(String[] args) {
-//		register();
+		register();
 //		
 //		get();
 //		
@@ -218,11 +218,11 @@ public class Main {
 
 	public static void registerTrainer() {
 
-		TrainerService.registerTrainer(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+		TrainerService.registerTrainer(new Trainer(4, "Gary", "Pallet Town", "fire", "red"));
 
-		TrainerService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
-
-		TrainerService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
+//		TrainerService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
+//
+//		TrainerService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
 
 	}
 
