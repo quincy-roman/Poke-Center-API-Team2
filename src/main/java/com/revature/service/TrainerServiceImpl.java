@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,13 @@ public class TrainerServiceImpl implements TrainerService {
 
 	@Override
 	public boolean registerTrainer(Trainer trainer) {
-		trainerRepo.save(trainer);
-		return trainer.getTrainerId() != 0;
+		try {
+			trainerRepo.save(trainer);
+			return trainer.getTrainerId() != 0;
+		} catch (PSQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

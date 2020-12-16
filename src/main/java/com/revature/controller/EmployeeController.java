@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.revature.model.Employee;
-import com.revature.model.Medicine;
-import com.revature.model.Patient;
+
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
 import com.revature.util.ClientMessage;

@@ -43,6 +43,14 @@ public class Trainer {
 		this.hometown = hometown;
 	}
 
+	public Trainer(String trainerName, String hometown, String username, String password) {
+		super();
+		this.trainerName = trainerName;
+		this.hometown = hometown;
+		this.username = username;
+		this.password = password;
+	}
+
 	public Trainer(int trainerId, String trainerName, String hometown, String username, String password) {
 		super();
 		this.trainerId = trainerId;
