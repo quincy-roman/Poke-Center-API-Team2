@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Employee;
+import com.revature.model.dto.TrainerDTO;
+import com.revature.model.dto.EmployeeDTO;
 import com.revature.model.dto.LoginDTO;
 import com.revature.service.LoginService;
 

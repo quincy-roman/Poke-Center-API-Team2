@@ -76,35 +76,6 @@ public class AdminRepositoryImpl implements AdminRepository {
 		sf.getCurrentSession().delete(user);
 	}
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean loginEmpl(String username, String password) {
-		try {
-			crit = sf.getCurrentSession().createCriteria(Employee.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
-			crit.add(Restrictions.like("password", password, MatchMode.EXACT));
-
-			List<Employee> empl = crit.list();
-			System.out.println(empl);
-
-			if (empl.get(0) != null) {
-				return true;
-			}
-
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("FAIL 3");
-			return false;
-		} catch (QueryException e) {
-			System.out.println("FAIL 4");
-			return false;
-		}
-		return false;
-	}
-
-	public void assignNurse(Patient patient) {
-		sf.getCurrentSession().update(patient);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public Employee getNurse(String username) {

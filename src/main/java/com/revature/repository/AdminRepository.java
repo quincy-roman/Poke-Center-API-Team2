@@ -34,8 +34,6 @@ public interface AdminRepository {
 	// Remove a user, utilizing generics here.
 	<T> void remove(T user);
 
-	boolean loginEmpl(String username, String password);
-
 	Employee getNurse(String username);
 
 }

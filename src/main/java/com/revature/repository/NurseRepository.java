@@ -24,8 +24,6 @@ public interface NurseRepository {
 	// Retrieve the nurse's patients.
 	List<Patient> findPatients(Employee nurse_id);
 
-	boolean loginEmpl(String username, String password);
-
 	Patient findPatient(int patient);
 
 	Medicine treatment(StatusCondition s);
