@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.model.BillingHistory;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
@@ -79,5 +80,9 @@ public class AdminService implements EmplService {
 
 		// Check to make sure the update was a success.
 		return patient.getRelease() != null;
+	}
+
+	public BillingHistory registerBill(BillingHistory b) {
+		return adminRepo.save(b);
 	}	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.revature.model.BillingHistory;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
@@ -35,12 +36,13 @@ public class Main {
 
 	public static void main(String[] args) {		
 		register();
-		
-		get();
-		
-		functions();		
+//		
+//		get();
+//		
+//		functions();		
 	}
 
+	@SuppressWarnings("unused")
 	private static void functions() {
 		updateProfile(); //WORKED	
 		
@@ -87,18 +89,29 @@ public class Main {
 
 	}
 
-	@SuppressWarnings("unused")
 	private static void register() {
-		registerTrainer(); // and login WORKED
+//		registerTrainer(); // and login WORKED
+//
+//		registerEmpl(); //roles and login WORKED
+//
+//		registerStatus(); //and meds WORKED
+//
+//		registerPokemon(); //and WORKED
+//
+//		registerPatient(); //and WORKED
+		
+		registerBill();
 
-		registerEmpl(); //roles and login WORKED
+	}
 
-		registerStatus(); //and meds WORKED
+	private static void registerBill() {
+		Employee admin = AdminService.getNurse("2");
+		StatusCondition s = NurseService.problem("Sleep");
+		Medicine m = NurseService.treatment(s);
 
-		registerPokemon(); //and WORKED
-
-		registerPatient(); //and WORKED
-
+		BillingHistory b = new BillingHistory(admin, m, 16, 1600, admission);
+		b = AdminService.registerBill(b);
+		System.out.println(b);
 	}
 
 	private static void getMeds() {
