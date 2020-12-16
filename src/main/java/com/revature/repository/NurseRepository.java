@@ -29,7 +29,7 @@ public interface NurseRepository {
 
 	List<Medicine> selectTreatment(StatusCondition s);
 
-	void treat(Patient patient, Medicine med);
+	Patient treat(Patient patient, Medicine med);
 
 	void declarehealthy(Patient p);
 
