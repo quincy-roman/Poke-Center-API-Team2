@@ -33,11 +33,11 @@ public class TrainerControllerImpl implements TrainerController {
 	}
 
 	@Override
-	@GetMapping("/trainer/pokemon")
+	@GetMapping("/trainer/pokemon/get")
 	public ResponseEntity<List<Patient>> getPokemon(@RequestBody Trainer trainer) {
 		List<Patient> pokemon = trainerService.getPokemon(trainer);
 		return ResponseEntity.ok(pokemon);
-	}
+	} 
 
 	@Override
 	@GetMapping("/trainer/profile")
@@ -56,14 +56,15 @@ public class TrainerControllerImpl implements TrainerController {
 	@Override
 	@PostMapping(path = "/registration", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> registerTrainer(@RequestBody Trainer trainer) {
-		ClientMessage body = (trainerService.registerTrainer(trainer)) ? USER_LOGIN : LOGIN_FAILED;;
+		ClientMessage body = (trainerService.registerTrainer(trainer)) ? USER_LOGIN : LOGIN_FAILED;
 		return ResponseEntity.ok(body);
 	}
 
 	@Override
+	@PostMapping("/trainer/pokemon/admit")
 	public ResponseEntity<ClientMessage> admitPokemon(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+		ClientMessage body = (trainerService.registerPatient(patient)) ? USER_LOGIN : LOGIN_FAILED;
+		return ResponseEntity.ok(body);
 	}
 
 }

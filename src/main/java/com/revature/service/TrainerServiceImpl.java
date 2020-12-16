@@ -32,6 +32,12 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
+	public boolean registerPatient(Patient patient) {
+		trainerRepo.save(patient);
+		return patient.getPateintid() != 0;
+	}
+
+	@Override
 	public Trainer getProfile(Trainer trainer) {
 		return trainerRepo.getProfile(trainer);
 	}

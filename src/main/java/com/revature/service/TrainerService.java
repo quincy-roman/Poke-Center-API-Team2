@@ -7,6 +7,8 @@ import com.revature.model.Trainer;
 
 public interface TrainerService {
 
+	public boolean registerPatient(Patient patient);
+
 	List<Patient> getPokemon(Trainer trainer);
 
 	Trainer getProfile(Trainer trainer);
