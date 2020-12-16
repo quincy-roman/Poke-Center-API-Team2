@@ -9,12 +9,10 @@ public interface TrainerService {
 
 	List<Patient> getPokemon(Trainer trainer);
 
-	public boolean loginTrainer(String username, String password);
-
 	Trainer getProfile(Trainer trainer);
 
 	Trainer updateProfile(Trainer trainer);
-	
+
 	public boolean registerTrainer(Trainer trainer);
 
 }

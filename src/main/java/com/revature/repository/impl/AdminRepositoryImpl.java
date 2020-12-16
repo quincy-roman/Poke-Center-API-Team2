@@ -23,10 +23,12 @@ import com.revature.repository.AdminRepository;
 @Transactional
 public class AdminRepositoryImpl implements AdminRepository {
 
-//	private static Logger log = Logger.getLogger(NurseRepositoryImpl.class);
+//	private static Logger log = Logger.getLogger(AdminRepositoryImpl.class);
 
 	@Autowired
 	private SessionFactory sf;
+
+	Criteria crit;
 
 	@Override
 	public <T> void update(T user) {
@@ -40,15 +42,17 @@ public class AdminRepositoryImpl implements AdminRepository {
 	}
 
 	@Override
+	// HashMap represents a nested JSON.
+	// Each entry will contain a Medicine object and an Integer which denotes how many to order.
 	public void orderMeds(HashMap<Medicine, Integer> orderList) {
 		for (Map.Entry<Medicine, Integer> med : orderList.entrySet()) {
 
-			// Increase the stock by the passed integer.
+			// Increase the stock of that medicine by the passed integer.
 			med.getKey().setStock(med.getKey().getStock() + med.getValue());
 
 			// Update that medicine (the key).
 			sf.getCurrentSession().update(med.getKey());
-		}
+		}	// go back through the for:each loop and do the same thing for the entire collection.
 	}
 
 	@SuppressWarnings("unchecked")
@@ -62,7 +66,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public List<Trainer> viewTrainers() {
 		return sf.getCurrentSession().createCriteria(Trainer.class).list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> viewPatients() {
@@ -73,35 +77,21 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public <T> void remove(T user) {
 		sf.getCurrentSession().delete(user);
 	}
-
-	@Override
+	
 	@SuppressWarnings("unchecked")
-	public boolean loginEmpl(String username, String password) {
-		try {
-			Criteria crit = sf.getCurrentSession().createCriteria(Employee.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-					.add(Restrictions.like("password", password, MatchMode.EXACT));
-
-			List<Employee> empl = crit.list();
-			System.out.println(empl);
-
-			if (empl.get(0) != null) {
-				return true;
-			}
-
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("FAIL 3");
-			return false;
-		} catch (QueryException e) {
-			System.out.println("FAIL 4");
-			return false;
-		}
-		return false;
+	@Override
+	public Employee getNurse(String username) {
+		crit = sf.getCurrentSession().createCriteria(Employee.class);
+		crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
+		
+		List<Employee> nurse = crit.list();
+		
+		return nurse.get(0);
 	}
 
+	@Override
 	public void assignNurse(Patient patient) {
 		sf.getCurrentSession().update(patient);
 	}
-
 
 }

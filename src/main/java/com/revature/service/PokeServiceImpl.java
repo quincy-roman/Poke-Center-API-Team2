@@ -26,7 +26,7 @@ public class PokeServiceImpl implements PokeService {
 		pokeRepo.save(pokemon);
 		return pokemon.getDexid() != 0;
 	}
-	
+
 	@Override
 	public boolean registerStatus(StatusCondition statusCondition) {
 		pokeRepo.save(statusCondition);
@@ -42,10 +42,10 @@ public class PokeServiceImpl implements PokeService {
 
 	@Override
 	public boolean registerPatient(Patient patient) {
-		pokeRepo.save(patient);		
+		pokeRepo.save(patient);
 		return patient.getPateintid() != 0;
 	}
-	
+
 	@Override
 	public boolean registerRole(Role role) {
 		pokeRepo.save(role);
@@ -54,7 +54,7 @@ public class PokeServiceImpl implements PokeService {
 
 	@Override
 	public boolean registerEmpl(Employee empl) {
-		pokeRepo.save(empl);		
+		pokeRepo.save(empl);
 		return empl.getEmployeeId() != 0;
-	}	
+	}
 }

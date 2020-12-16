@@ -1,4 +1,5 @@
 package com.revature.model;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,29 +12,30 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Employee")
+@Table(name = "Employee")
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee_seq")
-	@SequenceGenerator(name="employee_seq", sequenceName="employee_seq", allocationSize=1)
-	@Column(name="employee_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
+	@Column(name = "employee_id")
 	private int employeeId;
 
-	@Column(name="employee_name")
+	@Column(name = "employee_name", nullable = false)
 	private String employeeName;
 
 	// Check the note in Trainer.java
-	@Column(name="employee_username")
+	@Column(name = "employee_username", nullable = false, unique = true)
 	private String username;
 
-	@Column(name="employee_password")
-	private String password;	//TODO SpringSecurity for encryption?
-	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@Column(name = "employee_password", nullable = false)
+	private String password; // TODO SpringSecurity for encryption?
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Role role;
 
-	public Employee() {}
+	public Employee() {
+	}
 
 	// W/out id
 	public Employee(String employeeName, String username, String password) {
@@ -51,6 +53,14 @@ public class Employee {
 		this.employeeName = employeeName;
 		this.username = username;
 		this.password = password;
+	}
+
+	public Employee(String employeeName, String username, String password, Role role) {
+		super();
+		this.employeeName = employeeName;
+		this.username = username;
+		this.password = password;
+		this.role = role;
 	}
 
 	public Employee(int employeeId, String employeeName, String username, String password, Role role) {
@@ -154,5 +164,4 @@ public class Employee {
 		return true;
 	}
 
-	
 }

@@ -26,11 +26,6 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
-	public boolean loginTrainer(String username, String password) {
-		return trainerRepo.loginTrainer(username, password);
-	}
-
-	@Override
 	public Trainer getProfile(Trainer trainer) {
 		return trainerRepo.getProfile(trainer);
 	}

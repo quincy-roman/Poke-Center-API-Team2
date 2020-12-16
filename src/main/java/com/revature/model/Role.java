@@ -14,9 +14,9 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // this acts like the SERIAL datatype in SQL
 	@Column(name = "roleid")
-	private int roleid; //Trainer 1, Nurse 2, Admin 3
+	private int roleid; // Trainer 1, Nurse 2, Admin 3
 
-	@Column(name = "role", nullable = false)
+	@Column(name = "role", nullable = false, unique = true)
 	private String role;
 
 	public Role() {
@@ -82,7 +82,5 @@ public class Role {
 			return false;
 		return true;
 	}
-
-	
 
 }

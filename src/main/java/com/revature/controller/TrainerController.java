@@ -17,7 +17,7 @@ public interface TrainerController {
 	ResponseEntity<Trainer> getProfile(Trainer trainer);
 
 	ResponseEntity<Trainer> updateProfile(Trainer trainer);
-	
+
 	ResponseEntity<ClientMessage> registerTrainer(Trainer trainer);
 	
 	ResponseEntity<ClientMessage> admitPokemon(Patient patient);

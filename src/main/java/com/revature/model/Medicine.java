@@ -19,7 +19,7 @@ public class Medicine {
 	@Column(name = "medid")
 	private int medID;
 
-	@Column(name = "medname", nullable = false)
+	@Column(name = "medname", nullable = false, unique = true)
 	private String medName;
 
 	@Column(name = "cost", nullable = false)
@@ -28,7 +28,7 @@ public class Medicine {
 	@Column(name = "stock", nullable = false)
 	private int stock;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private StatusCondition status; // The status condition recommended for
 
 	public Medicine() {
@@ -119,8 +119,8 @@ public class Medicine {
 
 	@Override
 	public String toString() {
-		return "Medicine [medID=" + medID + ", medName=" + medName + ", cost=" + cost + ", stock=" + stock + ", status="
-				+ status + "]";
+		return "\nMedicine [" + "\nmedID=" + medID + ", medName=" + medName + "\ncost=" + cost + ", stock=" + stock
+				+ "\nstatus=" + status + "]";
 	}
 
 	public Medicine(int medID, String medName, double cost, int stock, StatusCondition status) {
