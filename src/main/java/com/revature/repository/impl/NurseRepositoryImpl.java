@@ -1,12 +1,9 @@
 package com.revature.repository.impl;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.QueryException;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,7 +27,7 @@ public class NurseRepositoryImpl implements NurseRepository {
 	Criteria crit;
 
 	@SuppressWarnings("unchecked")
-	public Patient findPatient(int patient) {
+	public Patient findPatient(int patient) { // APPLY INDEX OUT OF BOUNDS EXCEP
 		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.idEq(patient));
 		List<Patient> p = crit.list();
@@ -65,24 +62,6 @@ public class NurseRepositoryImpl implements NurseRepository {
 		return medicine;
 	}
 
-	@Override
-	public void treatmentAndRelease(Patient patient) {
-		sf.getCurrentSession().evict(patient);
-
-		patient.setRelease(new Timestamp(System.currentTimeMillis()));
-		patient.setStatus(null);
-
-		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
-		// Or we can update the med count directly in this same method.
-
-		medStock(patient.getMed());
-	}
-
-	public void medStock(Medicine medicine) {
-		medicine.setStock(medicine.getStock() - 1);
-		sf.getCurrentSession().update(medicine);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> findAllPatients() {
@@ -110,27 +89,27 @@ public class NurseRepositoryImpl implements NurseRepository {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
-	public boolean loginEmpl(String username, String password) {
-		try {
-			crit = sf.getCurrentSession().createCriteria(Employee.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-					.add(Restrictions.like("password", password, MatchMode.EXACT));
+	public void treat(Patient patient, Medicine med) { // APPLY MEDS
+		sf.getCurrentSession().evict(patient);
 
-			List<Employee> empl = crit.list();
-			System.out.println(empl);
+		patient.setMed(med);
 
-			if (empl.get(0) != null) {
-				return true;
-			}
-
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("FAIL 3");
-			return false;
-		} catch (QueryException e) {
-			System.out.println("FAIL 4");
-			return false;
-		}
-		return false;
+		sf.getCurrentSession().update(patient);
 	}
+
+	public void medStock(Medicine medicine) {
+		medicine.setStock(medicine.getStock() - 1);
+		sf.getCurrentSession().update(medicine);
+	}
+
+	@Override
+	public void declarehealthy(Patient patient) { // DECLARE PATIENT HEALTHY TO LEAVE
+		sf.getCurrentSession().evict(patient);
+
+		patient.setHealthy(true);
+
+		sf.getCurrentSession().update(patient);
+
+	}
+
 }

@@ -13,7 +13,7 @@ public class Pokemon {
 	@Column(name = "dexid")
 	private int dexid;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", nullable = false, unique = true)
 	private String name;
 
 	@Column(name = "type1", nullable = false)

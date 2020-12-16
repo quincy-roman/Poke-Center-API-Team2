@@ -19,7 +19,7 @@ public class Medicine {
 	@Column(name = "medid")
 	private int medID;
 
-	@Column(name = "medname", nullable = false)
+	@Column(name = "medname", nullable = false, unique = true)
 	private String medName;
 
 	@Column(name = "cost", nullable = false)

@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
 import com.revature.model.StatusCondition;
+import com.revature.model.dto.MedicineDTO;
+import com.revature.model.dto.PatientDTO;
 import com.revature.repository.NurseRepository;
 
 @Service("NurseService")
@@ -23,28 +26,31 @@ public class NurseService implements EmplService {
 		return nurseRepo.findPatient(patient);
 	}
 
-	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) { // TODO add medicine update.
-
-		// Set the release time to now.
-
-		patient.setMed(m);
-		patient.setHealthy(b);
-
-		nurseRepo.treatmentAndRelease(patient);
-
-		// Check to make sure the update was a success.
-		return patient.getRelease() != null;
-	}
-
-
 	// Get patients for the logged in nurse.
-	public List<Patient> getNursePatients(Employee nurse_id) {
-		return nurseRepo.findPatients(nurse_id);
+	public List<PatientDTO> getNursePatients(Employee nurse) {
+		List<Patient> patients = nurseRepo.findPatients(nurse);
+		List<PatientDTO> patientDTOs = new ArrayList<>();
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.isHealthy());
+			patientDTOs.add(pdto);
+		}
+		return patientDTOs;
 	}
 
 	@Override // Get all medicines.
-	public List<Medicine> getAllMedicines() {
-		return nurseRepo.getAllMedicines();
+	public List<MedicineDTO> getAllMedicines() {
+		List<Medicine> meds = nurseRepo.getAllMedicines();
+		List<MedicineDTO> medsDTO = new ArrayList<>();
+		for(Medicine m : meds) {
+			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
+			medsDTO.add(mdto);
+		}
+		
+		return medsDTO;
 	}
 
 	// Update the nurse's information.
@@ -54,18 +60,20 @@ public class NurseService implements EmplService {
 		// TODO This condition could be improved.
 		return nurse.getUsername() != username;
 	}
-
-	@Override
-	public boolean loginEmpl(String username, String password) {
-		return nurseRepo.loginEmpl(username, password);
-	}
-
+	
 	public Medicine treatment(StatusCondition s) {
 		return nurseRepo.treatment(s);
 	}
 
-	public List<Medicine> selectTreatment(StatusCondition s) {
-		return nurseRepo.selectTreatment(s);
+	public List<MedicineDTO> selectTreatment(StatusCondition s) {
+		List<Medicine> meds = nurseRepo.selectTreatment(s);
+		List<MedicineDTO> medsDTO = new ArrayList<>();
+		for(Medicine m : meds) {
+			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
+			medsDTO.add(mdto);
+		}
+		
+		return medsDTO;
 	}
 
 	public StatusCondition problem(String string) {
@@ -74,8 +82,39 @@ public class NurseService implements EmplService {
 
 	@Override
 	// Get all patients.
-	public List<Patient> getAllPatients() {
-		return nurseRepo.findAllPatients();
+	public List<PatientDTO> getAllPatients() {
+		List<Patient> patients = nurseRepo.findAllPatients();
+		List<PatientDTO> patientDTOs = new ArrayList<>();
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.isHealthy());
+			patientDTOs.add(pdto);
+		}
+		return patientDTOs;
+	}
+
+	public boolean applytreatment(Patient patient, Medicine med) {
+		nurseRepo.treat(patient, med);
+		
+		if(patient.getMed() != null) {
+			nurseRepo.medStock(patient.getMed());
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public Boolean declarehealthy(Patient p) {
+		nurseRepo.declarehealthy(p);
+		
+		if(p.isHealthy()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

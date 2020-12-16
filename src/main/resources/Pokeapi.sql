@@ -118,3 +118,9 @@ update patient set healthy = TRUE where pateintid =1;
 update patient set "release" = current_timestamp where pateintid =1;
 
 delete from medicine where medid > 10;
+
+truncate table patient;
+
+select *
+from patient p 
+where not healthy = false;

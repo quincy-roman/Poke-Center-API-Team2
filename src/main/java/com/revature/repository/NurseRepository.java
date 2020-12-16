@@ -9,9 +9,6 @@ import com.revature.model.StatusCondition;
 
 public interface NurseRepository {
 
-	// Update the patient's status, health, and release time.
-	void treatmentAndRelease(Patient patient);
-
 	// Retrieve all records, current and past.
 	List<Patient> findAllPatients();
 
@@ -24,8 +21,6 @@ public interface NurseRepository {
 	// Retrieve the nurse's patients.
 	List<Patient> findPatients(Employee nurse_id);
 
-	boolean loginEmpl(String username, String password);
-
 	Patient findPatient(int patient);
 
 	Medicine treatment(StatusCondition s);
@@ -33,4 +28,11 @@ public interface NurseRepository {
 	StatusCondition problem(String string);
 
 	List<Medicine> selectTreatment(StatusCondition s);
+
+	void treat(Patient patient, Medicine med);
+
+	void declarehealthy(Patient p);
+
+	void medStock(Medicine med);
+
 }
