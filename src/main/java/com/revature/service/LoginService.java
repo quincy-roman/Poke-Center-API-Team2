@@ -35,9 +35,5 @@ public class LoginService {
 		TrainerDTO trainer = new TrainerDTO(t.getTrainerId(), t.getTrainerName(), t.getHometown(), t.getUsername(), t.getPassword());
 		return trainer;
 	}
-	
-	public <T> boolean logoutUser(T user) {
-		return loginRepo.logoutUser(user);
-	}
 
 }

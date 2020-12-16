@@ -35,4 +35,9 @@ public class ClientMessageUtil {
 	public static final ClientMessage RECORD_REMOVED = new ClientMessage("Patient record has been removed successfully.");
 	
 	public static final ClientMessage RECORD_FAILED = new ClientMessage("Patient record removal has failed.");
+	
+	public static final ClientMessage PATIENT_REGISTERED = new ClientMessage(
+							"Patient has been admitted to the Pokemon Center! Please wait for their return");
+	
+	public static final ClientMessage PATIENT_FAILED = new ClientMessage("Patient failed to be admitted.");
 }

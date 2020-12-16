@@ -6,15 +6,17 @@ import org.springframework.http.ResponseEntity;
 
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
+import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.TrainerDTO;
 import com.revature.util.ClientMessage;
 
 public interface TrainerController {
 
-	ResponseEntity<List<Patient>> getPokemon(Trainer trainer);
+	ResponseEntity<List<PatientDTO>> getPokemon(Trainer trainer);
 
-	ResponseEntity<Trainer> getProfile(Trainer trainer);
+	ResponseEntity<TrainerDTO> getProfile(Trainer trainer);
 
-	ResponseEntity<Trainer> updateProfile(Trainer trainer);
+	ResponseEntity<TrainerDTO> updateProfile(Trainer trainer);
 
 	ResponseEntity<ClientMessage> registerTrainer(Trainer trainer);
 	

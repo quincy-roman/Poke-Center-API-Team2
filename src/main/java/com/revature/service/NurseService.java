@@ -13,7 +13,6 @@ import com.revature.model.StatusCondition;
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
 import com.revature.repository.NurseRepository;
-import com.revature.repository.PokeRepo;
 
 @Service("NurseService")
 public class NurseService implements EmplService {
@@ -22,9 +21,6 @@ public class NurseService implements EmplService {
 
 	@Autowired
 	private NurseRepository nurseRepo;
-	
-	@Autowired
-	private PokeRepo pokeRepo;	// for registration.
 
 	public Patient findPatient(int patient) {
 		return nurseRepo.findPatient(patient);
@@ -121,11 +117,6 @@ public class NurseService implements EmplService {
 		} else {
 			return false;
 		}
-	}
-	
-	public boolean registerEmployee(Employee empl) {
-		pokeRepo.save(empl);
-		return empl.getEmployeeId() != 0;
 	}
 
 }

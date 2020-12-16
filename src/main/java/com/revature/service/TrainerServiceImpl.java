@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.postgresql.util.PSQLException;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
+import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.TrainerDTO;
 import com.revature.repository.TrainerRepo;
 
 @Service("TrainerService")
@@ -38,18 +41,34 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
-	public Trainer getProfile(Trainer trainer) {
-		return trainerRepo.getProfile(trainer);
+	public TrainerDTO getProfile(Trainer trainer) {
+		Trainer t = trainerRepo.getProfile(trainer);
+		TrainerDTO trainerDTO = new TrainerDTO(t.getTrainerId(), t.getTrainerName(), 
+											   t.getHometown(), t.getUsername(), t.getPassword());
+		return trainerDTO;
 	}
 
 	@Override
-	public Trainer updateProfile(Trainer trainer) {
-		return trainerRepo.updateProfile(trainer);
+	public TrainerDTO updateProfile(Trainer trainer) {
+		Trainer t = trainerRepo.updateProfile(trainer);
+		TrainerDTO trainerDTO = new TrainerDTO(t.getTrainerId(), t.getTrainerName(), 
+				   							   t.getHometown(), t.getUsername(), t.getPassword());
+		return trainerDTO;
 	}
 
 	@Override
-	public List<Patient> getPokemon(Trainer trainer) {
-		return trainerRepo.getPatient(trainer);
+	public List<PatientDTO> getPokemon(Trainer trainer) {
+		List<Patient> pokemon = trainerRepo.getPatient(trainer);
+		List<PatientDTO> patientDTOs = new ArrayList<>();
+		for(Patient p : pokemon) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.isHealthy());
+			patientDTOs.add(pdto);
+		}
+		return patientDTOs;
 	}
 
 }
