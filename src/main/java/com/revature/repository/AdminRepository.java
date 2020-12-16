@@ -36,4 +36,6 @@ public interface AdminRepository {
 
 	boolean loginEmpl(String username, String password);
 
+	Employee getNurse(String username);
+
 }

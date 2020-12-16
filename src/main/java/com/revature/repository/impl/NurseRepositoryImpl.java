@@ -30,7 +30,7 @@ public class NurseRepositoryImpl implements NurseRepository {
 	Criteria crit;
 
 	@SuppressWarnings("unchecked")
-	public Patient findPatient(int patient) {
+	public Patient findPatient(int patient) { //APPLY INDEX OUT OF BOUNDS EXCEP
 		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.idEq(patient));
 		List<Patient> p = crit.list();
@@ -67,10 +67,10 @@ public class NurseRepositoryImpl implements NurseRepository {
 
 	@Override
 	public void treatmentAndRelease(Patient patient) {
-		sf.getCurrentSession().evict(patient);
+//		sf.getCurrentSession().evict(patient);
 
 		patient.setRelease(new Timestamp(System.currentTimeMillis()));
-		patient.setStatus(null);
+//		patient.setStatus(null);
 
 		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
 		// Or we can update the med count directly in this same method.

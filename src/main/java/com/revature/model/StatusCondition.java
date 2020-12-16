@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,12 +12,13 @@ import javax.persistence.Table;
 public class StatusCondition {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "status_seq")
-	@SequenceGenerator(name = "status_seq", sequenceName = "status_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // this acts like the SERIAL datatype in SQL
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "status_seq")
+//	@SequenceGenerator(name = "status_seq", sequenceName = "status_seq", allocationSize = 1)
 	@Column(name = "status_id")
 	private int statusId;
 
-	@Column(name = "status_name")
+	@Column(name = "status_name", nullable = false, unique = true)
 	private String statusName; // Burn, Freeze, Sleep, Poison, paralysis, Fainted
 
 	public StatusCondition() {

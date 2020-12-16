@@ -105,4 +105,15 @@ public class AdminRepositoryImpl implements AdminRepository {
 		sf.getCurrentSession().update(patient);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Employee getNurse(String username) {
+		crit = sf.getCurrentSession().createCriteria(Employee.class);
+		crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
+		
+		List<Employee> nurse = crit.list();
+		
+		return nurse.get(0);
+	}
+
 }
