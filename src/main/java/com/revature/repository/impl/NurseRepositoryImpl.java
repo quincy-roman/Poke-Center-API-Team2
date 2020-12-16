@@ -4,9 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.QueryException;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

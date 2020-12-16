@@ -3,9 +3,7 @@ package com.revature.repository.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.QueryException;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,7 +28,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 	public void save(Trainer trainer) {
 		sf.getCurrentSession().save(trainer);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> getPatient(Trainer trainer) { // Changed fetch to eager to work
