@@ -146,4 +146,105 @@ xhr.send();
 
 
 
+  public registerTrainer(myUsername: string, myPassword: string, myName: string, myHometown: string){
+
+    console.log("in register Trainer service...")
+        let xhr = new XMLHttpRequest();
+
+      
+        let trainerTemplate = {
+          username: myUsername,
+          password : myPassword,
+          hometown: myHometown,
+          name: myName
+        }
+        
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+    	if(xhr.readyState <= 3){
+    		console.log('loading');
+    	}
+        if(xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("Success")
+           // sessionStorage.setItem('tableData', xhr.responseText);
+            this.router.navigateByUrl('signin')
+        }
+        if(xhr.readyState ===4 && xhr.status ===204)
+        {
+            console.log("Failed. Status Code: " + xhr.status)
+			var reason = {
+				code : xhr.status,
+        issue : 'Failed to register user.'
+        //redirect to error page
+			};
+			console.log(reason);
+			sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+        };
+        xhr.open("POST", "register/trainer/", true);
+        xhr.send(JSON.stringify(trainerTemplate));
+
+
+
+  }
+
+  public registerEmployee(myUsername: string, myPassword: string, myName: string, myRoleId: number){
+
+    console.log("in register Trainer service...")
+        let xhr = new XMLHttpRequest();
+
+      
+        let employeeTemplate = {
+          username: myUsername,
+          password : myPassword,
+          roleId: myRoleId,
+          name: myName
+        }
+        
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+    	if(xhr.readyState <= 3){
+    		console.log('loading');
+    	}
+        if(xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("Success")
+           // sessionStorage.setItem('tableData', xhr.responseText);
+            this.router.navigateByUrl('signin')
+        }
+        if(xhr.readyState ===4 && xhr.status ===204)
+        {
+            console.log("Failed. Status Code: " + xhr.status)
+			var reason = {
+				code : xhr.status,
+        issue : 'Failed to register user.'
+        //redirect to error page
+			};
+			console.log(reason);
+			sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+        };
+        xhr.open("POST", "register/employee/", true);
+        xhr.send(JSON.stringify(employeeTemplate));
+
+
+
+  }
+
+
+  
+
+
+
 }
