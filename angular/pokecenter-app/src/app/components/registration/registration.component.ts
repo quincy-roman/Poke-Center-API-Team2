@@ -25,8 +25,9 @@ export class RegistrationComponent implements OnInit {
 
   public registerTrainer(value:any){
 
-    let name = this.firstName + " " + this.lastName;
-    this.userService.registerNewTrainer(this.username, this.password, this.homeTown, name);
+    let name = `${this.firstName} ${this.lastName}`;
+    console.log(name)
+    this.userService.registerNewTrainer(this.username, this.password, name, this.homeTown);
   }
 
 

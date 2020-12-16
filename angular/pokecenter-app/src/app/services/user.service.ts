@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { API_URL } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -156,7 +157,7 @@ xhr.send();
           username: myUsername,
           password : myPassword,
           hometown: myHometown,
-          name: myName
+          trainerName: myName
         }
         
 
@@ -187,24 +188,30 @@ xhr.send();
         }
         console.log("Processing")
         };
-        xhr.open("POST", "trainer/registration", true);
+        xhr.open("POST", `${API_URL}trainer/registration`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(trainerTemplate));
 
 
 
   }
 
-  public registerEmployee(myUsername: string, myPassword: string, myName: string, myRoleId: number){
+  public registerNurse(myUsername: string, myPassword: string, myName: string){
 
     console.log("in register Employee service...")
         let xhr = new XMLHttpRequest();
 
+        let roleTemplate={
+          roleid : 1,
+          role : "Nurse"
+        }
       
+
         let employeeTemplate = {
+          employeeName: myName,
           username: myUsername,
           password : myPassword,
-          roleId: myRoleId,
-          name: myName
+          role: roleTemplate,
         }
         
 
@@ -235,7 +242,61 @@ xhr.send();
         }
         console.log("Processing")
         };
-        xhr.open("POST", "register/employee", true);
+        xhr.open("POST", `${API_URL}nurse/registration`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(employeeTemplate));
+
+
+
+  }
+  public registerAdmin(myUsername: string, myPassword: string, myName: string){
+
+    console.log("in register Admin service...")
+        let xhr = new XMLHttpRequest();
+
+        let roleTemplate={
+          roleid : 2,
+          role : "Admin"
+        }
+      
+
+        let employeeTemplate = {
+          employeeName: myName,
+          username: myUsername,
+          password : myPassword,
+          role: roleTemplate,
+        }
+        
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+    	if(xhr.readyState <= 3){
+    		console.log('loading');
+    	}
+        if(xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("Success")
+           // sessionStorage.setItem('tableData', xhr.responseText);
+            this.router.navigateByUrl('signin')
+        }
+        if(xhr.readyState ===4 && xhr.status ===204)
+        {
+            console.log("Failed. Status Code: " + xhr.status)
+			var reason = {
+				code : xhr.status,
+        issue : 'Failed to register user.'
+        //redirect to error page
+			};
+			console.log(reason);
+			sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+        };
+        xhr.open("POST", `${API_URL}admin/registration`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(employeeTemplate));
 
 

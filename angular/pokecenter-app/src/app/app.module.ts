@@ -17,6 +17,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { TableComponent } from './components/table/table.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AlertComponent,
     TableComponent,
     AdmissionComponent,
-    DashboardComponent
+    DashboardComponent,
+    EmployeeRegistrationComponent
   ],
   imports: [
     BrowserModule,

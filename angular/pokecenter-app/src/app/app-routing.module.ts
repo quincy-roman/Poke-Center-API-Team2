@@ -1,3 +1,4 @@
+import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { TableComponent } from './components/table/table.component';
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: "trainer/registration",
     component: RegistrationComponent
+  },
+  {
+    path: "employee/registration",
+    component: EmployeeRegistrationComponent
   },
   {
     path: "signin",
