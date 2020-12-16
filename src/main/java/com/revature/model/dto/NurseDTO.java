@@ -9,9 +9,10 @@ public class NurseDTO {
 	private String username;
 	private String password;
 	private String name;
-	private List<Pokemon> patients;	//TODO switch type to Patients when that is created.
+	private List<Pokemon> patients; // TODO switch type to Patients when that is created.
 
-	public NurseDTO() {}
+	public NurseDTO() {
+	}
 
 	public NurseDTO(String username, String password, String name, List<Pokemon> patients) {
 		super();

@@ -112,7 +112,9 @@ false
 select * from patient p ;
 SELECT * from pokemon p ;
 
-update patient set nurseid = 1 where pateintid =1;
-update patient set medid = 1 where pateintid =1;
+update patient set nurseid_employee_id = 1 where pateintid =4;
+update patient set med_medid = 1 where pateintid =7;
 update patient set healthy = TRUE where pateintid =1;
 update patient set "release" = current_timestamp where pateintid =1;
+
+delete from medicine where medid > 10;

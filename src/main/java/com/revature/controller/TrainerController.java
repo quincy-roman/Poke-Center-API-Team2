@@ -11,13 +11,13 @@ import com.revature.util.ClientMessage;
 public interface TrainerController {
 
 	ResponseEntity<List<Patient>> getPokemon(Trainer trainer);
-	
+
 	ResponseEntity<ClientMessage> loginTrainer(String username, String password);
 
 	ResponseEntity<Trainer> getProfile(Trainer trainer);
 
 	ResponseEntity<Trainer> updateProfile(Trainer trainer);
-	
+
 	ResponseEntity<ClientMessage> registerTrainer(Trainer trainer);
 
 }

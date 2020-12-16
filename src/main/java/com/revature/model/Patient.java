@@ -13,50 +13,50 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="patient")
+@Table(name = "patient")
 public class Patient {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "pateintid")
 	private int pateintid;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Pokemon pokemon;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Trainer trainer;
-	
+
 	@Column(name = "admission", nullable = false)
 	private Timestamp admission;
 
-	@Column(name="currentHP", nullable = false)
+	@Column(name = "currentHP", nullable = false)
 	private int currentHP;
-	
-	@Column(name="maxHP", nullable = false)
+
+	@Column(name = "maxHP", nullable = false)
 	private int maxHP;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private StatusCondition status;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Employee nurseid;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Medicine med;	
-	
+	private Medicine med;
+
 	@Column(name = "healthy", nullable = false)
 	private boolean healthy;
-	
+
 	@Column(name = "release")
 	private Timestamp release;
 
 	public Patient() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Patient(Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
-			StatusCondition status, boolean healthy) { //INFO TO register a patient
+			StatusCondition status, boolean healthy) { // INFO TO register a patient
 		super();
 		this.pokemon = pokemon;
 		this.trainer = trainer;
@@ -66,22 +66,26 @@ public class Patient {
 		this.status = status;
 		this.healthy = healthy;
 	}
-	
+
 	public Patient(int pateintid, Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP,
-			/*StatusCondition status,*/ Employee nurseid, Medicine med, boolean healthy/*, Timestamp release*/) { //Treat and release a patient
+			/* StatusCondition status, */ Employee nurseid, Medicine med, boolean healthy/* , Timestamp release */) { // Treat
+																														// and
+																														// release
+																														// a
+																														// patient
 		super();
 		this.pateintid = pateintid;
 		this.pokemon = pokemon;
 		this.trainer = trainer;
 		this.currentHP = currentHP;
 		this.admission = admission;
-		//this.status = status;
+		// this.status = status;
 		this.nurseid = nurseid;
 		this.med = med;
 		this.healthy = healthy;
-		//this.release = release;
+		// this.release = release;
 	}
-	
+
 	public Patient(int pateintid, Pokemon pokemon, Trainer trainer, Timestamp admission, int currentHP, int maxHP,
 			StatusCondition status, Employee nurseid, Medicine med, boolean healthy, Timestamp release) {
 		super();
@@ -203,16 +207,10 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "\nPatient ["
-				+ "\npateintid=" + pateintid
-				+ ", \npokemon=" + pokemon 
-				+ ", \ntrainer=" + trainer 
-				+ ", \nadmission=" + admission 
-				+ ", currentHP=" + currentHP + ", maxHP=" + maxHP 
-				+ ", \nstatus=" + status 
-				+ ", \nnurseid=" + nurseid 
-				+ ", \nmed=" + med 
-				+ ", \nhealthy=" + healthy + ", release=" + release + "]";
+		return "\nPatient [" + "\npateintid=" + pateintid + ", \npokemon=" + pokemon + ", \ntrainer=" + trainer
+				+ ", \nadmission=" + admission + ", currentHP=" + currentHP + ", maxHP=" + maxHP + ", \nstatus="
+				+ status + ", \nnurseid=" + nurseid + ", \nmed=" + med + ", \nhealthy=" + healthy + ", release="
+				+ release + "]";
 	}
 
 	@Override
@@ -287,5 +285,5 @@ public class Patient {
 			return false;
 		return true;
 	}
-	
+
 }

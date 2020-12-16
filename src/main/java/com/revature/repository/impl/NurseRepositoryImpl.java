@@ -20,23 +20,23 @@ import com.revature.repository.NurseRepository;
 
 @Repository("nurseRepo")
 @Transactional
-public class NurseRepositoryImpl implements NurseRepository{
+public class NurseRepositoryImpl implements NurseRepository {
 
 //	private static Logger log = Logger.getLogger(NurseRepositoryImpl.class);
 
 	@Autowired
 	private SessionFactory sf;
-	
+
 	Criteria crit;
-	
+
 	@SuppressWarnings("unchecked")
 	public Patient findPatient(int patient) {
-		 crit = sf.getCurrentSession().createCriteria(Patient.class);
+		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.idEq(patient));
 		List<Patient> p = crit.list();
 		return p.get(0);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Medicine treatment(StatusCondition status) {
@@ -68,18 +68,18 @@ public class NurseRepositoryImpl implements NurseRepository{
 	@Override
 	public void treatmentAndRelease(Patient patient) {
 		sf.getCurrentSession().evict(patient);
-		
+
 		patient.setRelease(new Timestamp(System.currentTimeMillis()));
 		patient.setStatus(null);
 
-		sf.getCurrentSession().update(patient);	// TODO Might want to set a trigger to lower med count.
+		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
 		// Or we can update the med count directly in this same method.
-		
+
 		medStock(patient.getMed());
 	}
-	
+
 	public void medStock(Medicine medicine) {
-		medicine.setStock(medicine.getStock()-1);
+		medicine.setStock(medicine.getStock() - 1);
 		sf.getCurrentSession().update(medicine);
 	}
 
@@ -98,24 +98,24 @@ public class NurseRepositoryImpl implements NurseRepository{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> findPatients(Employee nurse_id) {
-		Criteria crit = sf.getCurrentSession().createCriteria(Patient.class);
+		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.eq("nurseid", nurse_id));
 		List<Patient> p = crit.list();
 		return p;
 	}
-	
+
 	@Override
 	public void update(Employee nurse) {
-		sf.getCurrentSession().update(nurse);		
+		sf.getCurrentSession().update(nurse);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean loginEmpl(String username, String password) {
 		try {
-			Criteria crit = sf.getCurrentSession().createCriteria(Employee.class);
+			crit = sf.getCurrentSession().createCriteria(Employee.class);
 			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-				.add(Restrictions.like("password", password, MatchMode.EXACT));
+					.add(Restrictions.like("password", password, MatchMode.EXACT));
 
 			List<Employee> empl = crit.list();
 			System.out.println(empl);
@@ -123,7 +123,7 @@ public class NurseRepositoryImpl implements NurseRepository{
 			if (empl.get(0) != null) {
 				return true;
 			}
-			
+
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("FAIL 3");
 			return false;

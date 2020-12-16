@@ -9,19 +9,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="status_condition")
+@Table(name = "status_condition")
 public class StatusCondition {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="status_seq")
-	@SequenceGenerator(name="status_seq", sequenceName="status_seq", allocationSize=1)
-	@Column(name="status_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "status_seq")
+	@SequenceGenerator(name = "status_seq", sequenceName = "status_seq", allocationSize = 1)
+	@Column(name = "status_id")
 	private int statusId;
 
-	@Column(name="status_name")
-	private String statusName; //Burn, Freeze, Sleep, Poison, paralysis, Fainted
+	@Column(name = "status_name")
+	private String statusName; // Burn, Freeze, Sleep, Poison, paralysis, Fainted
 
-	public StatusCondition() {}
+	public StatusCondition() {
+	}
 
 	public StatusCondition(String statusName) {
 		super();
@@ -82,7 +83,5 @@ public class StatusCondition {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -119,10 +119,8 @@ public class Medicine {
 
 	@Override
 	public String toString() {
-		return "\nMedicine ["
-				+ "\nmedID=" + medID + ", medName=" + medName 
-				+ "\ncost=" + cost + ", stock=" + stock 
-				+ "\nstatus="+ status + "]";
+		return "\nMedicine [" + "\nmedID=" + medID + ", medName=" + medName + "\ncost=" + cost + ", stock=" + stock
+				+ "\nstatus=" + status + "]";
 	}
 
 	public Medicine(int medID, String medName, double cost, int stock, StatusCondition status) {

@@ -36,10 +36,6 @@ public class NurseService implements EmplService {
 		return patient.getRelease() != null;
 	}
 
-	// Get all patients.
-	public List<Patient> getAllPatients() {
-		return nurseRepo.findAllPatients();
-	}
 
 	// Get patients for the logged in nurse.
 	public List<Patient> getNursePatients(Employee nurse_id) {
@@ -74,6 +70,12 @@ public class NurseService implements EmplService {
 
 	public StatusCondition problem(String string) {
 		return nurseRepo.problem(string);
+	}
+
+	@Override
+	// Get all patients.
+	public List<Patient> getAllPatients() {
+		return nurseRepo.findAllPatients();
 	}
 
 }

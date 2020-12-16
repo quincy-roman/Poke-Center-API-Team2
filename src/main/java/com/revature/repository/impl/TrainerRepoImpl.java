@@ -20,22 +20,24 @@ import com.revature.repository.TrainerRepo;
 public class TrainerRepoImpl implements TrainerRepo {
 
 //	private static Logger log = Logger.getLogger(TrainerRepoImpl.class);
-	
+
 	@Autowired
 	private SessionFactory sf;
+
+	Criteria crit;
 
 	@Override
 	public void save(Trainer trainer) {
 		sf.getCurrentSession().save(trainer);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean loginTrainer(String username, String password) {
 		try {
-			Criteria crit = sf.getCurrentSession().createCriteria(Trainer.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-				.add(Restrictions.like("password", password, MatchMode.EXACT));
+			crit = sf.getCurrentSession().createCriteria(Trainer.class);
+			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
+			crit.add(Restrictions.like("password", password, MatchMode.EXACT));
 
 			List<Trainer> trainer = crit.list();
 			System.out.println(trainer);
@@ -56,8 +58,8 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Patient> getPatient(Trainer trainer) { //Changed fetch to eager to work
-		Criteria crit = sf.getCurrentSession().createCriteria(Patient.class);
+	public List<Patient> getPatient(Trainer trainer) { // Changed fetch to eager to work
+		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.eq("trainer", trainer));
 		List<Patient> p = crit.list();
 		return p;
@@ -66,7 +68,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Trainer getProfile(Trainer trainer) {
-		Criteria crit = sf.getCurrentSession().createCriteria(Trainer.class);
+		crit = sf.getCurrentSession().createCriteria(Trainer.class);
 		crit.add(Restrictions.idEq(trainer.getTrainerId()));
 		List<Trainer> t = crit.list();
 		return t.get(0);
@@ -76,7 +78,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 	public Trainer updateProfile(Trainer trainer) {
 		// TODO Auto-generated method stub
 		sf.getCurrentSession().evict(trainer);
-		
+
 		sf.getCurrentSession().update(trainer);
 		return trainer;
 	}

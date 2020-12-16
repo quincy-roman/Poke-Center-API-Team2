@@ -23,10 +23,12 @@ import com.revature.repository.AdminRepository;
 @Transactional
 public class AdminRepositoryImpl implements AdminRepository {
 
-//	private static Logger log = Logger.getLogger(NurseRepositoryImpl.class);
+//	private static Logger log = Logger.getLogger(AdminRepositoryImpl.class);
 
 	@Autowired
 	private SessionFactory sf;
+
+	Criteria crit;
 
 	@Override
 	public <T> void update(T user) {
@@ -62,7 +64,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public List<Trainer> viewTrainers() {
 		return sf.getCurrentSession().createCriteria(Trainer.class).list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> viewPatients() {
@@ -78,9 +80,9 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@SuppressWarnings("unchecked")
 	public boolean loginEmpl(String username, String password) {
 		try {
-			Criteria crit = sf.getCurrentSession().createCriteria(Employee.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-					.add(Restrictions.like("password", password, MatchMode.EXACT));
+			crit = sf.getCurrentSession().createCriteria(Employee.class);
+			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
+			crit.add(Restrictions.like("password", password, MatchMode.EXACT));
 
 			List<Employee> empl = crit.list();
 			System.out.println(empl);
@@ -102,6 +104,5 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public void assignNurse(Patient patient) {
 		sf.getCurrentSession().update(patient);
 	}
-
 
 }
