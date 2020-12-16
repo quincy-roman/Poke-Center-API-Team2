@@ -3,6 +3,7 @@ package com.revature.repository;
 import java.util.HashMap;
 import java.util.List;
 
+import com.revature.model.BillingHistory;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
@@ -37,4 +38,6 @@ public interface AdminRepository {
 	Employee getNurse(String username);
 
 	void release(Patient patient);
+
+	BillingHistory save(BillingHistory b);
 }
