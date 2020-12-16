@@ -1,24 +1,20 @@
 package com.revature.model.dto;
 
-import java.util.List;
-
-import com.revature.model.Pokemon;
-
-public class NurseDTO {
+public class EmployeeDTO {
 
 	private String username;
 	private String password;
 	private String name;
-	private List<Pokemon> patients;	//TODO switch type to Patients when that is created.
+	private int roleid;
 
-	public NurseDTO() {}
+	public EmployeeDTO() {}
 
-	public NurseDTO(String username, String password, String name, List<Pokemon> patients) {
+	public EmployeeDTO(String username, String password, String name, int roleid) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
-		this.patients = patients;
+		this.roleid = roleid;
 	}
 
 	public String getUsername() {
@@ -45,17 +41,17 @@ public class NurseDTO {
 		this.name = name;
 	}
 
-	public List<Pokemon> getPatients() {
-		return patients;
+	public int getRoleId() {
+		return roleid;
 	}
 
-	public void setPatients(List<Pokemon> patients) {
-		this.patients = patients;
+	public void setPatients(int roleId) {
+		this.roleid = roleId;
 	}
 
 	@Override
 	public String toString() {
-		return "NurseDTO [username=" + username + ", password=" + password + ", name=" + name + ", patients=" + patients
+		return "NurseDTO [username=" + username + ", password=" + password + ", name=" + name + ", roleid=" + roleid
 				+ "]";
 	}
 

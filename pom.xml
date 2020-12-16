@@ -24,7 +24,7 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.3.9.RELEASE</version>
 		</dependency>
-		
+
 		<!-- Spring 4 MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -48,5 +48,25 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.9</version>
 		</dependency>
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<!-- JAX-B: a dependency to help marshall POJOS to XML and vice versa -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.4.3</version>
+		</dependency>
+
+
 	</dependencies>
 </project>

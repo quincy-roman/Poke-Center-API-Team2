@@ -2,9 +2,9 @@ package com.revature.model.dto;
 
 public class LoginDTO {
 	
-	private int id;
-	private String username;
-	private String password;
+	int id;
+	String username;
+	String password;
 	
 	public LoginDTO() {}
 
