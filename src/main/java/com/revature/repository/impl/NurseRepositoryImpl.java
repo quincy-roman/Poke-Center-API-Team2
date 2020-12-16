@@ -89,12 +89,14 @@ public class NurseRepositoryImpl implements NurseRepository {
 	}
 
 	@Override
-	public void treat(Patient patient, Medicine med) { // APPLY MEDS
+	public Patient treat(Patient patient, Medicine med) { // APPLY MEDS
 		sf.getCurrentSession().evict(patient);
 
 		patient.setMed(med);
 
 		sf.getCurrentSession().update(patient);
+		
+		return patient;
 	}
 
 	public void medStock(Medicine medicine) {

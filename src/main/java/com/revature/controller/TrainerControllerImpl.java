@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
+import com.revature.model.dto.PatientDTO;
 import com.revature.service.TrainerService;
 import com.revature.util.ClientMessage;
 
@@ -33,9 +34,9 @@ public class TrainerControllerImpl implements TrainerController {
 	}
 
 	@Override
-	@GetMapping("/trainer/pokemon")
-	public ResponseEntity<List<Patient>> getPokemon(@RequestBody Trainer trainer) {
-		List<Patient> pokemon = trainerService.getPokemon(trainer);
+	@GetMapping("/pokemon")
+	public ResponseEntity<List<PatientDTO>> getPokemon(@RequestBody Trainer trainer) {
+		List<PatientDTO> pokemon = trainerService.getPokemon(trainer);
 		return ResponseEntity.ok(pokemon);
 	}
 
@@ -56,7 +57,7 @@ public class TrainerControllerImpl implements TrainerController {
 	@Override
 	@PostMapping(path = "/registration", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> registerTrainer(@RequestBody Trainer trainer) {
-		ClientMessage body = (trainerService.registerTrainer(trainer)) ? USER_LOGIN : LOGIN_FAILED;;
+		ClientMessage body = (trainerService.registerTrainer(trainer)) ? USER_REGISTERED : USER_NOT_REGISTERED;
 		return ResponseEntity.ok(body);
 	}
 

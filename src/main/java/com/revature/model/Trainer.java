@@ -26,19 +26,11 @@ public class Trainer {
 	@Column(name = "hometown", nullable = false)
 	private String hometown;
 
-	// Trainers need login info. We could potentially make Login_Info a
-	// separate table and have trainers and employees
-	// have foreign keys to their related info.
-
 	@Column(name = "trainer_username", nullable = false, unique = true)
 	private String username;
 
 	@Column(name = "trainer_password", nullable = false)
-	private String password; // TODO incorporate BCrypt or something.
-
-	// @OneToMany(mappedBy="pokemon") //TODO this is fit to change, probably to
-	// Patients
-	// private List<Pokemon> pokemon;
+	private String password; 
 
 	public Trainer() {
 	}
@@ -49,6 +41,14 @@ public class Trainer {
 
 	public void setHometown(String hometown) {
 		this.hometown = hometown;
+	}
+
+	public Trainer(String trainerName, String hometown, String username, String password) {
+		super();
+		this.trainerName = trainerName;
+		this.hometown = hometown;
+		this.username = username;
+		this.password = password;
 	}
 
 	public Trainer(int trainerId, String trainerName, String hometown, String username, String password) {

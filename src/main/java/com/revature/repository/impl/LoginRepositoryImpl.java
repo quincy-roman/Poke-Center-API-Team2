@@ -72,11 +72,4 @@ public class LoginRepositoryImpl implements LoginRepository{
 		return null;
 	}
 
-	@Override
-	public <T> boolean logoutUser(T user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 }

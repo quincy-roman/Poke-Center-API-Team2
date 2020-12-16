@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
+import com.revature.model.dto.PatientDTO;
 
 public interface TrainerService {
 
-	List<Patient> getPokemon(Trainer trainer);
+	List<PatientDTO> getPokemon(Trainer trainer);
 
 	Trainer getProfile(Trainer trainer);
 
