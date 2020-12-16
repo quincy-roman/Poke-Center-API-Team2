@@ -60,6 +60,7 @@ public class NurseRepositoryImpl implements NurseRepository{
 	public List<Medicine> selectTreatment(StatusCondition status) {
 		crit = sf.getCurrentSession().createCriteria(Medicine.class);
 		crit.add(Restrictions.eq("status", status));
+		crit.add(Restrictions.ge("stock", 1));
 		List<Medicine> medicine = crit.list();
 		return medicine;
 	}
@@ -73,6 +74,13 @@ public class NurseRepositoryImpl implements NurseRepository{
 
 		sf.getCurrentSession().update(patient);	// TODO Might want to set a trigger to lower med count.
 		// Or we can update the med count directly in this same method.
+		
+		medStock(patient.getMed());
+	}
+	
+	public void medStock(Medicine medicine) {
+		medicine.setStock(medicine.getStock()-1);
+		sf.getCurrentSession().update(medicine);
 	}
 
 	@SuppressWarnings("unchecked")

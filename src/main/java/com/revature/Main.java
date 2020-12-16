@@ -48,13 +48,13 @@ public class Main {
 //		
 //		getPokemon(); //WORKED
 //		
-		updateProfile(); //WORKED	
+//		updateProfile(); //WORKED	
 //		
 //		getPatients(); //UPDATED
 //		
 //		getList(); //WORKED
 //		
-//		releasePatient(); //Maybe working
+		releasePatient(); //Maybe working
 //		
 //		getMeds(); //WORKED
 	}
