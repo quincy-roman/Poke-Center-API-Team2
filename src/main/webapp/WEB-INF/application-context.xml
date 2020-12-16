@@ -15,15 +15,17 @@
 	<context:annotation-config/>
 	
 	<mvc:annotation-driven/>
+	<mvc:resources mapping="/Poke-Center-API/**" location="/static/"/>
+	
 	
 	<!-- Enable @Transactional....What is this??? -->
 	<tx:annotation-driven /> <!-- Transactional annotation defines scope of a single db transaction -->
 	
 
 	<!-- Package Scan -->
-	<context:component-scan base-package="com.revature.repository" />
-	<context:component-scan base-package="com.revature.repository.impl" />
-	<context:component-scan base-package="com.revature.service" />
+	<context:component-scan base-package="com.revature.repository"/>
+	<context:component-scan base-package="com.revature.repository.impl"/>
+	<context:component-scan base-package="com.revature.service"/>
 
 	<!-- Hibernate Integration with contextual sessions -->
 	
