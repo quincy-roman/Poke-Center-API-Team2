@@ -72,8 +72,7 @@ public class NurseRepositoryImpl implements NurseRepository {
 		patient.setRelease(new Timestamp(System.currentTimeMillis()));
 		patient.setStatus(null);
 
-		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
-		// Or we can update the med count directly in this same method.
+		sf.getCurrentSession().update(patient);
 
 		medStock(patient.getMed());
 	}
@@ -107,30 +106,5 @@ public class NurseRepositoryImpl implements NurseRepository {
 	@Override
 	public void update(Employee nurse) {
 		sf.getCurrentSession().update(nurse);
-	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean loginEmpl(String username, String password) {
-		try {
-			crit = sf.getCurrentSession().createCriteria(Employee.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT))
-					.add(Restrictions.like("password", password, MatchMode.EXACT));
-
-			List<Employee> empl = crit.list();
-			System.out.println(empl);
-
-			if (empl.get(0) != null) {
-				return true;
-			}
-
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("FAIL 3");
-			return false;
-		} catch (QueryException e) {
-			System.out.println("FAIL 4");
-			return false;
-		}
-		return false;
 	}
 }

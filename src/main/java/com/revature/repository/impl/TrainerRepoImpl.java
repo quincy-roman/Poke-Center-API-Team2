@@ -33,31 +33,6 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean loginTrainer(String username, String password) {
-		try {
-			crit = sf.getCurrentSession().createCriteria(Trainer.class);
-			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
-			crit.add(Restrictions.like("password", password, MatchMode.EXACT));
-
-			List<Trainer> trainer = crit.list();
-			System.out.println(trainer);
-
-			if (trainer.get(0) != null) {
-				return true;
-			}
-
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("FAIL 1");
-			return false;
-		} catch (QueryException e) {
-			System.out.println("FAIL 3");
-			return false;
-		}
-		return false;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Patient> getPatient(Trainer trainer) { // Changed fetch to eager to work
 		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.eq("trainer", trainer));
@@ -76,7 +51,6 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@Override
 	public Trainer updateProfile(Trainer trainer) {
-		// TODO Auto-generated method stub
 		sf.getCurrentSession().evict(trainer);
 
 		sf.getCurrentSession().update(trainer);

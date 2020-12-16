@@ -55,11 +55,6 @@ public class NurseService implements EmplService {
 		return nurse.getUsername() != username;
 	}
 
-	@Override
-	public boolean loginEmpl(String username, String password) {
-		return nurseRepo.loginEmpl(username, password);
-	}
-
 	public Medicine treatment(StatusCondition s) {
 		return nurseRepo.treatment(s);
 	}

@@ -66,12 +66,6 @@ public class AdminService implements EmplService {
 	}
 
 	@Override
-	public boolean loginEmpl(String username, String password) {
-		return adminRepo.loginEmpl(username, password);
-	}
-
-
-	@Override
 	public List<Patient> getAllPatients() {
 		return adminRepo.viewPatients();
 	}
