@@ -1,9 +1,6 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.FAILED_UPDATE;
-import static com.revature.util.ClientMessageUtil.SUCCESSFULLY_TREATED;
-import static com.revature.util.ClientMessageUtil.SUCCESSFUL_UPDATE;
-import static com.revature.util.ClientMessageUtil.TREATMENT_FAILED;
+import static com.revature.util.ClientMessageUtil.*;
 
 import java.util.List;
 
