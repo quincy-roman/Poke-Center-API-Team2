@@ -35,4 +35,6 @@ public interface AdminRepository {
 	<T> void remove(T user);
 
 	Employee getNurse(String username);
+
+	void release(Patient patient);
 }

@@ -1,11 +1,11 @@
 package com.revature.repository.impl;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
-import org.hibernate.QueryException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -92,6 +92,18 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@Override
 	public void assignNurse(Patient patient) {
 		sf.getCurrentSession().update(patient);
+	}
+	
+	@Override
+	public void release(Patient patient) { // STAMP WHEN PATIENT LEFT
+//		sf.getCurrentSession().evict(patient);
+
+		patient.setRelease(new Timestamp(System.currentTimeMillis()));
+//		patient.setStatus(null);
+
+		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
+		// Or we can update the med count directly in this same method.
+
 	}
 
 }

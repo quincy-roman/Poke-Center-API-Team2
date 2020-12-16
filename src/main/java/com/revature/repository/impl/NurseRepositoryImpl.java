@@ -1,6 +1,5 @@
 package com.revature.repository.impl;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -63,11 +62,6 @@ public class NurseRepositoryImpl implements NurseRepository {
 		return medicine;
 	}
 
-	public void medStock(Medicine medicine) {
-		medicine.setStock(medicine.getStock() - 1);
-		sf.getCurrentSession().update(medicine);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> findAllPatients() {
@@ -95,36 +89,26 @@ public class NurseRepositoryImpl implements NurseRepository {
 	}
 
 	@Override
-	public void treat(Patient patient, Medicine med) { //APPLY MEDS
+	public void treat(Patient patient, Medicine med) { // APPLY MEDS
 		sf.getCurrentSession().evict(patient);
 
 		patient.setMed(med);
 
 		sf.getCurrentSession().update(patient);
+	}
 
-		medStock(patient.getMed());
+	public void medStock(Medicine medicine) {
+		medicine.setStock(medicine.getStock() - 1);
+		sf.getCurrentSession().update(medicine);
 	}
 
 	@Override
-	public Boolean declarehealthy(Patient patient) { //DECLARE PATIENT HEALTHY TO LEAVE
+	public void declarehealthy(Patient patient) { // DECLARE PATIENT HEALTHY TO LEAVE
 		sf.getCurrentSession().evict(patient);
 
 		patient.setHealthy(true);
 
 		sf.getCurrentSession().update(patient);
-
-		return patient.isHealthy();
-	}
-
-	@Override
-	public void treatmentAndRelease(Patient patient) { //STAMP WHEN PATIENT LEFT
-//		sf.getCurrentSession().evict(patient);
-
-		patient.setRelease(new Timestamp(System.currentTimeMillis()));
-//		patient.setStatus(null);
-
-		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
-		// Or we can update the med count directly in this same method.
 
 	}
 
