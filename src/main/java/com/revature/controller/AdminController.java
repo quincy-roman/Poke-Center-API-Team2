@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
-import com.revature.model.Trainer;
 import com.revature.model.dto.EmployeeDTO;
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;

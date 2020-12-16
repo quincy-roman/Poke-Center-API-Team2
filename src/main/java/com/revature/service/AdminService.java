@@ -38,7 +38,7 @@ public class AdminService implements EmplService {
 		return true; // TODO fix this.
 	}
 
-	// View all employees TODO switch this to the EmployeeDTO.
+	// View all employees
 	public List<EmployeeDTO> viewEmployees() {
 		List<Employee> emps = adminRepo.viewEmployees();
 		List<EmployeeDTO> empDTO = new ArrayList<>();
@@ -53,7 +53,7 @@ public class AdminService implements EmplService {
 		return empDTO;
 	}
 
-	// View all trainers TODO switch this to the TrainerDTO.
+	// View all trainers 
 	public List<TrainerDTO> viewTrainers() {
 		List<Trainer> trainers = adminRepo.viewTrainers();
 		List<TrainerDTO> trainerDTOs = new ArrayList<>();
@@ -98,6 +98,7 @@ public class AdminService implements EmplService {
 	}
 	
 	@Override
+	// Return a List of all patients.
 	public List<PatientDTO> getAllPatients() {
 		List<Patient> patients = adminRepo.viewPatients();
 		List<PatientDTO> patientDTOs = new ArrayList<>();
