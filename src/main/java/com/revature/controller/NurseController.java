@@ -22,6 +22,7 @@ import com.revature.model.StatusCondition;
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
 import com.revature.service.NurseService;
+import com.revature.service.PokeService;
 import com.revature.util.ClientMessage;
 
 @RestController
@@ -31,6 +32,9 @@ public class NurseController implements EmployeeController {
 
 	@Autowired
 	private NurseService nurseService;
+	
+	@Autowired
+	private PokeService pokeService;	// for registration functionality.
 
 	@GetMapping("/table/get-poketreatment-by-patient-id")
 	public ResponseEntity<List<MedicineDTO>> selectmeds(@RequestBody StatusCondition status) {
@@ -77,4 +81,12 @@ public class NurseController implements EmployeeController {
 		List<PatientDTO> patients = nurseService.getAllPatients();
 		return ResponseEntity.ok(patients);
 	}
+
+	@Override
+	@PostMapping(path = "/registration", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<ClientMessage> register(@RequestBody Employee emp) {
+		ClientMessage body = (pokeService.registerEmpl(emp)) ? USER_REGISTERED : USER_NOT_REGISTERED;
+		return ResponseEntity.ok(body);
+	}
+	
 }

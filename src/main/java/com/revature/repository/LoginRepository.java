@@ -7,6 +7,4 @@ public interface LoginRepository {
 	
 	Employee loginEmployee(String username, String password);
 	Trainer loginTrainer(String username, String password);
-	<T> boolean logoutUser(T user);
-
 }
