@@ -32,10 +32,15 @@ public class TrainerRepoImpl implements TrainerRepo {
 		try {
 			sf.getCurrentSession().save(trainer);
 		} catch (DataIntegrityViolationException e) {
-		    System.out.println("history already exist 1");
+			System.out.println("history already exist 1");
 		} catch (ConstraintViolationException e) {
-		    System.out.println("history already exist 2");
+			System.out.println("history already exist 2");
 		}
+	}
+
+	@Override
+	public void save(Patient patient) {
+		sf.getCurrentSession().save(patient);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -56,7 +61,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 			List<Trainer> t = crit.list();
 			return t.get(0);
 		} catch (IndexOutOfBoundsException e) {
-			
+
 		}
 		return null;
 	}
@@ -68,4 +73,5 @@ public class TrainerRepoImpl implements TrainerRepo {
 		sf.getCurrentSession().update(trainer);
 		return trainer;
 	}
+
 }

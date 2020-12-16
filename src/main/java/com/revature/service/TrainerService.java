@@ -10,6 +10,8 @@ public interface TrainerService {
 
 	List<PatientDTO> getPokemon(Trainer trainer);
 
+  public boolean registerPatient(Patient patient);
+
 	Trainer getProfile(Trainer trainer);
 
 	Trainer updateProfile(Trainer trainer);

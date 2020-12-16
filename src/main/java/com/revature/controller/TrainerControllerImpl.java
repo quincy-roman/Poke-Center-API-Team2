@@ -38,7 +38,7 @@ public class TrainerControllerImpl implements TrainerController {
 	public ResponseEntity<List<PatientDTO>> getPokemon(@RequestBody Trainer trainer) {
 		List<PatientDTO> pokemon = trainerService.getPokemon(trainer);
 		return ResponseEntity.ok(pokemon);
-	}
+	} 
 
 	@Override
 	@GetMapping("/trainer/profile")
@@ -62,9 +62,10 @@ public class TrainerControllerImpl implements TrainerController {
 	}
 
 	@Override
+	@PostMapping("/trainer/pokemon/admit")
 	public ResponseEntity<ClientMessage> admitPokemon(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+		ClientMessage body = (trainerService.registerPatient(patient)) ? USER_REGISTERED : USER_NOT_REGISTERED;
+		return ResponseEntity.ok(body);
 	}
 
 }

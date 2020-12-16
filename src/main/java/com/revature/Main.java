@@ -195,24 +195,24 @@ public class Main {
 //		new Patient(pokemon, trainer, admission, currentHP, maxHP, status, healthy);
 
 		StatusCondition s = NurseService.problem("Sleep");
-		PokeService.registerPatient(new Patient(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"),
+		TrainerService.registerPatient(new Patient(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"),
 				new Trainer(1, "Ash", "Pallet Town", "fire", "red"), admission, 300, 300, s, false));
 
 		StatusCondition b = NurseService.problem("Burn");
-		PokeService.registerPatient(new Patient(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
+		TrainerService.registerPatient(new Patient(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
 				new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"), admission, 50, 100, b, false));
 
 		StatusCondition f = NurseService.problem("Fainted");
-		PokeService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
+		TrainerService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
 				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"), admission, 0, 20, f, false));
 
-		PokeService.registerPatient(new Patient(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"),
+		TrainerService.registerPatient(new Patient(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"),
 				new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"), admission, 150, 300, b, false));
 
-		PokeService.registerPatient(new Patient(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
+		TrainerService.registerPatient(new Patient(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
 				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"), admission, 0, 100, f, false));
 
-		PokeService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
+		TrainerService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
 				new Trainer(1, "Ash", "Pallet Town", "fire", "red"), admission, 10, 20, b, false));
 	}
 
