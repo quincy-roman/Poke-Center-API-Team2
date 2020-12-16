@@ -24,6 +24,10 @@ public class ClientMessageUtil {
 	public static final ClientMessage USER_FAILED = new ClientMessage("User removal has failed.");
 
 	public static final ClientMessage USER_LOGIN = new ClientMessage("User successfully logged in.");
+	
+	public static final ClientMessage USER_REGISTERED = new ClientMessage("User has been successfully registered!");
+	
+	public static final ClientMessage USER_NOT_REGISTERED = new ClientMessage("User registration has failed.");
 
 	public static final ClientMessage LOGIN_FAILED = new ClientMessage(
 			"Login failed, username or password is incorrect.");
