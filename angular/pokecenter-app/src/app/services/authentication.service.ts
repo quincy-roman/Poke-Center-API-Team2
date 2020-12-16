@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -33,35 +33,36 @@ export class AuthenticationService {
             username: username,
             password: password
         };
-
+        
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
-    	if(xhr.readyState <= 3){
-    		console.log('loading');
-    	}
-        if(xhr.readyState === 4 && xhr.status === 200)
-        {
-            console.log("Success")
-            sessionStorage.setItem('currentUser', xhr.responseText);
-            console.log(sessionStorage.getItem('currentUser'));
-            this.router.navigateByUrl('home');
-        }
-        if(this.readyState ===4 && xhr.status ===204)
-        {
-            console.log("Failed. Status Code: " + xhr.status)
-			var reason = {
-				code : xhr.status,
-				issue : 'Failed to log in. Incorrect Username or Password.'
-			};
-			console.log(reason);
-			sessionStorage.setItem('failMessage', JSON.stringify(reason));
-            console.log(sessionStorage.getItem('failMessage'));
-            //goes to error interceptor
-            alert('BAD MOJO!')
-        }
-        console.log("Processing")
+            if(xhr.readyState <= 3){
+                console.log('loading');
+            }
+            if(xhr.readyState === 4 && xhr.status === 200)
+            {
+                console.log("Success")
+                sessionStorage.setItem('currentUser', xhr.responseText);
+                console.log(sessionStorage.getItem('currentUser'));
+                this.router.navigateByUrl('home');
+            }
+            if(this.readyState ===4 && xhr.status ===204)
+            {
+                console.log("Failed. Status Code: " + xhr.status)
+                var reason = {
+                    code : xhr.status,
+                    issue : 'Failed to log in. Incorrect Username or Password.'
+                };
+                console.log(reason);
+                sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                console.log(sessionStorage.getItem('failMessage'));
+                //goes to error interceptor
+                alert('BAD MOJO!')
+            }
+            console.log("Processing")
         };
-        xhr.open("POST", `${API_URL}login/employee`);
+        xhr.open("POST", `${API_URL}login/employee`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(loginTemplate));
     }
 

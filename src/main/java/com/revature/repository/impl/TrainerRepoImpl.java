@@ -49,7 +49,6 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@Override
 	public Trainer updateProfile(Trainer trainer) {
-		// TODO Auto-generated method stub
 		sf.getCurrentSession().evict(trainer);
 
 		sf.getCurrentSession().update(trainer);

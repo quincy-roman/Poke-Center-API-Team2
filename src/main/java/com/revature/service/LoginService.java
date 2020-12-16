@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Employee;
 import com.revature.model.Trainer;
+import com.revature.model.dto.EmployeeDTO;
+import com.revature.model.dto.TrainerDTO;
 import com.revature.repository.LoginRepository;
 
 @Service("loginService")
@@ -15,12 +17,23 @@ public class LoginService {
 	
 	public LoginService() {}
 	
-	public Employee loginEmployee(String username, String password) {
-		return loginRepo.loginEmployee(username, password);
+	public EmployeeDTO loginEmployee(String username, String password) {
+		Employee e = loginRepo.loginEmployee(username, password);
+		EmployeeDTO employee = null;
+		
+		if(e.getRole().getRoleid() == 1) {
+			employee = new EmployeeDTO(e.getEmployeeId(), e.getUsername(), e.getPassword(), e.getEmployeeName(), 1);
+		}else if(e.getRole().getRoleid() == 2) {
+			employee = new EmployeeDTO(e.getEmployeeId(), e.getUsername(), e.getPassword(), e.getEmployeeName(), 2);
+		}
+		
+		return employee;
 	}
 	
-	public Trainer loginTrainer(String username, String password) {
-		return loginRepo.loginTrainer(username, password);
+	public TrainerDTO loginTrainer(String username, String password) {
+		Trainer t = loginRepo.loginTrainer(username, password);
+		TrainerDTO trainer = new TrainerDTO(t.getTrainerId(), t.getTrainerName(), t.getHometown(), t.getUsername(), t.getPassword());
+		return trainer;
 	}
 	
 	public <T> boolean logoutUser(T user) {

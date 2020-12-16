@@ -2,6 +2,7 @@ package com.revature.model.dto;
 
 public class TrainerDTO {
 
+	private int trainerid;
 	private String name;
 	private String hometown;
 	private String username;
@@ -12,6 +13,15 @@ public class TrainerDTO {
 
 	public TrainerDTO(String name, String hometown, String username, String password) {
 		super();
+		this.name = name;
+		this.hometown = hometown;
+		this.username = username;
+		this.password = password;
+	}
+	
+	public TrainerDTO(int trainerid, String name, String hometown, String username, String password) {
+		super();
+		this.trainerid = trainerid;
 		this.name = name;
 		this.hometown = hometown;
 		this.username = username;
@@ -49,11 +59,19 @@ public class TrainerDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public int getTrainerid() {
+		return trainerid;
+	}
+	
+	public void setTrainerid(int trainerid) {
+		this.trainerid = trainerid;
+	}
 
 	@Override
 	public String toString() {
-		return "TrainerDTO [name=" + name + ", hometown=" + hometown + ", username=" + username + ", password="
-				+ password + "]";
+		return "TrainerDTO [trainerid=" + trainerid + ", name=" + name + ", hometown=" + hometown + ", username="
+				+ username + ", password=" + password + "]";
 	}
 
 }

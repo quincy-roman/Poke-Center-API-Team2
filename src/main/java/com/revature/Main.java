@@ -233,7 +233,7 @@ public class Main {
 		TrainerService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
 
 		TrainerService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
-
+    
 	}
 
 	public static void registerEmpl() {

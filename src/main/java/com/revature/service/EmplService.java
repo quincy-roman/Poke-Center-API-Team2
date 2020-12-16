@@ -8,6 +8,6 @@ import com.revature.model.Patient;
 public interface EmplService {
 
 	public List<Medicine> getAllMedicines();
-		
+	
 	public List<Patient> getAllPatients();
 }
