@@ -23,13 +23,13 @@ public class NurseService implements EmplService {
 		return nurseRepo.findPatient(patient);
 	}
 
-	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) { // TODO add medicine update.
+	public boolean treatmentAndRelease(Patient patient) { // TODO add medicine update.
 
 		// Set the release time to now.
-		patient.setStatus(m.getStatus());
-		patient.setMed(m);
+//		patient.setStatus(m.getStatus());
+//		patient.setMed(m);
 //		patient.setCurrentHP(patient.getMaxHP());
-		patient.setHealthy(b);
+//		patient.setHealthy(b);
 
 		nurseRepo.treatmentAndRelease(patient);
 
@@ -71,6 +71,14 @@ public class NurseService implements EmplService {
 	// Get all patients.
 	public List<Patient> getAllPatients() {
 		return nurseRepo.findAllPatients();
+	}
+
+	public void treat(Patient patient, Medicine med) {
+		nurseRepo.treat(patient, med);
+	}
+
+	public Boolean declarehealthy(Patient p) {
+		return nurseRepo.declarehealthy(p);
 	}
 
 }

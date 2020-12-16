@@ -34,8 +34,8 @@ public class NurseController implements EmployeeController {
 	}
 
 	@PostMapping("/treatment")
-	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient, Medicine medicine) {
-		ClientMessage body = (nurseService.treatmentAndRelease(patient, medicine, true)) ? SUCCESSFULLY_TREATED
+	public ResponseEntity<ClientMessage> treatement(@RequestBody Patient patient) {
+		ClientMessage body = (nurseService.treatmentAndRelease(patient)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}

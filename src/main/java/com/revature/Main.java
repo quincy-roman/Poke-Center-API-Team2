@@ -46,8 +46,27 @@ public class Main {
 		
 		assignnurse(); //WORKED
 		
+		getMeds(); //WORKED
+
+		treatment();
+		
+		declarehealthy();
+		
 		releasePatient(); //WORKED
 
+	}
+
+	private static void declarehealthy() {
+		Patient p = NurseService.findPatient(14);
+		NurseService.declarehealthy(p);
+		
+	}
+
+	private static void treatment() {
+		Patient p = NurseService.findPatient(14);
+		StatusCondition s = NurseService.problem("Sleep");
+		Medicine m = NurseService.treatment(s);
+		NurseService.treat(p, m);
 	}
 
 	private static void assignnurse() {
@@ -66,7 +85,6 @@ public class Main {
 
 		getList(); //WORKED
 
-		getMeds(); //WORKED
 	}
 
 	@SuppressWarnings("unused")
@@ -102,11 +120,11 @@ public class Main {
 	} 
 
 	private static void releasePatient() {
-		Patient p = NurseService.findPatient(13);
-		StatusCondition s = NurseService.problem("Sleep");
-		Medicine m = NurseService.treatment(s);
+		Patient p = NurseService.findPatient(14);
+//		StatusCondition s = NurseService.problem("Sleep");
+//		Medicine m = NurseService.treatment(s);
 
-		if (NurseService.treatmentAndRelease(p, m, true)) {
+		if (NurseService.treatmentAndRelease(p)) {
 			System.out.println("WORKED");
 		} else {
 			System.out.println("FAIL");
@@ -210,19 +228,12 @@ public class Main {
 
 	public static void registerTrainer() {
 
-		Trainer t = new Trainer(1, "Ash", "Pallet Town", "fire", "red");
-
 		TrainerService.registerTrainer(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
-		
-		TrainerService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
-		
-		TrainerService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
 
-//		if (TrainerService.loginTrainer(t.getUsername(), t.getPassword())) {
-//			System.out.println("logged into trainer");
-//		} else {
-//			System.out.println("FAIL 2");
-//		}
+		TrainerService.registerTrainer(new Trainer(2, "Lucas", "Littleroot Town", "Diamond", "pearl"));
+
+		TrainerService.registerTrainer(new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"));
+    
 	}
 
 	public static void registerEmpl() {
@@ -238,18 +249,6 @@ public class Main {
 		PokeService.registerEmpl(new Employee("Admin4", "4", "4", admin));
 		PokeService.registerEmpl(new Employee("Nurse5", "5", "5", nurse));
 		PokeService.registerEmpl(new Employee("Admin6", "6", "6", admin));
-
-//		if (PokeService.loginEmpl(a.getUsername(), a.getPassword())) {
-//			if (a.getRole() == nurse) {
-//				System.out.println("nurse homepage");
-//			} else if (a.getRole() == admin) {
-//				System.out.println("admin homepage");
-//			} else {
-//				System.out.println("Fail 2");
-//			}
-//		} else {
-//			System.out.println("Fail 1");
-//		}
 	}
 
 }

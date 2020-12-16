@@ -35,13 +35,6 @@ public class TrainerControllerImpl implements TrainerController {
 		List<Patient> pokemon = trainerService.getPokemon(trainer);
 		return ResponseEntity.ok(pokemon);
 	}
-//
-//	@Override
-//	@PostMapping("/trainer/login")
-//	public ResponseEntity<ClientMessage> loginTrainer(@RequestBody String username, String password) {
-//		ClientMessage body = (trainerService.loginTrainer(username, password)) ? USER_LOGIN : LOGIN_FAILED;
-//		return ResponseEntity.ok(body);
-//	}
 
 	@Override
 	@GetMapping("/trainer/profile")

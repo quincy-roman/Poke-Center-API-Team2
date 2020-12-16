@@ -31,4 +31,9 @@ public interface NurseRepository {
 	StatusCondition problem(String string);
 
 	List<Medicine> selectTreatment(StatusCondition s);
+
+	void treat(Patient patient, Medicine med);
+
+	Boolean declarehealthy(Patient p);
+
 }
