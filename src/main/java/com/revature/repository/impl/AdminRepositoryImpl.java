@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.model.BillingHistory;
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
@@ -104,6 +105,12 @@ public class AdminRepositoryImpl implements AdminRepository {
 		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
 		// Or we can update the med count directly in this same method.
 
+	}
+
+	@Override
+	public BillingHistory save(BillingHistory b) {
+		sf.getCurrentSession().save(b);		
+		return b;
 	}
 
 }
