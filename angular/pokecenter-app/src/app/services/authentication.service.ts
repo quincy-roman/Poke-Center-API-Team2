@@ -43,6 +43,7 @@ export class AuthenticationService {
         {
             console.log("Success")
             sessionStorage.setItem('currentUser', xhr.responseText);
+            console.log(sessionStorage.getItem('currentUser'));
             this.router.navigateByUrl('home');
         }
         if(this.readyState ===4 && xhr.status ===204)
@@ -60,7 +61,7 @@ export class AuthenticationService {
         }
         console.log("Processing")
         };
-        xhr.open("POST", "/signin/autheticate");
+        xhr.open("POST", `${API_URL}login/employee`);
         xhr.send(JSON.stringify(loginTemplate));
     }
 
