@@ -146,7 +146,7 @@ xhr.send();
 
 
 
-  public registerTrainer(myUsername: string, myPassword: string, myName: string, myHometown: string){
+  public registerNewTrainer(myUsername: string, myPassword: string, myName: string, myHometown: string){
 
     console.log("in register Trainer service...")
         let xhr = new XMLHttpRequest();
@@ -187,7 +187,7 @@ xhr.send();
         }
         console.log("Processing")
         };
-        xhr.open("POST", "register/trainer/", true);
+        xhr.open("POST", "trainer/registration", true);
         xhr.send(JSON.stringify(trainerTemplate));
 
 
@@ -196,7 +196,7 @@ xhr.send();
 
   public registerEmployee(myUsername: string, myPassword: string, myName: string, myRoleId: number){
 
-    console.log("in register Trainer service...")
+    console.log("in register Employee service...")
         let xhr = new XMLHttpRequest();
 
       
@@ -235,7 +235,7 @@ xhr.send();
         }
         console.log("Processing")
         };
-        xhr.open("POST", "register/employee/", true);
+        xhr.open("POST", "register/employee", true);
         xhr.send(JSON.stringify(employeeTemplate));
 
 

@@ -16,7 +16,7 @@ const routes: Routes = [
     component: PasswordRecoveryComponent
   },
   {
-    path: "registration",
+    path: "trainer/registration",
     component: RegistrationComponent
   },
   {

@@ -20,13 +20,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user.id = 0;
-    this.user.name = "Azhya"
-    this.user.username = "aaknox";
-    this.user.password = "password"
-    this.user.token = "string"
 
-    sessionStorage.setItem("currentUser", JSON.stringify(this.user));
 
     console.log(sessionStorage.getItem("currentUser"));
     

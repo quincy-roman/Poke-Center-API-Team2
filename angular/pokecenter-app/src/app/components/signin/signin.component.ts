@@ -49,12 +49,21 @@ export class SigninComponent implements OnInit {
     
     
     console.log(selectedUserType)
+
     console.log(`Assigned: ${this.username}, ${this.password}`);
 
-    
-    console.log(`Assigned: ${this.username}, ${this.password}`);
-    this.authService.login(this.username, this.password);
+    if(selectedUserType== 1){
+      console.log("Logging in as a trainer!")
+      this.authService.loginTrainer(this.username, this.password);
+    }else{
+
+      console.log("logging in as an employee!!")
+      this.authService.loginEmployee(this.username, this.password);
       console.log('checking creds...')
+    }
+
+    
+  
   }
 
   public signInTest(value: any){
