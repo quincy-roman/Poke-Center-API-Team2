@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
 import com.revature.model.StatusCondition;
+import com.revature.model.dto.MedicineDTO;
+import com.revature.model.dto.PatientDTO;
 import com.revature.repository.NurseRepository;
 
 @Service("NurseService")
@@ -24,13 +27,30 @@ public class NurseService implements EmplService {
 	}
 
 	// Get patients for the logged in nurse.
-	public List<Patient> getNursePatients(Employee nurse_id) {
-		return nurseRepo.findPatients(nurse_id);
+	public List<PatientDTO> getNursePatients(Employee nurse) {
+		List<Patient> patients = nurseRepo.findPatients(nurse);
+		List<PatientDTO> patientDTOs = new ArrayList<>();
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.isHealthy());
+			patientDTOs.add(pdto);
+		}
+		return patientDTOs;
 	}
 
 	@Override // Get all medicines.
-	public List<Medicine> getAllMedicines() {
-		return nurseRepo.getAllMedicines();
+	public List<MedicineDTO> getAllMedicines() {
+		List<Medicine> meds = nurseRepo.getAllMedicines();
+		List<MedicineDTO> medsDTO = new ArrayList<>();
+		for(Medicine m : meds) {
+			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
+			medsDTO.add(mdto);
+		}
+		
+		return medsDTO;
 	}
 
 	// Update the nurse's information.
@@ -44,8 +64,15 @@ public class NurseService implements EmplService {
 		return nurseRepo.treatment(s);
 	}
 
-	public List<Medicine> selectTreatment(StatusCondition s) {
-		return nurseRepo.selectTreatment(s);
+	public List<MedicineDTO> selectTreatment(StatusCondition s) {
+		List<Medicine> meds = nurseRepo.selectTreatment(s);
+		List<MedicineDTO> medsDTO = new ArrayList<>();
+		for(Medicine m : meds) {
+			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
+			medsDTO.add(mdto);
+		}
+		
+		return medsDTO;
 	}
 
 	public StatusCondition problem(String string) {
@@ -54,8 +81,18 @@ public class NurseService implements EmplService {
 
 	@Override
 	// Get all patients.
-	public List<Patient> getAllPatients() {
-		return nurseRepo.findAllPatients();
+	public List<PatientDTO> getAllPatients() {
+		List<Patient> patients = nurseRepo.findAllPatients();
+		List<PatientDTO> patientDTOs = new ArrayList<>();
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.isHealthy());
+			patientDTOs.add(pdto);
+		}
+		return patientDTOs;
 	}
 
 	public boolean applytreatment(Patient patient, Medicine med) {

@@ -27,4 +27,8 @@ public class ClientMessageUtil {
 
 	public static final ClientMessage LOGIN_FAILED = new ClientMessage(
 			"Login failed, username or password is incorrect.");
+	
+	public static final ClientMessage RECORD_REMOVED = new ClientMessage("Patient record has been removed successfully.");
+	
+	public static final ClientMessage RECORD_FAILED = new ClientMessage("Patient record removal has failed.");
 }

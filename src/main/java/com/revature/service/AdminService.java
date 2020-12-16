@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import com.revature.model.Employee;
 import com.revature.model.Medicine;
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
+import com.revature.model.dto.EmployeeDTO;
+import com.revature.model.dto.MedicineDTO;
+import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.TrainerDTO;
 import com.revature.repository.AdminRepository;
 
 @Service("AdminService")
@@ -34,14 +39,34 @@ public class AdminService implements EmplService {
 		return true; // TODO fix this.
 	}
 
-	// View all employees TODO switch this to the EmployeeDTO.
-	public List<Employee> viewEmployees() {
-		return adminRepo.viewEmployees();
+	// View all employees
+	public List<EmployeeDTO> viewEmployees() {
+		List<Employee> emps = adminRepo.viewEmployees();
+		List<EmployeeDTO> empDTO = new ArrayList<>();
+		for(Employee e : emps) {
+			EmployeeDTO edto = new EmployeeDTO(e.getEmployeeId(), 
+											   e.getUsername(), 
+											   e.getPassword(), 
+											   e.getEmployeeName(), 
+											   e.getRole().getRoleid());
+			empDTO.add(edto);
+		}
+		return empDTO;
 	}
 
-	// View all trainers TODO switch this to the TrainerDTO.
-	public List<Trainer> viewTrainers() {
-		return adminRepo.viewTrainers();
+	// View all trainers 
+	public List<TrainerDTO> viewTrainers() {
+		List<Trainer> trainers = adminRepo.viewTrainers();
+		List<TrainerDTO> trainerDTOs = new ArrayList<>();
+		for(Trainer t : trainers) {
+			TrainerDTO tdto = new TrainerDTO(t.getTrainerId(), 
+											 t.getTrainerName(), 
+											 t.getHometown(), 
+											 t.getUsername(), 
+											 t.getPassword());
+			trainerDTOs.add(tdto);
+		}
+		return trainerDTOs;
 	}
 
 
@@ -62,13 +87,31 @@ public class AdminService implements EmplService {
 
 	@Override
 	// Retrieve a list of all medicines.
-	public List<Medicine> getAllMedicines() {
-		return adminRepo.getAllMedicines();
+	public List<MedicineDTO> getAllMedicines() {
+		List<Medicine> meds = adminRepo.getAllMedicines();
+		List<MedicineDTO> medsDTO = new ArrayList<>();
+		for(Medicine m : meds) {
+			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
+			medsDTO.add(mdto);
+		}
+		
+		return medsDTO;
 	}
 	
 	@Override
-	public List<Patient> getAllPatients() {
-		return adminRepo.viewPatients();
+	// Return a List of all patients.
+	public List<PatientDTO> getAllPatients() {
+		List<Patient> patients = adminRepo.viewPatients();
+		List<PatientDTO> patientDTOs = new ArrayList<>();
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.isHealthy());
+			patientDTOs.add(pdto);
+		}
+		return patientDTOs;
 	}
 
 	public Employee getNurse(String username) {
