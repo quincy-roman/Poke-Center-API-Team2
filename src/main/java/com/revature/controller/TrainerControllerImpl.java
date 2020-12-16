@@ -37,13 +37,6 @@ public class TrainerControllerImpl implements TrainerController {
 	}
 
 	@Override
-	@PostMapping("/trainer/login")
-	public ResponseEntity<ClientMessage> loginTrainer(@RequestBody String username, String password) {
-		ClientMessage body = (trainerService.loginTrainer(username, password)) ? USER_LOGIN : LOGIN_FAILED;
-		return ResponseEntity.ok(body);
-	}
-
-	@Override
 	@GetMapping("/trainer/profile")
 	public ResponseEntity<Trainer> getProfile(@RequestBody Trainer trainer) {
 		Trainer t = trainerService.getProfile(trainer);
