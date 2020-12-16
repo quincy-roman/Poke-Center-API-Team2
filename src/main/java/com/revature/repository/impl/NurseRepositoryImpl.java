@@ -28,7 +28,7 @@ public class NurseRepositoryImpl implements NurseRepository {
 	Criteria crit;
 
 	@SuppressWarnings("unchecked")
-	public Patient findPatient(int patient) { //APPLY INDEX OUT OF BOUNDS EXCEP
+	public Patient findPatient(int patient) { // APPLY INDEX OUT OF BOUNDS EXCEP
 		crit = sf.getCurrentSession().createCriteria(Patient.class);
 		crit.add(Restrictions.idEq(patient));
 		List<Patient> p = crit.list();
@@ -63,19 +63,6 @@ public class NurseRepositoryImpl implements NurseRepository {
 		return medicine;
 	}
 
-	@Override
-	public void treatmentAndRelease(Patient patient) {
-//		sf.getCurrentSession().evict(patient);
-
-		patient.setRelease(new Timestamp(System.currentTimeMillis()));
-//		patient.setStatus(null);
-
-		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
-		// Or we can update the med count directly in this same method.
-
-		medStock(patient.getMed());
-	}
-
 	public void medStock(Medicine medicine) {
 		medicine.setStock(medicine.getStock() - 1);
 		sf.getCurrentSession().update(medicine);
@@ -105,6 +92,40 @@ public class NurseRepositoryImpl implements NurseRepository {
 	@Override
 	public void update(Employee nurse) {
 		sf.getCurrentSession().update(nurse);
+	}
+
+	@Override
+	public void treat(Patient patient, Medicine med) { //APPLY MEDS
+		sf.getCurrentSession().evict(patient);
+
+		patient.setMed(med);
+
+		sf.getCurrentSession().update(patient);
+
+		medStock(patient.getMed());
+	}
+
+	@Override
+	public Boolean declarehealthy(Patient patient) { //DECLARE PATIENT HEALTHY TO LEAVE
+		sf.getCurrentSession().evict(patient);
+
+		patient.setHealthy(true);
+
+		sf.getCurrentSession().update(patient);
+
+		return patient.isHealthy();
+	}
+
+	@Override
+	public void treatmentAndRelease(Patient patient) { //STAMP WHEN PATIENT LEFT
+//		sf.getCurrentSession().evict(patient);
+
+		patient.setRelease(new Timestamp(System.currentTimeMillis()));
+//		patient.setStatus(null);
+
+		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
+		// Or we can update the med count directly in this same method.
+
 	}
 
 }

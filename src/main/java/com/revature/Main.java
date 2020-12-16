@@ -46,8 +46,27 @@ public class Main {
 		
 		assignnurse(); //WORKED
 		
+		getMeds(); //WORKED
+
+		treatment();
+		
+		declarehealthy();
+		
 		releasePatient(); //WORKED
 
+	}
+
+	private static void declarehealthy() {
+		Patient p = NurseService.findPatient(14);
+		NurseService.declarehealthy(p);
+		
+	}
+
+	private static void treatment() {
+		Patient p = NurseService.findPatient(14);
+		StatusCondition s = NurseService.problem("Sleep");
+		Medicine m = NurseService.treatment(s);
+		NurseService.treat(p, m);
 	}
 
 	private static void assignnurse() {
@@ -66,7 +85,6 @@ public class Main {
 
 		getList(); //WORKED
 
-		getMeds(); //WORKED
 	}
 
 	@SuppressWarnings("unused")
@@ -102,11 +120,11 @@ public class Main {
 	} 
 
 	private static void releasePatient() {
-		Patient p = NurseService.findPatient(13);
-		StatusCondition s = NurseService.problem("Sleep");
-		Medicine m = NurseService.treatment(s);
+		Patient p = NurseService.findPatient(14);
+//		StatusCondition s = NurseService.problem("Sleep");
+//		Medicine m = NurseService.treatment(s);
 
-		if (NurseService.treatmentAndRelease(p, m, true)) {
+		if (NurseService.treatmentAndRelease(p)) {
 			System.out.println("WORKED");
 		} else {
 			System.out.println("FAIL");
