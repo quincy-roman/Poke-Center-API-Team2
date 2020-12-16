@@ -22,6 +22,7 @@ public class LoginRepositoryImpl implements LoginRepository{
 	@Autowired
 	private SessionFactory sf;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Employee loginEmployee(String username, String password) {
 		try {
@@ -46,6 +47,7 @@ public class LoginRepositoryImpl implements LoginRepository{
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Trainer loginTrainer(String username, String password) {
 		try {

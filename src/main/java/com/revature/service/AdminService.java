@@ -69,4 +69,8 @@ public class AdminService implements EmplService {
 	public List<Patient> getAllPatients() {
 		return adminRepo.viewPatients();
 	}
+
+	public Employee getNurse(String username) {
+		return adminRepo.getNurse(username);
+	}
 }
