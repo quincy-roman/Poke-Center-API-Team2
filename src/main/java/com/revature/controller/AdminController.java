@@ -92,5 +92,12 @@ public class AdminController implements EmployeeController {
 		List<PatientDTO> patients = adminService.getAllPatients();
 		return ResponseEntity.ok(patients);
 	}
+	
+	@PostMapping("/admin/patient/release")
+	public ResponseEntity<ClientMessage> release(@RequestBody Patient patient) {
+		ClientMessage body = (adminService.release(patient)) ? SUCCESSFULLY_TREATED
+				: TREATMENT_FAILED;
+		return ResponseEntity.ok(body);
+	}
 
 }

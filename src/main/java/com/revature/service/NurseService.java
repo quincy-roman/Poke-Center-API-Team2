@@ -26,21 +26,6 @@ public class NurseService implements EmplService {
 		return nurseRepo.findPatient(patient);
 	}
 
-	public boolean treatmentAndRelease(Patient patient, Medicine m, boolean b) { // TODO add medicine update.
-
-		// Set the release time to now.
-		patient.setStatus(m.getStatus());
-		patient.setMed(m);
-//		patient.setCurrentHP(patient.getMaxHP());
-		patient.setHealthy(b);
-
-		nurseRepo.treatmentAndRelease(patient);
-
-		// Check to make sure the update was a success.
-		return patient.getRelease() != null;
-	}
-
-
 	// Get patients for the logged in nurse.
 	public List<PatientDTO> getNursePatients(Employee nurse) {
 		List<Patient> patients = nurseRepo.findPatients(nurse);
@@ -108,6 +93,27 @@ public class NurseService implements EmplService {
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;
+	}
+
+	public boolean applytreatment(Patient patient, Medicine med) {
+		nurseRepo.treat(patient, med);
+		
+		if(patient.getMed() != null) {
+			nurseRepo.medStock(patient.getMed());
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public Boolean declarehealthy(Patient p) {
+		nurseRepo.declarehealthy(p);
+		
+		if(p.isHealthy()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }
