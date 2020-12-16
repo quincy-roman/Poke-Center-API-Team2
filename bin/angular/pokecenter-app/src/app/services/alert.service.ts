@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Alert, AlertType } from '../models/alert.model';
@@ -8,39 +9,35 @@ import { Alert, AlertType } from '../models/alert.model';
 })
 export class AlertService {
 
-  private subject = new Subject<Alert>();
-    private defaultId = 'default-alert';
+    private subject = new Subject<any>();
+    private keepAfterNavigationChange = false;
 
-    // enable subscribing to alerts observable
-    onAlert(id = this.defaultId): Observable<Alert> {
-        return this.subject.asObservable().pipe(filter(x => x && x.id === id));
+    constructor(private router: Router) {
+        // clear alert message on route change
+        router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+                if (this.keepAfterNavigationChange) {
+                    // only keep for a single location change
+                    this.keepAfterNavigationChange = false;
+                } else {
+                    // clear alert
+                    this.subject.next();
+                }
+            }
+        });
     }
 
-    // convenience methods
-    success(message: string, options?: any) {
-        this.alert(new Alert({ ...options, type: AlertType.Success, message }));
+    success(message: string, keepAfterNavigationChange = false) {
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'success', text: message });
     }
 
-    error(message: string, options?: any) {
-        this.alert(new Alert({ ...options, type: AlertType.Error, message }));
+    error(message: string, keepAfterNavigationChange = false) {
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'error', text: message });
     }
 
-    info(message: string, options?: any) {
-        this.alert(new Alert({ ...options, type: AlertType.Info, message }));
-    }
-
-    warn(message: string, options?: any) {
-        this.alert(new Alert({ ...options, type: AlertType.Warning, message }));
-    }
-
-    // main alert method    
-    alert(alert: Alert) {
-        alert.id = alert.id || this.defaultId;
-        this.subject.next(alert);
-    }
-
-    // clear alerts
-    clear(id = this.defaultId) {
-        this.subject.next(new Alert({ id }));
+    getMessage(): Observable<any> {
+        return this.subject.asObservable();
     }
 }

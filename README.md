@@ -57,7 +57,6 @@
 * The middle tier uses Spring MVC for dynamic Web application development. 
 * The front-end view uses Angular to make a single-page application that can call server-side components.
 * The API follows REST by making HTTP requests between client and server using Angular services and interceptors.
-* Passwords are encrypted in Java using BCrypt and securely stored in the database. 
 * The middle tier follows a front controller, layered architecture to achieve efficient Agile development.
 * The application has reasonable test coverage thanks to:
     - JUnit and Mockito on the backend

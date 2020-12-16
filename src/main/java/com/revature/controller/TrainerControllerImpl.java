@@ -64,4 +64,10 @@ public class TrainerControllerImpl implements TrainerController {
 		return ResponseEntity.ok(body);
 	}
 
+	@Override
+	public ResponseEntity<ClientMessage> admitPokemon(Patient patient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
