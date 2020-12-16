@@ -6,28 +6,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Pokemon")
+@Table(name = "Pokemon")
 public class Pokemon {
 
 	@Id
-	@Column(name="dexid")
+	@Column(name = "dexid")
 	private int dexid;
-	
-	@Column(name="name", nullable = false)
+
+	@Column(name = "name", nullable = false)
 	private String name;
-	
-	@Column(name="type1", nullable = false)
+
+	@Column(name = "type1", nullable = false)
 	private String type1;
-	
-	@Column(name="type2")
+
+	@Column(name = "type2")
 	private String type2;
-	
-	@Column(name="ability", nullable = false)
+
+	@Column(name = "ability", nullable = false)
 	private String ability;
-	
-	//@Column(name="category", nullable = false)
-	//private String category;
-	
+
+	// @Column(name="category", nullable = false)
+	// private String category;
+
 	public Pokemon() {
 		// TODO Auto-generated constructor stub
 	}
@@ -140,6 +140,5 @@ public class Pokemon {
 			return false;
 		return true;
 	}
-	
-	
+
 }

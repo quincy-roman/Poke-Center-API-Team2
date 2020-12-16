@@ -14,7 +14,7 @@ public interface TrainerService {
 	Trainer getProfile(Trainer trainer);
 
 	Trainer updateProfile(Trainer trainer);
-	
+
 	public boolean registerTrainer(Trainer trainer);
 
 }

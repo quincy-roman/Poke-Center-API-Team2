@@ -36,8 +36,6 @@ public class PokeRepoImpl implements PokeRepo {
 		sf.getCurrentSession().save(statusCondition);
 	}
 
-
-
 	@Override
 	public void save(Role role) {
 		sf.getCurrentSession().save(role);

@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\angular",
+    "\\angular\\pokecenter-app",
+    "\\angular\\pokecenter-app\\src",
+    "\\angular\\pokecenter-app\\src\\app",
+    "\\angular\\pokecenter-app\\src\\assets",
+    "\\src",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\environments\\environment.prod.ts",
+  "PreviewInSolutionExplorer": false
+}
