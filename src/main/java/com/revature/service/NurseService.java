@@ -55,7 +55,6 @@ public class NurseService implements EmplService {
 		// TODO This condition could be improved.
 		return nurse.getUsername() != username;
 	}
-
 	public Medicine treatment(StatusCondition s) {
 		return nurseRepo.treatment(s);
 	}

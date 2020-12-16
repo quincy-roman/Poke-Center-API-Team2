@@ -77,12 +77,6 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public <T> void remove(T user) {
 		sf.getCurrentSession().delete(user);
 	}
-
-	@Override
-	public void assignNurse(Patient patient) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -93,6 +87,11 @@ public class AdminRepositoryImpl implements AdminRepository {
 		List<Employee> nurse = crit.list();
 		
 		return nurse.get(0);
+	}
+
+	@Override
+	public void assignNurse(Patient patient) {
+		sf.getCurrentSession().update(patient);
 	}
 
 }

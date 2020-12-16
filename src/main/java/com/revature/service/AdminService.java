@@ -64,7 +64,7 @@ public class AdminService implements EmplService {
 	public List<Medicine> getAllMedicines() {
 		return adminRepo.getAllMedicines();
 	}
-
+	
 	@Override
 	public List<Patient> getAllPatients() {
 		return adminRepo.viewPatients();

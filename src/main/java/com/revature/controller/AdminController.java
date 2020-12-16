@@ -65,12 +65,6 @@ public class AdminController implements EmployeeController {
 		ClientMessage body = (adminService.removeUser(user)) ? USER_REMOVED : USER_FAILED;
 		return ResponseEntity.ok(body);
 	}
-	
-//	@PostMapping("/login")
-//	public ResponseEntity<ClientMessage> loginEmpl(@RequestBody String username, String password) {
-//		ClientMessage body = (adminService.loginEmpl(username, password)) ? USER_LOGIN : LOGIN_FAILED;
-//		return ResponseEntity.ok(body);
-//	}
 
 	@Override
 	@GetMapping("/admin/medicine")
@@ -78,7 +72,6 @@ public class AdminController implements EmployeeController {
 		List<Medicine> medicines = adminService.getAllMedicines();
 		return ResponseEntity.ok(medicines);
 	}
-	
 
 	@Override
 	@GetMapping("/admin/patients")
