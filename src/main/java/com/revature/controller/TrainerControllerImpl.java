@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.model.Patient;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.TrainerDTO;
+import com.revature.service.PokeService;
 import com.revature.service.TrainerService;
 import com.revature.util.ClientMessage;
 
@@ -28,29 +30,32 @@ public class TrainerControllerImpl implements TrainerController {
 
 	@Autowired
 	private TrainerService trainerService;
+	
+	@Autowired
+	private PokeService pokeService;
 
 	public TrainerControllerImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	@GetMapping("/pokemon")
+	@GetMapping("/table/view-my-pokemon")
 	public ResponseEntity<List<PatientDTO>> getPokemon(@RequestBody Trainer trainer) {
 		List<PatientDTO> pokemon = trainerService.getPokemon(trainer);
 		return ResponseEntity.ok(pokemon);
 	}
 
 	@Override
-	@GetMapping("/trainer/profile")
-	public ResponseEntity<Trainer> getProfile(@RequestBody Trainer trainer) {
-		Trainer t = trainerService.getProfile(trainer);
+	@GetMapping("/profile")
+	public ResponseEntity<TrainerDTO> getProfile(@RequestBody Trainer trainer) {
+		TrainerDTO t = trainerService.getProfile(trainer);
 		return ResponseEntity.ok(t);
 	}
 
 	@Override
-	@PutMapping("/trainer/update")
-	public ResponseEntity<Trainer> updateProfile(@RequestBody Trainer trainer) {
-		Trainer t = trainerService.updateProfile(trainer);
+	@PutMapping(path = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<TrainerDTO> updateProfile(@RequestBody Trainer trainer) {
+		TrainerDTO t = trainerService.updateProfile(trainer);
 		return ResponseEntity.ok(t);
 	}
 
@@ -62,9 +67,10 @@ public class TrainerControllerImpl implements TrainerController {
 	}
 
 	@Override
+	@PostMapping(path = "/admission", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> admitPokemon(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+		ClientMessage body = (pokeService.registerPatient(patient)) ? PATIENT_REGISTERED : PATIENT_FAILED;
+		return ResponseEntity.ok(body);
 	}
 
 }
