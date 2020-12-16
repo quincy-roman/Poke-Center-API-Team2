@@ -6,7 +6,8 @@ public class AdminDTO {
 	private String password;
 	private String name;
 
-	public AdminDTO() {}
+	public AdminDTO() {
+	}
 
 	public AdminDTO(String username, String password, String name) {
 		super();

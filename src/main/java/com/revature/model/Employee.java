@@ -1,4 +1,5 @@
 package com.revature.model;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,29 +12,30 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Employee")
+@Table(name = "Employee")
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee_seq")
-	@SequenceGenerator(name="employee_seq", sequenceName="employee_seq", allocationSize=1)
-	@Column(name="employee_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
+	@Column(name = "employee_id")
 	private int employeeId;
 
-	@Column(name="employee_name")
+	@Column(name = "employee_name")
 	private String employeeName;
 
 	// Check the note in Trainer.java
-	@Column(name="employee_username")
+	@Column(name = "employee_username")
 	private String username;
 
-	@Column(name="employee_password")
-	private String password;	//TODO SpringSecurity for encryption?
-	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@Column(name = "employee_password")
+	private String password; // TODO SpringSecurity for encryption?
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Role role;
 
-	public Employee() {}
+	public Employee() {
+	}
 
 	// W/out id
 	public Employee(String employeeName, String username, String password) {
@@ -154,5 +156,4 @@ public class Employee {
 		return true;
 	}
 
-	
 }

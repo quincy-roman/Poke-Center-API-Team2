@@ -6,8 +6,9 @@ public class TrainerDTO {
 	private String hometown;
 	private String username;
 	private String password;
-	
-	public TrainerDTO() {}
+
+	public TrainerDTO() {
+	}
 
 	public TrainerDTO(String name, String hometown, String username, String password) {
 		super();
@@ -54,7 +55,5 @@ public class TrainerDTO {
 		return "TrainerDTO [name=" + name + ", hometown=" + hometown + ", username=" + username + ", password="
 				+ password + "]";
 	}
-	
-	
 
 }

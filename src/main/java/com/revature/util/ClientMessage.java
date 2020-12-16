@@ -1,10 +1,11 @@
 package com.revature.util;
 
 public class ClientMessage {
-	
+
 	private String message;
-	
-	public ClientMessage() {}
+
+	public ClientMessage() {
+	}
 
 	public ClientMessage(String message) {
 		super();
