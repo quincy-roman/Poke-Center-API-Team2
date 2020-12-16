@@ -54,7 +54,7 @@ public class TrainerControllerImpl implements TrainerController {
 	}
 
 	@Override
-	@PostMapping("/trainer/save")
+	@PostMapping(path = "/registration", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> registerTrainer(@RequestBody Trainer trainer) {
 		ClientMessage body = (trainerService.registerTrainer(trainer)) ? USER_LOGIN : LOGIN_FAILED;;
 		return ResponseEntity.ok(body);
