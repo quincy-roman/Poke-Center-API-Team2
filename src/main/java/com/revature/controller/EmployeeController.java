@@ -12,7 +12,7 @@ public interface EmployeeController {
 
 	public ResponseEntity<List<Medicine>> getAllMedicines();
 
-	public ResponseEntity<ClientMessage> loginEmpl(String username, String password);
+//	public ResponseEntity<ClientMessage> loginEmpl(String username, String password);
 
 	public ResponseEntity<List<Patient>> getAllPatients();
 

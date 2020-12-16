@@ -70,14 +70,8 @@ public class TrainerDTO {
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
 		return "TrainerDTO [trainerid=" + trainerid + ", name=" + name + ", hometown=" + hometown + ", username="
 				+ username + ", password=" + password + "]";
-	}	
-=======
-		return "TrainerDTO [name=" + name + ", hometown=" + hometown + ", username=" + username + ", password="
-				+ password + "]";
 	}
->>>>>>> a1921d6c68ce5ea0ff6c78089c475ae2124c9052
 
 }
