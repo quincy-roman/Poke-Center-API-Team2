@@ -87,4 +87,9 @@ public class AdminRepositoryImpl implements AdminRepository {
 		return nurse.get(0);
 	}
 
+	@Override
+	public void assignNurse(Patient patient) {
+		sf.getCurrentSession().update(patient);
+	}
+
 }

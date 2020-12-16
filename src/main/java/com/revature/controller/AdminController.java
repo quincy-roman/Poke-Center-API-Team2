@@ -74,13 +74,6 @@ public class AdminController implements EmployeeController {
 	}
 
 	@Override
-	@PostMapping("/admin/login")
-	public ResponseEntity<ClientMessage> loginEmpl(@RequestBody String username, String password) {
-		ClientMessage body = (adminService.loginEmpl(username, password)) ? USER_LOGIN : LOGIN_FAILED;
-		return ResponseEntity.ok(body);
-	}
-
-	@Override
 	@GetMapping("/admin/patients")
 	public ResponseEntity<List<Patient>> getAllPatients() {
 		List<Patient> patients = adminService.getAllPatients();

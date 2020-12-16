@@ -52,12 +52,6 @@ public class NurseController implements EmployeeController {
 		return ResponseEntity.ok(body);
 	}
 
-	@PostMapping("/nurse/login")
-	public ResponseEntity<ClientMessage> loginEmpl(@RequestBody String username, String password) {
-		ClientMessage body = (nurseService.loginEmpl(username, password)) ? USER_LOGIN : LOGIN_FAILED;
-		return ResponseEntity.ok(body);
-	}
-
 	@Override
 	@GetMapping("/nurse/medicine")
 	public ResponseEntity<List<Medicine>> getAllMedicines() {
