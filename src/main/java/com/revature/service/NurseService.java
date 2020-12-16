@@ -30,12 +30,10 @@ public class NurseService implements EmplService {
 	public List<PatientDTO> getNursePatients(Employee nurse) {
 		List<Patient> patients = nurseRepo.findPatients(nurse);
 		List<PatientDTO> patientDTOs = new ArrayList<>();
-		for(Patient p : patients) {
-			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
-											 p.getTrainer().getTrainerId(), p.getAdmission(), 
-											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
-											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
-											 p.isHealthy());
+		for (Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), p.getTrainer().getTrainerId(),
+					p.getAdmission(), p.getRelease(), p.getCurrentHP(), p.getMaxHP(), p.getStatus().getStatusId(),
+					p.getMed().getMedID(), p.isHealthy());
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;
@@ -45,22 +43,22 @@ public class NurseService implements EmplService {
 	public List<MedicineDTO> getAllMedicines() {
 		List<Medicine> meds = nurseRepo.getAllMedicines();
 		List<MedicineDTO> medsDTO = new ArrayList<>();
-		for(Medicine m : meds) {
+		for (Medicine m : meds) {
 			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
 			medsDTO.add(mdto);
 		}
-		
+
 		return medsDTO;
 	}
 
 	// Update the nurse's information.
 	public boolean update(Employee nurse) {
-		String username = nurse.getUsername(); //Not relevant to code working
+		String username = nurse.getUsername(); // Not relevant to code working
 		nurseRepo.update(nurse);
 		// TODO This condition could be improved.
 		return nurse.getUsername() != username;
 	}
-	
+
 	public Medicine treatment(StatusCondition s) {
 		return nurseRepo.treatment(s);
 	}
@@ -68,11 +66,11 @@ public class NurseService implements EmplService {
 	public List<MedicineDTO> selectTreatment(StatusCondition s) {
 		List<Medicine> meds = nurseRepo.selectTreatment(s);
 		List<MedicineDTO> medsDTO = new ArrayList<>();
-		for(Medicine m : meds) {
+		for (Medicine m : meds) {
 			MedicineDTO mdto = new MedicineDTO(m.getMedID(), m.getMedName(), m.getCost(), m.getStock());
 			medsDTO.add(mdto);
 		}
-		
+
 		return medsDTO;
 	}
 
@@ -85,34 +83,38 @@ public class NurseService implements EmplService {
 	public List<PatientDTO> getAllPatients() {
 		List<Patient> patients = nurseRepo.findAllPatients();
 		List<PatientDTO> patientDTOs = new ArrayList<>();
-		for(Patient p : patients) {
-			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
-											 p.getTrainer().getTrainerId(), p.getAdmission(), 
-											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
-											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
-											 p.isHealthy());
+		for (Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), p.getTrainer().getTrainerId(),
+					p.getAdmission(), p.getRelease(), p.getCurrentHP(), p.getMaxHP(), p.getStatus().getStatusId(),
+					p.getMed().getMedID(), p.isHealthy());
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;
 	}
 
 	public boolean applytreatment(Patient patient, Medicine med) {
-		nurseRepo.treat(patient, med);
-		
-		if(patient.getMed() != null) {
-			nurseRepo.medStock(patient.getMed());
-			return true;
-		}else {
+		if (patient.getStatus().getStatusId() == med.getStatus().getStatusId()) {
+			
+			patient.setStatus(med.getStatus());
+			patient = nurseRepo.treat(patient, med);
+
+			if (patient.getMed() != null) {
+				nurseRepo.medStock(patient.getMed());
+				return true;
+			} else {
+				return false;
+			}
+		} else {
 			return false;
 		}
 	}
 
-	public Boolean declarehealthy(Patient p) {
+	public boolean declarehealthy(Patient p) {
 		nurseRepo.declarehealthy(p);
-		
-		if(p.isHealthy()) {
+
+		if (p.isHealthy()) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
