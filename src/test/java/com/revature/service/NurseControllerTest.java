@@ -28,7 +28,7 @@ public class NurseControllerTest {
 	
 //	@Test
 //	public void testGetAllPatients() throws Exception {
-////		Timestamp time = System.currentTimeMillis();
+//		Timestamp time = System.currentTimeMillis();
 //		List<Patient> patients = Arrays.asList(
 //				new Patient(1, 
 //							new Pokemon(1, "Bulbasaur", "Grass", "Poison", "Overgrow"), 

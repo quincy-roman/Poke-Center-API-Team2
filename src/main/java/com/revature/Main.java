@@ -78,7 +78,7 @@ public class Main {
 	private static void assignnurse() {
 		Patient patient = NurseService.findPatient(7);
 		Employee nurse = AdminService.getNurse("1");
-		AdminService.assignNurse(patient, nurse);
+		AdminService.assignNurse(patient.getPateintid(), nurse.getUsername());
 	}
 
 	@SuppressWarnings("unused")
