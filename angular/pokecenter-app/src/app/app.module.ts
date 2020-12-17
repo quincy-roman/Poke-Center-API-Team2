@@ -19,6 +19,7 @@ import { AdmissionComponent } from './components/admission/admission.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 import { TickerComponent } from './components/ticker/ticker.component';
+import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TickerComponent } from './components/ticker/ticker.component';
     DashboardComponent,
     EmployeeRegistrationComponent,
     TickerComponent,
+    AssignNurseComponent
     
   ],
   imports: [

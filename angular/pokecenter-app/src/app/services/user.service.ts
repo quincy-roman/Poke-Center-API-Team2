@@ -397,24 +397,28 @@ xhr.send();
 
   }
 
-  public assignNurse(nurseId: number, patientId: number){
+  public assignNurse(patientId: number, username: string){
 
-    console.log("in register Trainer service...")
+    console.log("in assign nurse service...")
         let xhr = new XMLHttpRequest();
 
         //sends template containing two objects one with nurse(employee) id and another with patient id
       
         let assignData = {
+
         nurseTemplate :{
-          nurseId: nurseId
+
+          username: username
+
         },
 
         patientTemplate :{
+
           patientId: patientId
+
         }
+
       }
-        
-        
 
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
@@ -423,7 +427,7 @@ xhr.send();
     	}
         if(xhr.readyState === 4 && xhr.status === 200)
         {
-            console.log("Success")
+            console.log("Successfully assign nurse to patient")
            // sessionStorage.setItem('tableData', xhr.responseText);
             this.router.navigateByUrl('home')
         }
@@ -443,7 +447,7 @@ xhr.send();
         }
         console.log("Processing")
         };
-        xhr.open("POST", `${API_URL}admin/assign-nurse`, true);
+        xhr.open("PUT", `${API_URL}admin/assign-nurse`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(assignData));
 
