@@ -2,7 +2,6 @@ package com.revature.service;
 
 import java.util.List;
 
-import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
