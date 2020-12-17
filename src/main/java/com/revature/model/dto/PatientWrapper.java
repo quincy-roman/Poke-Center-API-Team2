@@ -6,6 +6,7 @@ public class PatientWrapper {
 	
 	private Pokemon pokemon;
 	private PatientDTO patientDTO;
+	private EmployeeDTO nurseDTO;
 	
 	public PatientWrapper() {}
 
@@ -29,6 +30,14 @@ public class PatientWrapper {
 
 	public void setPokemon(Pokemon pokemon) {
 		this.pokemon = pokemon;
+	}
+
+	public EmployeeDTO getNurseDTO() {
+		return nurseDTO;
+	}
+
+	public void setNurseDTO(EmployeeDTO nurseDTO) {
+		this.nurseDTO = nurseDTO;
 	}
 
 }
