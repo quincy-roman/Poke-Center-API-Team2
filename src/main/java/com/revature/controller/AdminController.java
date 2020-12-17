@@ -63,7 +63,7 @@ public class AdminController implements EmployeeController {
 		return ResponseEntity.ok(trainers);
 	}
 
-	@PutMapping("/admin/patients/nurse/{id}")
+	@PutMapping(path = "/assign-nurse", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> assignNurse(@RequestBody Patient patient, Employee nurse) {
 		ClientMessage body = (adminService.assignNurse(patient, nurse)) ? NURSE_ASSIGNED : NURSE_FAILED;
 		return ResponseEntity.ok(body);
@@ -97,7 +97,7 @@ public class AdminController implements EmployeeController {
 		return ResponseEntity.ok(patients);
 	}
 	
-	@PostMapping("/admin/patient/release")
+	@PostMapping(path = "/patient/release", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> release(@RequestBody Patient patient) {
 		ClientMessage body = (adminService.release(patient)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;

@@ -49,7 +49,7 @@ public class NurseController implements EmployeeController {
 		return ResponseEntity.ok(body);
 	}
 	
-	@PostMapping("/nurse/patient/healthy")
+	@PostMapping(path = "/treatment/authorize-discharge", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> declarehealthy(@RequestBody Patient p){
 		ClientMessage body = (nurseService.declarehealthy(p)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
@@ -62,7 +62,7 @@ public class NurseController implements EmployeeController {
 		return ResponseEntity.ok(nursesPatients);
 	}
 
-	@PutMapping("/nurse/update")
+	@PutMapping(path = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> updateNurse(@RequestBody Employee nurse) {
 		ClientMessage body = (nurseService.update(nurse)) ? SUCCESSFUL_UPDATE : FAILED_UPDATE;
 		return ResponseEntity.ok(body);
