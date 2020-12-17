@@ -42,7 +42,7 @@ public class TrainerControllerImpl implements TrainerController {
 	} 
 
 	@Override
-	@GetMapping("/profile")
+	@PostMapping(path = "/profile", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<TrainerDTO> getProfile(@RequestBody Trainer trainer) {
 		TrainerDTO t = trainerService.getProfile(trainer);
 		return ResponseEntity.ok(t);

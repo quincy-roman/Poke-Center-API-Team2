@@ -36,7 +36,7 @@ public class NurseController implements EmployeeController {
 	@Autowired
 	private PokeService pokeService;	// for registration functionality.
 
-	@GetMapping("/table/get-poketreatment-by-patient-id")
+	@PostMapping(path = "/table/get-poketreatment-by-patient-id", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<MedicineDTO>> selectmeds(@RequestBody StatusCondition status) {
 		List<MedicineDTO> medicine = nurseService.selectTreatment(status);
 		return ResponseEntity.ok(medicine);
@@ -56,7 +56,7 @@ public class NurseController implements EmployeeController {
 		return ResponseEntity.ok(body);
 	}
 
-	@GetMapping(path = "/table/view-my-pokepatients", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(path = "/table/view-my-pokepatients", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<PatientDTO>> getNursePatients(@RequestBody Employee nurse) {
 		List<PatientDTO> nursesPatients = nurseService.getNursePatients(nurse);
 		return ResponseEntity.ok(nursesPatients);
