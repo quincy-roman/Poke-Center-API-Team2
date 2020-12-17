@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
-import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
@@ -38,12 +37,6 @@ public class PokeServiceImpl implements PokeService {
 		pokeRepo.save(med);
 		return med.getMedID() != 0;
 
-	}
-
-	@Override
-	public boolean registerPatient(Patient patient) {
-		pokeRepo.save(patient);
-		return patient.getPateintid() != 0;
 	}
 
 	@Override

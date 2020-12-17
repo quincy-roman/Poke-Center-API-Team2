@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Employee;
 import com.revature.model.Medicine;
-import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Role;
 import com.revature.model.StatusCondition;
@@ -49,11 +48,6 @@ public class PokeRepoImpl implements PokeRepo {
 	@Override
 	public void save(Medicine med) {
 		sf.getCurrentSession().save(med);
-	}
-
-	@Override
-	public void save(Patient patient) {
-		sf.getCurrentSession().save(patient);
 	}
 
 }

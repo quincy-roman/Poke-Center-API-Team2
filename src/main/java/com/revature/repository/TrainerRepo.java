@@ -17,4 +17,6 @@ public interface TrainerRepo {
 
 	void save(Trainer trainer) throws PSQLException;
 
+	void save(Patient patient);
+
 }
