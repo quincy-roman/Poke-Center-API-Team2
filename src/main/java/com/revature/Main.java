@@ -39,10 +39,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		register();
-//		
-//		get();
-//		
-//		functions();
+		
+		get();
+		
+		functions();
 	}
 
 	@SuppressWarnings("unused")

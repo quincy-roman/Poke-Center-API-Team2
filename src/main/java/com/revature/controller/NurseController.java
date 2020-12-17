@@ -42,21 +42,21 @@ public class NurseController implements EmployeeController {
 		return ResponseEntity.ok(medicine);
 	}
 
-	@PostMapping(path = "/update/my-pokepatient-charts", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(path = "/update/my-pokepatient-charts", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> applymeds(@RequestBody Patient p, Medicine med){
 		ClientMessage body = (nurseService.applytreatment(p, med)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 	
-	@PostMapping(path = "/treatment/authorize-discharge", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(path = "/treatment/authorize-discharge", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> declarehealthy(@RequestBody Patient p){
 		ClientMessage body = (nurseService.declarehealthy(p)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 
-	@PostMapping(path = "/table/view-my-pokepatients", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(path = "/table/view-my-pokepatients", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<PatientDTO>> getNursePatients(@RequestBody Employee nurse) {
 		List<PatientDTO> nursesPatients = nurseService.getNursePatients(nurse);
 		return ResponseEntity.ok(nursesPatients);
