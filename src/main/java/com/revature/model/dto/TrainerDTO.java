@@ -7,6 +7,7 @@ public class TrainerDTO {
 	private String hometown;
 	private String username;
 	private String password;
+	private int roleId = 3;
 
 	public TrainerDTO() {
 	}
@@ -68,10 +69,19 @@ public class TrainerDTO {
 		this.trainerid = trainerid;
 	}
 
+	public int getRoleId() {
+		return roleId;
+	}
+	
+	public void setRoleId(int roleId) {
+		this.roleId = 3;
+	}
+	
 	@Override
 	public String toString() {
 		return "TrainerDTO [trainerid=" + trainerid + ", name=" + name + ", hometown=" + hometown + ", username="
 				+ username + ", password=" + password + "]";
 	}
+
 
 }
