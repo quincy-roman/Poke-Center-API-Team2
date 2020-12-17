@@ -64,8 +64,8 @@ public class TrainerControllerImpl implements TrainerController {
 
 	@Override
 	@PostMapping(path = "/admission", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> admitPokemon(Patient patient) {
-		ClientMessage body = (trainerService.registerPatient(patient)) ? PATIENT_REGISTERED : PATIENT_FAILED;
+	public ResponseEntity<ClientMessage> admitPokemon(Patient patient, int trainer, String pokemon, String status) {
+		ClientMessage body = (trainerService.registerPatient(patient, trainer, pokemon, status)) ? PATIENT_REGISTERED : PATIENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 

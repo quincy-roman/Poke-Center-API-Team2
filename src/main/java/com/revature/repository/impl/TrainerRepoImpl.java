@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Patient;
+import com.revature.model.Pokemon;
+import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
 import com.revature.repository.TrainerRepo;
 
@@ -41,6 +43,43 @@ public class TrainerRepoImpl implements TrainerRepo {
 	@Override
 	public void save(Patient patient) {
 		sf.getCurrentSession().save(patient);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Trainer getTrainerId(int trainer) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(Trainer.class);
+			crit.add(Restrictions.idEq(trainer));
+			List<Trainer> t = crit.list();
+			return t.get(0);
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Pokemon getPokemon(String Pokemon) {
+		crit = sf.getCurrentSession().createCriteria(Pokemon.class);
+		crit.add(Restrictions.ilike("name", Pokemon));
+		List<Pokemon> p = crit.list();
+		return p.get(0);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public StatusCondition problem(String string) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
+			crit.add(Restrictions.ilike("statusName", string));
+			List<StatusCondition> status = crit.list();
+			return status.get(0);
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")

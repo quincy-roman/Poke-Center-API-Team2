@@ -20,6 +20,6 @@ public interface TrainerController {
 
 	ResponseEntity<ClientMessage> registerTrainer(Trainer trainer);
 	
-	ResponseEntity<ClientMessage> admitPokemon(Patient patient);
+	ResponseEntity<ClientMessage> admitPokemon(Patient patient, int trainer, String pokemon, String status);
 
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Patient;
+import com.revature.model.Pokemon;
+import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
 import com.revature.model.dto.TrainerDTO;
@@ -36,9 +38,19 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
-	public boolean registerPatient(Patient patient) {
+	public boolean registerPatient(Patient patient, int trainer, String pokemon, String status) {
+		Trainer t = trainerRepo.getTrainerId(trainer);
+		patient.setTrainer(t);
+		
+		Pokemon p = trainerRepo.getPokemon(pokemon);
+		patient.setPokemon(p);
+		
+		StatusCondition s = trainerRepo.problem(status);
+		patient.setStatus(s);
+		
 		Timestamp admission = new Timestamp(System.currentTimeMillis());
 		patient.setAdmission(admission);
+
 		trainerRepo.save(patient);
 		return patient.getPateintid() != 0;
 	}
