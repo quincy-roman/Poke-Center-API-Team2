@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.PatientWrapper;
 import com.revature.model.dto.TrainerDTO;
 import com.revature.service.TrainerService;
 import com.revature.util.ClientMessage;
@@ -65,8 +65,8 @@ public class TrainerControllerImpl implements TrainerController {
 
 	@Override
 	@PostMapping(path = "/admission", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> admitPokemon(PatientDTO patient, Pokemon pokemon) {
-		ClientMessage body = (trainerService.registerPatient(patient, pokemon)) ? PATIENT_REGISTERED : PATIENT_FAILED;
+	public ResponseEntity<ClientMessage> admitPokemon(@RequestBody PatientWrapper patientData) {
+		ClientMessage body = (trainerService.registerPatient(patientData.getPatientDTO(), patientData.getPokemon())) ? PATIENT_REGISTERED : PATIENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 

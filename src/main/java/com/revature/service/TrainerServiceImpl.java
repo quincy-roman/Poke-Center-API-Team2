@@ -8,7 +8,6 @@ import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.model.Employee;
 import com.revature.model.Patient;
 import com.revature.model.Pokemon;
 import com.revature.model.StatusCondition;
