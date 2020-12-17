@@ -154,8 +154,6 @@ healthy=false, release=null]*/
             pateintid: 0, 
             pokemonDexId: pokemonData.dexid,
             trainersId: user.trainerid,
-            admission: "", 
-            release:"",
             currentHP: pokemonData.currenthp, 
             maxHP: pokemonData.maxhp, 
             statusId: pokemonData.statusid, 
@@ -179,6 +177,7 @@ healthy=false, release=null]*/
           if (xhr1.readyState === 4 && xhr1.status === 200) {
             console.log("Successfully sent new patient")
           //  sessionStorage.setItem('newPatient', xhr1.responseText);
+          this.router.navigate(['/home'])
 
           }
           if (xhr1.readyState === 4 && xhr1.status === 204) {

@@ -61,6 +61,8 @@ public class TrainerServiceImpl implements TrainerService {
 		Patient patient = new Patient(pokemon, trainer, admission, patientDTO.getCurrentHP(), 
 									  patientDTO.getMaxHP(), status, null, null, false, null);
 
+		System.out.println(patient);
+		
 		trainerRepo.save(patient);
 		return patient.getPateintid() != 0;
 	}
