@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.PatientWrapper;
 import com.revature.model.dto.TrainerDTO;
 import com.revature.util.ClientMessage;
 
@@ -19,7 +20,7 @@ public interface TrainerController {
 	ResponseEntity<TrainerDTO> updateProfile(Trainer trainer);
 
 	ResponseEntity<ClientMessage> registerTrainer(Trainer trainer);
-	
-	ResponseEntity<ClientMessage> admitPokemon(PatientDTO patient, Pokemon pokemon);
+
+	ResponseEntity<ClientMessage> admitPokemon(PatientWrapper patientData);
 
 }
