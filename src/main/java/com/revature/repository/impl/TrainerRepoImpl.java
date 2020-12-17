@@ -58,7 +58,21 @@ public class TrainerRepoImpl implements TrainerRepo {
 			List<Trainer> t = crit.list();
 			return t.get(0);
 		} catch (IndexOutOfBoundsException e) {
+		return null;
 
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public StatusCondition getStatus(int statusId) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
+			crit.add(Restrictions.idEq(statusId));
+			List<StatusCondition> status = crit.list();
+			return status.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
