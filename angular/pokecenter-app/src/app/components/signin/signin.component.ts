@@ -13,6 +13,7 @@ import { API_URL } from 'src/environments/environment.prod';
 export class SigninComponent implements OnInit {
   username: string;
   password: string;
+  role: string;
 
   title: string = "Sign In";
   
@@ -27,12 +28,48 @@ export class SigninComponent implements OnInit {
   }
 
   public signinUser(value: any){
+
+
+    let selectedRole = null
+
+     const roles = document.getElementsByName("role") as NodeListOf<HTMLInputElement>;
+   // console.log(roles);
+    for(var i=0; i<roles.length;i++){
+      let ele = roles[i];
+     // console.log(ele);
+      if(ele.checked){
+        selectedRole = roles[i];
+        console.log(ele);
+        break;
+      }
+    }
+    
+
+    let selectedUserType = selectedRole.value;
+    
+    
+    console.log(selectedUserType)
+
     console.log(`Assigned: ${this.username}, ${this.password}`);
-    this.authService.login(this.username, this.password);
+
+    if(selectedUserType== 1){
+      console.log("Logging in as a trainer!")
+      this.authService.loginTrainer(this.username, this.password);
+    }else{
+
+      console.log("logging in as an employee!!")
+      this.authService.loginEmployee(this.username, this.password);
       console.log('checking creds...')
+    }
+
+    
+  
   }
 
   public signInTest(value: any){
+
+
+
    // console.log(`Assigned: ${this.username}, ${this.password}`);
     if(this.username == "aaknox" && this.password == "password"){
       console.log('checking creds...')

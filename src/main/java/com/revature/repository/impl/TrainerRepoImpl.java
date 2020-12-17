@@ -31,6 +31,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 	Criteria crit;
 
 	@Override
+
 	public void save(Trainer trainer) throws PSQLException {
 		try {
 			sf.getCurrentSession().save(trainer);
@@ -39,10 +40,12 @@ public class TrainerRepoImpl implements TrainerRepo {
 		} catch (ConstraintViolationException e) {
 			System.out.println("history already exist 2");
 		}
+
 	}
 
 	@Override
 	public void save(Patient patient) {
+		System.out.println("\n"+ patient.toString()+"\n");
 		sf.getCurrentSession().save(patient);
 	}
 
