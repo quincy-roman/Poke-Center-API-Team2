@@ -1,3 +1,4 @@
+import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { TableComponent } from './components/table/table.component';
@@ -16,9 +17,14 @@ const routes: Routes = [
     component: PasswordRecoveryComponent
   },
   {
-    path: "registration",
+    path: "trainer/registration",
     component: RegistrationComponent
   },
+  {
+    path: "employee/registration",
+    component: EmployeeRegistrationComponent
+  },
+
   {
     path: "signin",
     component: SigninComponent
@@ -28,7 +34,7 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: "admission",
+    path: "trainer/admission",
     component: AdmissionComponent
   },
   {
@@ -79,6 +85,10 @@ const routes: Routes = [
     path: "table/view-all-users",
     component: TableComponent
   },
+  // {
+  //   path: "admin/assign-nurse",
+  //   component: NurseAssignComponent
+  // },
   {
     path: "",
     redirectTo: "/signin",

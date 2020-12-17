@@ -31,6 +31,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 	Criteria crit;
 
 	@Override
+
 	public void save(Trainer trainer) throws PSQLException {
 		try {
 			sf.getCurrentSession().save(trainer);
@@ -39,10 +40,12 @@ public class TrainerRepoImpl implements TrainerRepo {
 		} catch (ConstraintViolationException e) {
 			System.out.println("history already exist 2");
 		}
+
 	}
 
 	@Override
 	public void save(Patient patient) {
+		System.out.println("\n"+ patient+"\n");
 		sf.getCurrentSession().save(patient);
 	}
 
@@ -55,7 +58,21 @@ public class TrainerRepoImpl implements TrainerRepo {
 			List<Trainer> t = crit.list();
 			return t.get(0);
 		} catch (IndexOutOfBoundsException e) {
+		return null;
 
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public StatusCondition getStatus(int statusId) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
+			crit.add(Restrictions.idEq(statusId));
+			List<StatusCondition> status = crit.list();
+			return status.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
