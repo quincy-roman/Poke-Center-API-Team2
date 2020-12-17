@@ -18,6 +18,7 @@ import { TableComponent } from './components/table/table.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
+import { TickerComponent } from './components/ticker/ticker.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EmployeeRegistrationComponent } from './components/employee-registratio
     TableComponent,
     AdmissionComponent,
     DashboardComponent,
-    EmployeeRegistrationComponent
+    EmployeeRegistrationComponent,
+    TickerComponent
   ],
   imports: [
     BrowserModule,
