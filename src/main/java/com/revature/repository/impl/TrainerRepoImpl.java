@@ -63,8 +63,8 @@ public class TrainerRepoImpl implements TrainerRepo {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public StatusCondition getStatus(int statusId) {
 		try {
 			crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
