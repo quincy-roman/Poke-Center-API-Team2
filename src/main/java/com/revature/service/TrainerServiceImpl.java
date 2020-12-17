@@ -52,31 +52,36 @@ public class TrainerServiceImpl implements TrainerService {
 	
 		Trainer trainer = trainerRepo.getTrainerId(patientDTO.getTrainersId());
 		
-		StatusCondition status = new StatusCondition();
-		status.setStatusId(patientDTO.getStatusId());
-		switch(status.getStatusId()) {
-		case 1:
-			status.setStatusName("Burn");
-			break;
-		case 2:
-			status.setStatusName("Sleep");
-			break;
-		case 3:
-			status.setStatusName("Freeze");
-			break;
-		case 4:
-			status.setStatusName("Poison");
-			break;
-		case 5:
-			status.setStatusName("Paralysis");
-			break;
-		case 6:
-			status.setStatusName("Fainted");
-			break;
-		}
+		StatusCondition status = trainerRepo.getStatus(patientDTO.getStatusId());
+
+// 		StatusCondition status = new StatusCondition();
+// 		status.setStatusId(patientDTO.getStatusId());
+// 		switch(status.getStatusId()) {
+// 		case 1:
+// 			status.setStatusName("Burn");
+// 			break;
+// 		case 2:
+// 			status.setStatusName("Sleep");
+// 			break;
+// 		case 3:
+// 			status.setStatusName("Freeze");
+// 			break;
+// 		case 4:
+// 			status.setStatusName("Poison");
+// 			break;
+// 		case 5:
+// 			status.setStatusName("Paralysis");
+// 			break;
+// 		case 6:
+// 			status.setStatusName("Fainted");
+// 			break;
+// 		}
+		
 		
 		Patient patient = new Patient(pokemon, trainer, admission, patientDTO.getCurrentHP(), 
 									  patientDTO.getMaxHP(), status, null, null, false, null);
+
+		System.out.println(patient);
 		
 		trainerRepo.save(patient);
 		return patient.getPateintid() != 0;
