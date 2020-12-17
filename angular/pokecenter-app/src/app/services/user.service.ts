@@ -119,18 +119,38 @@ healthy=false, release=null]*/
 
         console.log(user.trainerid)
         console.log(user)
+        let pokemonTemplate  ={
+          dexid: pokeID,
+          name: pokemonName,
+          type1: type,
+          type2: type2,
+          ability: ability
+        }
 
+       let  patientTemplate= {
+          pateintid: 0, 
+          pokemonDexId: pokemonData.dexid,
+          trainersId: user.trainerid,
+          admission: "", 
+          release:"",
+          currentHP: pokemonData.currenthp, 
+          maxHP: pokemonData.maxhp, 
+          statusId: pokemonData.statusid, 
+          medId: 0, 
+          healthy:false, 
+
+        }
 
         let patientData = {
-          pokemon : [{
+          pokemon: {
             dexid: pokeID,
             name: pokemonName,
             type1: type,
             type2: type2,
             ability: ability
-          }],
+          },
 
-          patient: [{
+          patientDTO: {
             pateintid: 0, 
             pokemonDexId: pokemonData.dexid,
             trainersId: user.trainerid,
@@ -142,11 +162,14 @@ healthy=false, release=null]*/
             medId: 0, 
             healthy:false, 
 
-          }]
+          }
 
 
         }
-        console.log(patientData)
+        // console.log(patientTemplate)
+         console.log(patientData)
+
+
 
         xhr1.onreadystatechange = () => {
           console.log('ReadyState: ' + xhr1.readyState);

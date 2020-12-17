@@ -47,6 +47,10 @@ public class TrainerServiceImpl implements TrainerService {
 	
 	public boolean registerPatient(PatientDTO patientDTO, Pokemon pokemon) {
 		// make a new Patient here.
+		System.out.println("\n"+patientDTO.toString() +"\n"+ pokemon.toString() + "\n");
+
+		
+		
 		pokeRepo.save(pokemon);
 		
 		Timestamp admission = new Timestamp(System.currentTimeMillis());
