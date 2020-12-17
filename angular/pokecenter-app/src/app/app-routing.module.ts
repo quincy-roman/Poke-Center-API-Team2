@@ -45,6 +45,12 @@ const routes: Routes = [
   {
     path: "table/view-my-pokemon",
     component: TableComponent
+
+  },
+  {
+    path: "trainer/table/view-my-pokemon",
+    component: TableComponent
+
   },
   {
     path: "table/view-my-pokemon-stats",
