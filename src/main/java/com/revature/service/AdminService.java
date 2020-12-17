@@ -91,7 +91,6 @@ public class AdminService implements EmplService {
 	public <T> boolean removeUser(T user) {
 		adminRepo.remove(user);
 
-		// I think this works.
 		return user == null;
 	}
 
@@ -117,8 +116,11 @@ public class AdminService implements EmplService {
 			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
 											 p.getTrainer().getTrainerId(), p.getAdmission(), 
 											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
-											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.getStatus().getStatusId(), 0, 
 											 p.isHealthy());
+			if(p.getMed() != null) {
+				pdto.setMedId(p.getMed().getMedID());
+			}
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;
