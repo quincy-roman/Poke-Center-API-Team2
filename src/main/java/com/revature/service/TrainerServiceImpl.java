@@ -43,8 +43,10 @@ public class TrainerServiceImpl implements TrainerService {
 
 	@Override
 	public boolean registerPatient(PatientDTO patientDTO, Pokemon pokemon) {
-		// make a new Patient here.
-		pokeRepo.save(pokemon);
+		// if the pokemon exists, don't save, otherwise, save.
+		if(trainerRepo.getPokemon(pokemon.getName()) == null) {
+			pokeRepo.save(pokemon);
+		}
 		
 		Timestamp admission = new Timestamp(System.currentTimeMillis());
 		Trainer trainer = new Trainer();
