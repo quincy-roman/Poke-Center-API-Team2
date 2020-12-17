@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { DashboardService } from './../../../services/dashboard.service';
 import { User } from './../../../../../src/app/models/user.model';
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private tableService: TableService, private dashboardService: DashboardService, private userService: UserService) { }
+  constructor(private router: Router, private tableService: TableService, private dashboardService: DashboardService, private userService: UserService) { }
 
   //user : User = JSON.parse(sessionStorage.getItem("currentUser"));
 
@@ -132,9 +133,6 @@ public viewMyProfile(){
 
 
 
-// public assignNurse(){
-//   this.userService.assignNurse();
-// }
 
 
 

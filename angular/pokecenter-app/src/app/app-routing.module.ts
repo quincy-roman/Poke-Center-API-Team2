@@ -1,3 +1,4 @@
+import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.component';
 import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdmissionComponent } from './components/admission/admission.component';
@@ -85,10 +86,10 @@ const routes: Routes = [
     path: "table/view-all-users",
     component: TableComponent
   },
-  // {
-  //   path: "admin/assign-nurse",
-  //   component: NurseAssignComponent
-  // },
+  {
+    path: "admin/assign-nurse",
+    component: AssignNurseComponent
+  },
   {
     path: "",
     redirectTo: "/signin",
