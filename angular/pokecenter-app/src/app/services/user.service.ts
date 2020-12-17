@@ -47,6 +47,21 @@ export class UserService {
         console.log("id: " + pokemon.id);
         let pokeID = pokemon.id;
 
+        let ability = pokemon.abilities[0].ability.name;
+        console.log(ability)
+
+        let type = pokemon.types[0].type.name;
+        console.log(type)
+        let type2;
+
+        if(pokemon.types.length>1){
+          type2 = pokemon.types[1].type.name;
+        }else{
+          console.log("no second type exists")
+          type2=''
+        }
+        
+        console.log(type2);
         //generates a current hp
         let currHp = Math.floor(Math.random() * maxHp);
         console.log("currHP= " + currHp);
@@ -57,9 +72,9 @@ export class UserService {
 
         //get the Random Pokemon status unless currentHP is 0
         const status = [
-          "burn",
-          "freeze",
-           "fainted"
+          1,
+          2,
+          3
         ]
        // enum Status { status1, status2, status3 }
 
@@ -89,35 +104,49 @@ med=null,
 healthy=false, release=null]*/
         //Getting ready to send new pokemon patient to backend 
         let xhr1 = new XMLHttpRequest();
-        let newPatient = {
+        let pokemonData = {
           dexid: pokeID,
+          name: pokemonName,
           currenthp: currHp,
           maxhp: maxHp,
-          name: pokemonName,
-          status_name: pokeStatus
+          statusid: pokeStatus
         }
-        console.log(newPatient);
+        console.log(pokemonData);
         //sends new patient to backend
 
         let user = JSON.parse(sessionStorage.getItem("currentUser"))
         
 
-        let dataTemplate = {
-          pateintid: 0, 
-            pokemon: pokemonName, 
-            trainer: user.trainerId,
+        console.log(user.trainerid)
+        console.log(user)
 
+
+        let patientData = {
+          pokemon : [{
+            dexid: pokeID,
+            name: pokemonName,
+            type1: type,
+            type2: type2,
+            ability: ability
+          }],
+
+          patient: [{
+            pateintid: 0, 
+            pokemonDexId: pokemonData.dexid,
+            trainersId: user.trainerid,
             admission: "", 
-            currentHP: currHp, 
-            maxHP: maxHp, 
-            status: pokeStatus, 
-            nurseid: 0, 
-            med: 0, 
+            release:"",
+            currentHP: pokemonData.currenthp, 
+            maxHP: pokemonData.maxhp, 
+            statusId: pokemonData.statusid, 
+            medId: 0, 
             healthy:false, 
-            release:""
+
+          }]
 
 
         }
+        console.log(patientData)
 
         xhr1.onreadystatechange = () => {
           console.log('ReadyState: ' + xhr1.readyState);
@@ -126,7 +155,7 @@ healthy=false, release=null]*/
           }
           if (xhr1.readyState === 4 && xhr1.status === 200) {
             console.log("Successfully sent new patient")
-            sessionStorage.setItem('newPatient', xhr1.responseText);
+          //  sessionStorage.setItem('newPatient', xhr1.responseText);
 
           }
           if (xhr1.readyState === 4 && xhr1.status === 204) {
@@ -146,7 +175,7 @@ healthy=false, release=null]*/
         };
         xhr1.open("POST",`${API_URL}trainer/admission`, true);
         xhr1.setRequestHeader("Content-Type", "application/json");
-        xhr1.send(JSON.stringify(dataTemplate));
+        xhr1.send(JSON.stringify(patientData));
 
 
       }
