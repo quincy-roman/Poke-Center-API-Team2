@@ -24,6 +24,7 @@ const routes: Routes = [
     path: "employee/registration",
     component: EmployeeRegistrationComponent
   },
+
   {
     path: "signin",
     component: SigninComponent
@@ -33,7 +34,7 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: "admission",
+    path: "trainer/admission",
     component: AdmissionComponent
   },
   {

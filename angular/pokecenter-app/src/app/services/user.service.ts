@@ -195,8 +195,9 @@ xhr.send();
 
 
   }
+//         (employee_name, employee_password, role_roleid, employee_username, employee_id) values (?, ?, ?, ?, ?)
 
-  public registerNurse(myUsername: string, myPassword: string, myName: string){
+  public registerNurse(myName: string,myPassword: string, myUsername: string){
 
     console.log("in register Employee service...")
         let xhr = new XMLHttpRequest();
@@ -209,11 +210,13 @@ xhr.send();
 
         let employeeTemplate = {
           employeeName: myName,
-          username: myUsername,
           password : myPassword,
-          role: roleTemplate,
+          username: myUsername,
+          role: roleTemplate
         }
         
+        console.log(employeeTemplate)
+
 
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
@@ -249,7 +252,7 @@ xhr.send();
 
 
   }
-  public registerAdmin(myUsername: string, myPassword: string, myName: string){
+  public registerAdmin(myName: string,myPassword: string, myUsername: string){
 
     console.log("in register Admin service...")
         let xhr = new XMLHttpRequest();
@@ -262,10 +265,12 @@ xhr.send();
 
         let employeeTemplate = {
           employeeName: myName,
-          username: myUsername,
           password : myPassword,
-          role: roleTemplate,
+          username: myUsername,
+          role: roleTemplate
         }
+
+        console.log(employeeTemplate)
         
 
         xhr.onreadystatechange = () => {

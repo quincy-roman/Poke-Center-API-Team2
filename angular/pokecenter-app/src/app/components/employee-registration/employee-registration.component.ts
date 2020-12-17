@@ -49,13 +49,13 @@ export class EmployeeRegistrationComponent implements OnInit {
       let name = `${this.firstName} ${this.lastName}`;
 
 
-      this.userService.registerNurse(name,this.username,this.password)
+      this.userService.registerNurse(name, this.password, this.username)
     }else{
 
       console.log("Registering an Admin!")
       let name = `${this.firstName} ${this.lastName}`;
 
-      this.userService.registerAdmin(name,this.username,this.password)
+      this.userService.registerAdmin(name, this.password, this.username)
       console.log('checking creds...')
     }
 

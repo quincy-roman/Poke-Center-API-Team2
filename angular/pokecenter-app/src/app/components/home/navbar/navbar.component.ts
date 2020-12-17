@@ -23,6 +23,10 @@ export class NavbarComponent implements OnInit {
 
 
     console.log(sessionStorage.getItem("currentUser"));
+
+    let user = JSON.parse(sessionStorage.getItem('currentUser'))
+
+    console.log(user)
     
   }
 
