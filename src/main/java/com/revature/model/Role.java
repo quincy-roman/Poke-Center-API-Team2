@@ -12,9 +12,9 @@ import javax.persistence.Table;
 public class Role {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // this acts like the SERIAL datatype in SQL
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "roleid")
-	private int roleid; // Trainer 1, Nurse 2, Admin 3
+	private int roleid; // Nurse 1, Admin 2
 
 	@Column(name = "role", nullable = false, unique = true)
 	private String role;

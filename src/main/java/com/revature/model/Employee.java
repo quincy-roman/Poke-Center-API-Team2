@@ -24,12 +24,11 @@ public class Employee {
 	@Column(name = "employee_name", nullable = false)
 	private String employeeName;
 
-	// Check the note in Trainer.java
 	@Column(name = "employee_username", nullable = false, unique = true)
 	private String username;
 
 	@Column(name = "employee_password", nullable = false)
-	private String password; // TODO SpringSecurity for encryption?
+	private String password;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Role role;
