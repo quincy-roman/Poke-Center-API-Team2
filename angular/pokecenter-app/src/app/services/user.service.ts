@@ -77,6 +77,16 @@ export class UserService {
           }
         }
 
+        /*
+        Patient [
+pateintid=0, 
+pokemon=null, 
+trainer=null, 
+admission=null, currentHP=0, maxHP=0, 
+status=null, 
+nurseid=null, 
+med=null, 
+healthy=false, release=null]*/
         //Getting ready to send new pokemon patient to backend 
         let xhr1 = new XMLHttpRequest();
         let newPatient = {
@@ -88,6 +98,26 @@ export class UserService {
         }
         console.log(newPatient);
         //sends new patient to backend
+
+        let user = JSON.parse(sessionStorage.getItem("currentUser"))
+        
+
+        let dataTemplate = {
+          pateintid: 0, 
+            pokemon: pokemonName, 
+            trainer: user.trainerId,
+
+            admission: "", 
+            currentHP: currHp, 
+            maxHP: maxHp, 
+            status: pokeStatus, 
+            nurseid: 0, 
+            med: 0, 
+            healthy:false, 
+            release:""
+
+
+        }
 
         xhr1.onreadystatechange = () => {
           console.log('ReadyState: ' + xhr1.readyState);
@@ -114,14 +144,15 @@ export class UserService {
           }
           console.log("Processing")
         };
-        xhr1.open("POST", "/admission/sendNewPatient", true);
-        xhr1.send();
+        xhr1.open("POST",`${API_URL}trainer/admission`, true);
+        xhr1.setRequestHeader("Content-Type", "application/json");
+        xhr1.send(JSON.stringify(dataTemplate));
 
 
       }
 
 
-      this.router.navigateByUrl('/admission');
+      this.router.navigateByUrl('/trainer/admission');
     
     if (xhr.readyState === 4 && xhr.status === 204) {
       console.log("Failed. Status Code: " + xhr.status)
