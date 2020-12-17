@@ -31,7 +31,7 @@ const routes: Routes = [
     component: SigninComponent
   },
   {
-    path: "dashboard",
+    path: "trainer",
     component: DashboardComponent
   },
   {
