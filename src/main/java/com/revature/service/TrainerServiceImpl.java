@@ -38,12 +38,12 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
-	public boolean registerPatient(Patient patient, int trainer, String pokemon, String status) {
+	public boolean registerPatient(PatientDTO patient, int trainer, String status) {
 		Trainer t = trainerRepo.getTrainerId(trainer);
-		patient.setTrainer(t);
+		patient.setTrainersId(t);
 		
-		Pokemon p = trainerRepo.getPokemon(pokemon);
-		patient.setPokemon(p);
+//		Pokemon p = trainerRepo.getPokemon(pokemon);
+//		patient.setPokemon(p);
 		
 		StatusCondition s = trainerRepo.problem(status);
 		patient.setStatus(s);

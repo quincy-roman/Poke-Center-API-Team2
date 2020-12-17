@@ -195,34 +195,34 @@ public class Main {
 	private static void registerPatient() {
 //		new Patient(pokemon, trainer, admission, currentHP, maxHP, status, healthy);
 
-		StatusCondition s = NurseService.problem("Sleep");
-		TrainerService.registerPatient(
-				new Patient(
-				null,
-				null, 
-				null, 300, 300, null, false), 
-				1, "Venasuar", "Sleep");
-
-		StatusCondition b = NurseService.problem("Burn");
-		TrainerService.registerPatient(
-				new Patient(
-				null,
-				null,
-				null, 50, 100, null, false), 
-				2, "beedrill", "Burn");
-
-		StatusCondition f = NurseService.problem("Fainted");
-		TrainerService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
-				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"), admission, 0, 20, f, false), 0, null, null);
-
-		TrainerService.registerPatient(new Patient(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"),
-				null, admission, 150, 300, b, false), 2, null, null);
-
-		TrainerService.registerPatient(new Patient(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
-				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"), admission, 0, 100, f, false), 0, null, null);
-
-		TrainerService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
-				new Trainer(1, "Ash", "Pallet Town", "fire", "red"), admission, 10, 20, b, false), 0, null, null);
+//		StatusCondition s = NurseService.problem("Sleep");
+//		TrainerService.registerPatient(
+//				new Patient(
+//				null,
+//				null, 
+//				null, 300, 300, null, false), 
+//				1, "Venasuar", "Sleep");
+//
+//		StatusCondition b = NurseService.problem("Burn");
+//		TrainerService.registerPatient(
+//				new Patient(
+//				null,
+//				null,
+//				null, 50, 100, null, false), 
+//				2, "beedrill", "Burn");
+//
+//		StatusCondition f = NurseService.problem("Fainted");
+//		TrainerService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
+//				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"), admission, 0, 20, f, false), 0, null, null);
+//
+//		TrainerService.registerPatient(new Patient(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"),
+//				null, admission, 150, 300, b, false), 2, null, null);
+//
+//		TrainerService.registerPatient(new Patient(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"),
+//				new Trainer(3, "Brendan", "Twin Leaf Town", "Sapphire", "ruby"), admission, 0, 100, f, false), 0, null, null);
+//
+//		TrainerService.registerPatient(new Patient(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"),
+//				new Trainer(1, "Ash", "Pallet Town", "fire", "red"), admission, 10, 20, b, false), 0, null, null);
 	}
 
 	public static void registerTrainer() {

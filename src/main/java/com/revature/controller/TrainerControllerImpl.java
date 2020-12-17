@@ -1,6 +1,9 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.*;
+import static com.revature.util.ClientMessageUtil.PATIENT_FAILED;
+import static com.revature.util.ClientMessageUtil.PATIENT_REGISTERED;
+import static com.revature.util.ClientMessageUtil.USER_NOT_REGISTERED;
+import static com.revature.util.ClientMessageUtil.USER_REGISTERED;
 
 import java.util.List;
 
@@ -15,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Patient;
-import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
 import com.revature.model.dto.TrainerDTO;
@@ -65,8 +66,8 @@ public class TrainerControllerImpl implements TrainerController {
 
 	@Override
 	@PostMapping(path = "/admission", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> admitPokemon(PatientDTO patient, Pokemon pokemon) {
-		ClientMessage body = (trainerService.registerPatient(patient, pokemon)) ? PATIENT_REGISTERED : PATIENT_FAILED;
+	public ResponseEntity<ClientMessage> admitPokemon(PatientDTO patient, int trainer, String status) {
+		ClientMessage body = (trainerService.registerPatient(patient, trainer, status)) ? PATIENT_REGISTERED : PATIENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
 
