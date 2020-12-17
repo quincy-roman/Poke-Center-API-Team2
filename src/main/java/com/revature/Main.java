@@ -16,6 +16,7 @@ import com.revature.model.StatusCondition;
 import com.revature.model.Trainer;
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.TrainerDTO;
 import com.revature.service.AdminService;
 import com.revature.service.NurseService;
 import com.revature.service.PokeService;
@@ -146,7 +147,7 @@ public class Main {
 
 	@SuppressWarnings("unused")
 	private static void updateProfile() {
-		Trainer t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pallet City", "fire", "red"));
+		TrainerDTO t = TrainerService.updateProfile(new Trainer(1, "Ash", "Pallet City", "fire", "red"));
 		System.out.println(t);
 
 		Role nurse = new Role(1, "Nurse");
@@ -158,13 +159,13 @@ public class Main {
 	}
 
 	private static void getProfile() {
-		Trainer t = TrainerService.getProfile(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
+		TrainerDTO t = TrainerService.getProfile(new Trainer(1, "Ash", "Pallet Town", "fire", "red"));
 		System.out.println(t);
 	}
 
 	private static void getPokemon() {
 		Trainer t = new Trainer(1, "Ash", "Pallet Town", "fire", "red");
-		List<Patient> pokemon = TrainerService.getPokemon(t);
+		List<PatientDTO> pokemon = TrainerService.getPokemon(t);
 		System.out.println(pokemon);
 	}
 
