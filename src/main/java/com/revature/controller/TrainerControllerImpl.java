@@ -1,6 +1,9 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.*;
+import static com.revature.util.ClientMessageUtil.PATIENT_FAILED;
+import static com.revature.util.ClientMessageUtil.PATIENT_REGISTERED;
+import static com.revature.util.ClientMessageUtil.USER_NOT_REGISTERED;
+import static com.revature.util.ClientMessageUtil.USER_REGISTERED;
 
 import java.util.List;
 
