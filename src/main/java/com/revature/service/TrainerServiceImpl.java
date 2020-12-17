@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class TrainerServiceImpl implements TrainerService {
 	@Override
 	public boolean registerPatient(PatientDTO patient, Pokemon pokemon) {
 		// make a new Patient here.
+		Timestamp admission = new Timestamp(System.currentTimeMillis());
+		patient.setAdmission(admission);
 		trainerRepo.save(patient);
 		return patient.getPateintid() != 0;
 	}
