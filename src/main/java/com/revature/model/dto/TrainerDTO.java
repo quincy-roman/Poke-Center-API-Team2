@@ -6,6 +6,7 @@ public class TrainerDTO {
 	private String username;
 	private String password;
 	private int roleId = 3;
+
 	public TrainerDTO() {
 	}
 	public TrainerDTO(String name, String hometown, String username, String password) {
@@ -53,9 +54,13 @@ public class TrainerDTO {
 	public void setTrainerid(int trainerid) {
 		this.trainerid = trainerid;
 	}
+
 	public int getRoleId() {
 		return roleId;
 	}
+
+
+
 	public void setRoleId(int roleId) {
 		this.roleId = 3;
 	}
