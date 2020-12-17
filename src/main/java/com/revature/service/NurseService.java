@@ -30,10 +30,15 @@ public class NurseService implements EmplService {
 	public List<PatientDTO> getNursePatients(Employee nurse) {
 		List<Patient> patients = nurseRepo.findPatients(nurse);
 		List<PatientDTO> patientDTOs = new ArrayList<>();
-		for (Patient p : patients) {
-			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), p.getTrainer().getTrainerId(),
-					p.getAdmission(), p.getRelease(), p.getCurrentHP(), p.getMaxHP(), p.getStatus().getStatusId(),
-					p.getMed().getMedID(), p.isHealthy());
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), 0, 
+											 p.isHealthy());
+			if(p.getMed() != null) {
+				pdto.setMedId(p.getMed().getMedID());
+			}
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;
@@ -83,10 +88,15 @@ public class NurseService implements EmplService {
 	public List<PatientDTO> getAllPatients() {
 		List<Patient> patients = nurseRepo.findAllPatients();
 		List<PatientDTO> patientDTOs = new ArrayList<>();
-		for (Patient p : patients) {
-			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), p.getTrainer().getTrainerId(),
-					p.getAdmission(), p.getRelease(), p.getCurrentHP(), p.getMaxHP(), p.getStatus().getStatusId(),
-					p.getMed().getMedID(), p.isHealthy());
+		for(Patient p : patients) {
+			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
+											 p.getTrainer().getTrainerId(), p.getAdmission(), 
+											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
+											 p.getStatus().getStatusId(), 0, 
+											 p.isHealthy());
+			if(p.getMed() != null) {
+				pdto.setMedId(p.getMed().getMedID());
+			}
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;

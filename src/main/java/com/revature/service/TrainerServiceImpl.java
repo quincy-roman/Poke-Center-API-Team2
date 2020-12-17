@@ -86,8 +86,11 @@ public class TrainerServiceImpl implements TrainerService {
 			PatientDTO pdto = new PatientDTO(p.getPateintid(), p.getPokemon().getDexid(), 
 											 p.getTrainer().getTrainerId(), p.getAdmission(), 
 											 p.getRelease(), p.getCurrentHP(), p.getMaxHP(), 
-											 p.getStatus().getStatusId(), p.getMed().getMedID(), 
+											 p.getStatus().getStatusId(), 0, 
 											 p.isHealthy());
+			if(p.getMed() != null) {
+				pdto.setMedId(p.getMed().getMedID());
+			}
 			patientDTOs.add(pdto);
 		}
 		return patientDTOs;

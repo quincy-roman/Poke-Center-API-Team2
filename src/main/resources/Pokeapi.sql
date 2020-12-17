@@ -124,3 +124,19 @@ truncate table patient;
 select *
 from patient p 
 where not healthy = false;
+
+create table billinghistory(
+	invoiceid serial primary key,
+	adminid integer not null,
+	medicine integer not null,
+	quantity integer not null,
+	price numeric not null,
+	FOREIGN KEY (adminid) REFERENCES employee (employee_id) on delete cascade,
+	FOREIGN KEY (medicine) REFERENCES medicine (medid) on delete cascade
+);
+
+insert into billinghistory (adminid, medicine, quantity, price) values (2, 2, 16, 1600);
+
+select * from billinghistory ;
+
+drop table billinghistory;
