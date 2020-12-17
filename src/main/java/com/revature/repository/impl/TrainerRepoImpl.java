@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 import org.postgresql.util.PSQLException;
@@ -62,10 +63,14 @@ public class TrainerRepoImpl implements TrainerRepo {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Pokemon getPokemon(String Pokemon) {
-		crit = sf.getCurrentSession().createCriteria(Pokemon.class);
-		crit.add(Restrictions.ilike("name", Pokemon));
-		List<Pokemon> p = crit.list();
-		return p.get(0);
+		try {
+			crit = sf.getCurrentSession().createCriteria(Pokemon.class);
+			crit.add(Restrictions.ilike("name", Pokemon, MatchMode.EXACT));
+			List<Pokemon> p = crit.list();
+			return p.get(0);
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
