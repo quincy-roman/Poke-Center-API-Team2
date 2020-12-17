@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   //user : User = JSON.parse(sessionStorage.getItem("currentUser"));
 
  user: User =new User();
+ 
   
 
   ngOnInit(): void {
@@ -131,7 +132,9 @@ public viewMyProfile(){
 
 
 
-
+// public assignNurse(){
+//   this.userService.assignNurse();
+// }
 
 
 

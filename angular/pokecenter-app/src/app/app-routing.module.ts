@@ -85,6 +85,10 @@ const routes: Routes = [
     path: "table/view-all-users",
     component: TableComponent
   },
+  // {
+  //   path: "admin/assign-nurse",
+  //   component: NurseAssignComponent
+  // },
   {
     path: "",
     redirectTo: "/signin",

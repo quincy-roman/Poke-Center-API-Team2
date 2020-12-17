@@ -1,6 +1,6 @@
 <div id="root-body">
   <div class="jumbotron">
-    <h1 class="display-4 text-center">Welcome to the Pokemon Center!</h1>
+    <h1 class="display-4 text-center">Welcome to the PokeCenter!</h1>
     <p class="lead text-center">Please Sign In</p>
     <form id="signin-form" #form="ngForm" (submit)="signinUser(form.value)">
       <div class="form-group">
@@ -12,7 +12,7 @@
         <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password">
       </div>
 
-      <p class="lead text-center">Sign In as a:</p>
+      <p class="lead text-center">Sign In as:</p>
       <div class = "toggles" >
         <div class="input-group">
           <div class="input-group-prepend">

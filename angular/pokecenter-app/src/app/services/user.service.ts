@@ -74,22 +74,29 @@ export class UserService {
         const status = [
           1,
           2,
-          3
+          3,
+          4,
+          5,
+          6
         ]
        // enum Status { status1, status2, status3 }
 
         let pokeStatus;
 
         if (currHp == 0) {
-          pokeStatus = status[2];
+          pokeStatus = status[6];
         } else {
 
-          let random = Math.floor(Math.random() * Object.keys(status).length);
-          if (random % 2 == 0) {
-            pokeStatus = status[1];
-          } else {
-            pokeStatus = status[0];
-          }
+          
+
+          let random = Math.floor(Math.random() *5) + 1;
+          // if (random % 2 == 0) {
+          //   pokeStatus = status[1];
+          // } else {
+          //   pokeStatus = status[0];
+          // }
+          console.log(random)
+          pokeStatus = status[random]
         }
 
         /*
@@ -385,6 +392,60 @@ xhr.send();
         xhr.open("POST", `${API_URL}admin/registration`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(employeeTemplate));
+
+
+
+  }
+
+  public assignNurse(nurseId: number, patientId: number){
+
+    console.log("in register Trainer service...")
+        let xhr = new XMLHttpRequest();
+
+        //sends template containing two objects one with nurse(employee) id and another with patient id
+      
+        let assignData = {
+        nurseTemplate :{
+          nurseId: nurseId
+        },
+
+        patientTemplate :{
+          patientId: patientId
+        }
+      }
+        
+        
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+    	if(xhr.readyState <= 3){
+    		console.log('loading');
+    	}
+        if(xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("Success")
+           // sessionStorage.setItem('tableData', xhr.responseText);
+            this.router.navigateByUrl('home')
+        }
+        if(xhr.readyState ===4 && xhr.status ===204)
+        {
+            console.log("Failed. Status Code: " + xhr.status)
+			var reason = {
+				code : xhr.status,
+        issue : 'Failed to register user.'
+        //redirect to error page
+			};
+			console.log(reason);
+			sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+        };
+        xhr.open("POST", `${API_URL}admin/assign-nurse`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(assignData));
 
 
 

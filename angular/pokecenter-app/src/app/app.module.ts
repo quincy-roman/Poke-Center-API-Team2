@@ -33,7 +33,8 @@ import { TickerComponent } from './components/ticker/ticker.component';
     AdmissionComponent,
     DashboardComponent,
     EmployeeRegistrationComponent,
-    TickerComponent
+    TickerComponent,
+    
   ],
   imports: [
     BrowserModule,
