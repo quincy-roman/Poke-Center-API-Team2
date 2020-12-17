@@ -18,6 +18,7 @@ import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
 import com.revature.model.dto.TrainerDTO;
 import com.revature.repository.AdminRepository;
+import com.revature.repository.NurseRepository;
 
 @Service("AdminService")
 public class AdminService implements EmplService {
@@ -26,6 +27,9 @@ public class AdminService implements EmplService {
 
 	@Autowired
 	private AdminRepository adminRepo;
+	
+	@Autowired
+	private NurseRepository nurseRepo;
 
 	// Update users.
 	public <T> boolean updateUser(T user) {
@@ -72,9 +76,15 @@ public class AdminService implements EmplService {
 
 
 	// Assign a nurse to a patient.
-	public boolean assignNurse(Patient patient, Employee nurse) {
-		patient.setNurseid(nurse);
+	public boolean assignNurse(int patientid, String username) {
+		Patient patient = nurseRepo.findPatient(patientid);
+		Employee nurse = adminRepo.getNurse(username);
+		
+		patient.setNurseid(nurse);	//This sets the entire object.
+		
+		// Update the patient with their newly assigned nurse.
 		adminRepo.assignNurse(patient);
+		
 		return patient.getNurseid().getEmployeeId() != 0;
 	}
 

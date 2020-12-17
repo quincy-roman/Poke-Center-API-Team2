@@ -42,49 +42,21 @@ public class TrainerServiceImpl implements TrainerService {
 	}
 
 	@Override
-
-	
 	public boolean registerPatient(PatientDTO patientDTO, Pokemon pokemon) {
-
-
-		// if the pokemon exists, don't save, otherwise, save.
+		// if the Pokemon exists, don't save, otherwise, save.
 		if(trainerRepo.getPokemon(pokemon.getName()) == null) {
 			pokeRepo.save(pokemon);
 		}
 
-		
 		Timestamp admission = new Timestamp(System.currentTimeMillis());
-		
+	
 		Trainer trainer = trainerRepo.getTrainerId(patientDTO.getTrainersId());
 		
-		StatusCondition status = new StatusCondition();
-		status.setStatusId(patientDTO.getStatusId());
-		switch(status.getStatusId()) {
-		case 1:
-			status.setStatusName("Burn");
-			break;
-		case 2:
-			status.setStatusName("Sleep");
-			break;
-		case 3:
-			status.setStatusName("Freeze");
-			break;
-		case 4:
-			status.setStatusName("Poison");
-			break;
-		case 5:
-			status.setStatusName("Paralysis");
-			break;
-		case 6:
-			status.setStatusName("Fainted");
-			break;
-		}
+		StatusCondition status = trainerRepo.getStatus(patientDTO.getStatusId());
 		
-		
+		// Set the objects to the new patient.
 		Patient patient = new Patient(pokemon, trainer, admission, patientDTO.getCurrentHP(), 
 									  patientDTO.getMaxHP(), status, null, null, false, null);
-
-		System.out.println(patient);
 		
 		trainerRepo.save(patient);
 		return patient.getPateintid() != 0;

@@ -23,6 +23,7 @@ import com.revature.model.Patient;
 import com.revature.model.dto.EmployeeDTO;
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.PatientWrapper;
 import com.revature.model.dto.TrainerDTO;
 import com.revature.service.AdminService;
 import com.revature.service.PokeService;
@@ -64,8 +65,9 @@ public class AdminController implements EmployeeController {
 	}
 
 	@PutMapping(path = "/assign-nurse", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> assignNurse(@RequestBody Patient patient, Employee nurse) {
-		ClientMessage body = (adminService.assignNurse(patient, nurse)) ? NURSE_ASSIGNED : NURSE_FAILED;
+	public ResponseEntity<ClientMessage> assignNurse(@RequestBody PatientWrapper assignData) {
+		ClientMessage body = (adminService.assignNurse(assignData.getPatientDTO().getPatientid(),
+													   assignData.getNurseDTO().getUsername())) ? NURSE_ASSIGNED : NURSE_FAILED;
 		return ResponseEntity.ok(body);
 	}
 

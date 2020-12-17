@@ -1,9 +1,6 @@
 package com.revature.controller;
 
-import static com.revature.util.ClientMessageUtil.PATIENT_FAILED;
-import static com.revature.util.ClientMessageUtil.PATIENT_REGISTERED;
-import static com.revature.util.ClientMessageUtil.USER_NOT_REGISTERED;
-import static com.revature.util.ClientMessageUtil.USER_REGISTERED;
+import static com.revature.util.ClientMessageUtil.*;
 
 import java.util.List;
 
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Pokemon;
 import com.revature.model.Trainer;
 import com.revature.model.dto.PatientDTO;
 import com.revature.model.dto.PatientWrapper;

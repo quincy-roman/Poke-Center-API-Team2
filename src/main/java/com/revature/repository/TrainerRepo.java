@@ -26,4 +26,6 @@ public interface TrainerRepo {
 	StatusCondition problem(String string);
 	
 	public Pokemon getPokemon(String Pokemon);
+
+	StatusCondition getStatus(int statusId);
 }

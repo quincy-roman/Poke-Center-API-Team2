@@ -45,7 +45,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@Override
 	public void save(Patient patient) {
-		System.out.println("\n"+ patient.toString()+"\n");
+		System.out.println("\n"+ patient+"\n");
 		sf.getCurrentSession().save(patient);
 	}
 
@@ -58,7 +58,21 @@ public class TrainerRepoImpl implements TrainerRepo {
 			List<Trainer> t = crit.list();
 			return t.get(0);
 		} catch (IndexOutOfBoundsException e) {
+		return null;
 
+		}
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public StatusCondition getStatus(int statusId) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
+			crit.add(Restrictions.idEq(statusId));
+			List<StatusCondition> status = crit.list();
+			return status.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
