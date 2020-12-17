@@ -12,6 +12,33 @@ export class TableService {
 
 
 
+    public converttime(time) {
+        var d = new Date(time);
+        var formattedDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+        var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
+        var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
+
+        var h: number = Number(hours);
+        var m: number = Number(minutes);
+        var hr = "AM";
+        if (hours > 12) {
+            hours = h - 12;
+            hr = "PM";
+        } else if (hours == 0) {
+            hours = 12;
+        }
+
+        var formattedTime = hours + ":" + minutes + " " + hr;
+
+        formattedDate = formattedDate + " " + formattedTime;
+        if (formattedDate != null) {
+            return formattedDate;
+        } else {
+            return "-"
+        }
+
+    }
+
 
     public viewMyPokemon(trainerId: number) {
 
@@ -22,10 +49,10 @@ export class TableService {
 
         console.log("in view my pokemon service...")
         let xhr = new XMLHttpRequest();
-        let trainer= {
-            trainerId : user.trainerid,
-            trainerName : user.name,
-            hometown : user.hometown,
+        let trainer = {
+            trainerId: user.trainerid,
+            trainerName: user.name,
+            hometown: user.hometown,
             username: user.username,
             password: user.password
 
@@ -54,61 +81,90 @@ export class TableService {
                         data.forEach(d => {
                             let row = table.insertRow();
 
-                            let pokemonDexId = row.insertCell(0);
-                            let trainersId = row.insertCell(1);
-                            let admission = row.insertCell(2);
-                            let release = row.insertCell(3);
-                            let currentHP = row.insertCell(4);
-                            let maxHP = row.insertCell(5);
-                            let statusId = row.insertCell(6);
-                            let medId = row.insertCell(7);
-                            let healthy = row.insertCell(8);
 
+
+
+                            let pokemonPatientId = row.insertCell(0);
+
+                            let pokemonDexId = row.insertCell(1);
+                            let trainersId = row.insertCell(2);
+
+
+                            let admission = row.insertCell(3);
+                            let release = row.insertCell(4);
+                            let currentHP = row.insertCell(5);
+                            let maxHP = row.insertCell(6);
+                            let statusId = row.insertCell(7);
+                            let medId = row.insertCell(8);
+                            let healthy = row.insertCell(9);
+
+                            pokemonPatientId.innerHTML = d.patientid;
                             pokemonDexId.innerHTML = d.pokemonDexId;
                             trainersId.innerHTML = d.trainersId;
-                            admission.innerHTML = d.admission;
-                            release.innerHTML = d.release;
+
+
+                            admission.innerHTML = this.converttime(d.admission);
+                            release.innerHTML = this.converttime(d.release);
                             currentHP.innerHTML = d.currentHP;
                             maxHP.innerHTML = d.maxHP;
-                            statusId.innerHTML = d.statusId;
+                            switch (d.statusId) {
+                                case 1:
+                                    statusId.innerHTML = "Burn";
+                                    break;
+                                case 2:
+                                    statusId.innerHTML = "Sleep";
+                                    break;
+                                case 3:
+                                    statusId.innerHTML = "Freeze";
+                                    break;
+                                case 4:
+                                    statusId.innerHTML = "Poison";
+                                    break;
+                                case 5:
+                                    statusId.innerHTML = "Paralysis";
+                                    break;
+                                case 6:
+                                    statusId.innerHTML = "Fainted";
+                                    break;
+                            }
                             medId.innerHTML = d.statusId;
                             healthy.innerHTML = d.healthy;
                         })
                     }
-                    
+
                 }
                 this.router.navigateByUrl('trainer/table/view-my-pokemon')
 
 
-            }if (xhr.readyState === 4 && xhr.status > 200) {
-                    console.log("Failed. Status Code: " + xhr.status)
-                    var reason = {
-                        code: xhr.status,
-                        issue: 'Failed to load table data from server.'
-                        //redirect to error page
-                    };
-                    console.log(reason);
-                    sessionStorage.setItem('failMessage', JSON.stringify(reason));
-                    console.log(sessionStorage.getItem('failMessage'));
-                    //goes to error interceptor
-                    alert('BAD MOJO!')
-                    this.router.navigateByUrl('home')
+            } if (xhr.readyState === 4 && xhr.status > 200) {
+                console.log("Failed. Status Code: " + xhr.status)
+                var reason = {
+                    code: xhr.status,
+                    issue: 'Failed to load table data from server.'
+                    //redirect to error page
+                };
+                console.log(reason);
+                sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                console.log(sessionStorage.getItem('failMessage'));
+                //goes to error interceptor
+                alert('BAD MOJO!')
+                this.router.navigateByUrl('home')
 
-                }
-                console.log("Processing")
             }
-            
-            xhr.open("POST", `${API_URL}trainer/table/view-my-pokemon`, true);
-           // console.log(trainer)
-            xhr.setRequestHeader("Content-Type", "application/json");
-            console.log("Now sending request")
-            xhr.send(JSON.stringify(trainer));     
-            
+            console.log("Processing")
         }
-    
+
+        xhr.open("POST", `${API_URL}trainer/table/view-my-pokemon`, true);
+        // console.log(trainer)
+        xhr.setRequestHeader("Content-Type", "application/json");
+        console.log("Now sending request")
+        xhr.send(JSON.stringify(trainer));
+
+    }
 
 
-  public viewMyPokemonStatus(trainerId: number) {
+
+    public viewMyPokemonStatus(trainerId: number) {
 
         console.log("in view my pokemon status service...")
         let xhr = new XMLHttpRequest();
