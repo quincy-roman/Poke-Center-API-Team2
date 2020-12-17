@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -35,6 +36,7 @@ import com.revature.model.dto.PatientDTO;
 
 public class NurseControllerTest {
 	
+	@SuppressWarnings("unused")
 	private MockMvc mockMvc;
 	
 	@Mock

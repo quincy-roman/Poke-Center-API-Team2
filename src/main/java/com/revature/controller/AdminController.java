@@ -40,7 +40,7 @@ public class AdminController implements EmployeeController {
 	@Autowired
 	private PokeService pokeService;
 
-	@PostMapping(path = "/modify-user-info", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(path = "/modify-user-info", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public <T> ResponseEntity<ClientMessage> updateUser(@RequestBody T user) {
 		ClientMessage body = (adminService.updateUser(user)) ? SUCCESSFUL_UPDATE : FAILED_UPDATE;
 		return ResponseEntity.ok(body);
@@ -99,7 +99,7 @@ public class AdminController implements EmployeeController {
 		return ResponseEntity.ok(patients);
 	}
 	
-	@PostMapping(path = "/patient/release", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(path = "/patient/release", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> release(@RequestBody Patient patient) {
 		ClientMessage body = (adminService.release(patient)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;

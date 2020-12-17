@@ -39,14 +39,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		register();
-//		
-//		get();
-//		
+		
+		get();
+		
 		functions();
 	}
 
+	@SuppressWarnings("unused")
 	private static void functions() {
-//		updateProfile(); // WORKED
+		updateProfile(); // WORKED
 
 		assignnurse(); // WORKED
 
@@ -77,7 +78,7 @@ public class Main {
 	private static void assignnurse() {
 		Patient patient = NurseService.findPatient(7);
 		Employee nurse = AdminService.getNurse("1");
-		AdminService.assignNurse(patient, nurse);
+		AdminService.assignNurse(patient.getPateintid(), nurse.getUsername());
 	}
 
 	@SuppressWarnings("unused")
@@ -94,20 +95,21 @@ public class Main {
 
 	@SuppressWarnings("unused")
 	private static void register() {
-		registerTrainer(); // and login WORKED
-
-		registerEmpl(); // roles and login WORKED
-
-		registerStatus(); // and meds WORKED
-
+//		registerTrainer(); // and login WORKED
+//
+//		registerEmpl(); // roles and login WORKED
+//
+//		registerStatus(); // and meds WORKED
+//
 		registerPokemon(); // and WORKED
-
-		registerPatient(); // and WORKED
-
-		registerBill(); // and WORKED
+//
+//		registerPatient(); // and WORKED
+//
+//		registerBill(); // and WORKED
 
 	}
 
+	@SuppressWarnings("unused")
 	private static void registerBill() {
 		Employee admin = AdminService.getNurse("2");
 		StatusCondition s = NurseService.problem("Sleep");
@@ -169,6 +171,7 @@ public class Main {
 		System.out.println(pokemon);
 	}
 
+	@SuppressWarnings("unused")
 	private static void registerStatus() {
 		PokeService.registerStatus(new StatusCondition("Burn"));
 		PokeService.registerStatus(new StatusCondition("Sleep"));
@@ -187,11 +190,12 @@ public class Main {
 	}
 
 	private static void registerPokemon() {
-		PokeService.registerPokemon(new Pokemon(3, "Venasuar", "Grass", "Poison", "Overgrow"));
-		PokeService.registerPokemon(new Pokemon(15, "Beedrill", "Bug", "Poison", "Swarm"));
-		PokeService.registerPokemon(new Pokemon(63, "Abra", "Psychic", null, "Inner Focus"));
+		PokeService.registerPokemon(new Pokemon("Venasuar", "Grass", "Poison", "Overgrow"));
+		PokeService.registerPokemon(new Pokemon("Beedrill", "Bug", "Poison", "Swarm"));
+		PokeService.registerPokemon(new Pokemon("Abra", "Psychic", null, "Inner Focus"));
 	}
 
+	@SuppressWarnings("unused")
 	private static void registerPatient() {
 //		new Patient(pokemon, trainer, admission, currentHP, maxHP, status, healthy);
 
