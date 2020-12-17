@@ -51,6 +51,7 @@ public class TrainerServiceImpl implements TrainerService {
 		Timestamp admission = new Timestamp(System.currentTimeMillis());
 		Trainer trainer = new Trainer();
 		trainer.setTrainerId(patientDTO.getTrainersId());
+		
 		StatusCondition status = new StatusCondition();
 		status.setStatusId(patientDTO.getStatusId());
 		
