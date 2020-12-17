@@ -11,7 +11,7 @@ public interface TrainerService {
 
 	List<PatientDTO> getPokemon(Trainer trainer);
 
-	public boolean registerPatient(PatientDTO patient, Pokemon pokemon);
+	public boolean registerPatient(PatientDTO patient, int trainer, String status);
 
 	TrainerDTO getProfile(Trainer trainer);
 
