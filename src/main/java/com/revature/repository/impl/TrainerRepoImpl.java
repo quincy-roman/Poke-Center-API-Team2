@@ -45,7 +45,7 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@Override
 	public void save(Patient patient) {
-		System.out.println("\n"+ patient.toString()+"\n");
+		System.out.println("\n"+ patient+"\n");
 		sf.getCurrentSession().save(patient);
 	}
 
