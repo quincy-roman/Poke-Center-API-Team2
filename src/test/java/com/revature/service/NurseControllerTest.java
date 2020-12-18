@@ -36,7 +36,6 @@ import com.revature.model.dto.PatientDTO;
 
 public class NurseControllerTest {
 	
-	@SuppressWarnings("unused")
 	private MockMvc mockMvc;
 	
 	@Mock
@@ -81,15 +80,16 @@ public class NurseControllerTest {
 					p.getMed().getMedID(), p.isHealthy());
 			patientsDTO.add(pdto);
 		}
+		
 		when(nurseService.getAllPatients()).thenReturn(patientsDTO);
 		mockMvc.perform(get("/nurse/table/view-all-admitted-pokepatients"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
 	            .andExpect(jsonPath("$", hasSize(2)))
-	            .andExpect(jsonPath("$[0].id", is(1)))
-	            .andExpect(jsonPath("$[0].username", is("Daenerys Targaryen")))
-	            .andExpect(jsonPath("$[1].id", is(2)))
-	            .andExpect(jsonPath("$[1].username", is("John Snow")));
+	            .andExpect(jsonPath("$[0].patientid", is(1)))
+	            .andExpect(jsonPath("$[0].pokemonDexId", is(1)))
+	            .andExpect(jsonPath("$[1].patientid", is(2)))
+	            .andExpect(jsonPath("$[1].pokemonDexId", is(2)));
 	    verify(nurseService, times(1)).getAllPatients();
 	    verifyNoMoreInteractions(nurseService);
 	}

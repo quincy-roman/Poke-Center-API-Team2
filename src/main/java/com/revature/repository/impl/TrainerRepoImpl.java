@@ -45,7 +45,6 @@ public class TrainerRepoImpl implements TrainerRepo {
 
 	@Override
 	public void save(Patient patient) {
-		System.out.println("\n"+ patient+"\n");
 		sf.getCurrentSession().save(patient);
 	}
 
@@ -122,9 +121,8 @@ public class TrainerRepoImpl implements TrainerRepo {
 			List<Trainer> t = crit.list();
 			return t.get(0);
 		} catch (IndexOutOfBoundsException e) {
-
+			return null;
 		}
-		return null;
 	}
 
 	@Override
