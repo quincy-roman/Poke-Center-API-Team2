@@ -37,9 +37,10 @@ public class TrainerControllerImpl implements TrainerController {
 	@Override
 	@PostMapping(path = "/table/view-my-pokemon", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<PatientDTO>> getPokemon(@RequestBody Trainer trainer) {
+		System.out.println("\n"+ trainer.toString()+"\n");
 		List<PatientDTO> pokemon = trainerService.getPokemon(trainer);
 		return ResponseEntity.ok(pokemon);
-	} 
+	}
 
 	@Override
 	@PostMapping(path = "/profile", consumes = {MediaType.APPLICATION_JSON_VALUE})
