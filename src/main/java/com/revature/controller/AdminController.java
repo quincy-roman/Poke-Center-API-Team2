@@ -26,6 +26,7 @@ import com.revature.model.dto.PatientDTO;
 import com.revature.model.dto.PatientWrapper;
 import com.revature.model.dto.TrainerDTO;
 import com.revature.service.AdminService;
+import com.revature.service.NurseService;
 import com.revature.service.PokeService;
 import com.revature.util.ClientMessage;
 
@@ -39,6 +40,9 @@ public class AdminController implements EmployeeController {
 	
 	@Autowired
 	private PokeService pokeService;
+	
+	@Autowired
+	private NurseService nurseService;
 
 	@PutMapping(path = "/modify-user-info", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public <T> ResponseEntity<ClientMessage> updateUser(@RequestBody T user) {
@@ -100,7 +104,8 @@ public class AdminController implements EmployeeController {
 	}
 	
 	@PutMapping(path = "/patient/release", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> release(@RequestBody Patient patient) {
+	public ResponseEntity<ClientMessage> release(@RequestBody int  patientid) {
+		Patient patient = nurseService.findPatient(patientid);
 		ClientMessage body = (adminService.release(patient)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
