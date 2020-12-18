@@ -28,6 +28,7 @@ import { AuthorizeDischargeComponent } from './components/authorize-discharge/au
 import { CurrentMedicationStockComponent } from './components/current-medication-stock/current-medication-stock.component';
 import { ViewAllUsersComponent } from './components/view-all-users/view-all-users.component';
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
+import { RemoveTrainerComponent } from './components/remove-trainer/remove-trainer.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ViewEmployeesComponent } from './components/view-employees/view-employe
     AuthorizeDischargeComponent,
     CurrentMedicationStockComponent,
     ViewAllUsersComponent,
-    ViewEmployeesComponent
+    ViewEmployeesComponent,
+    RemoveTrainerComponent
     
   ],
   imports: [

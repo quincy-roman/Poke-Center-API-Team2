@@ -16,13 +16,20 @@ export class NavbarComponent implements OnInit {
 
   //user : User = JSON.parse(sessionStorage.getItem("currentUser"));
 
- user: User =new User();
- 
-  
+  user: User = new User();
+
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../../../../../pokecenter-app/src/assets/sounds/pokemon-opening.mp3";
+    audio.load();
+    audio.play();
+  }
+
 
   ngOnInit(): void {
 
 
+    this.playAudio;
 
     console.log(sessionStorage.getItem("currentUser"));
 
@@ -31,107 +38,110 @@ export class NavbarComponent implements OnInit {
     console.log(user)
 
     //says if they are a nurse
-    if(user.roleId==1){
+    if (user.roleId == 1) {
       //hide admin and trainer options
       console.log("current user is a nurse")
 
-      
+
 
       var nurseOption = document.querySelector('.NurseControls');
-        console.log(nurseOption);
-        nurseOption.classList.remove('hide');
-	
+      console.log(nurseOption);
+      nurseOption.classList.remove('hide');
+
 
 
       //says if trainer
-    }else if(user.roleId == 3){
+    } else if (user.roleId == 3) {
       //hide nurse and admin roles
       console.log("current user is a trainer")
 
       var trainerOption = document.querySelector('.TrainerControls');
-        console.log(trainerOption);
-        trainerOption.classList.remove('hide');
-	
+      console.log(trainerOption);
+      trainerOption.classList.remove('hide');
 
 
-    }else{
+
+    } else {
       console.log("current user is an admin")
 
 
       var nurseOption = document.querySelector('.NurseControls');
-      
-        console.log(nurseOption);
-        nurseOption.classList.remove('hide');
 
-      
-        var adminOption = document.querySelector('.AdminControls');
-        console.log(adminOption);
-        adminOption.classList.remove('hide');
-	
+      console.log(nurseOption);
+      nurseOption.classList.remove('hide');
 
-        var trainerOption = document.querySelector('.TrainerControls');
-        console.log(trainerOption);
-        trainerOption.classList.remove('hide');
-	
 
-	
+      var adminOption = document.querySelector('.AdminControls');
+      console.log(adminOption);
+      adminOption.classList.remove('hide');
 
-      
+
+      var trainerOption = document.querySelector('.TrainerControls');
+      console.log(trainerOption);
+      trainerOption.classList.remove('hide');
+
+
+
+
+
     }
-    
+
   }
 
-  public viewMyPokemon(){
+  
 
-      this.tableService.viewMyPokemon(this.user.id);
+
+  public viewMyPokemon() {
+
+    this.tableService.viewMyPokemon(this.user.id);
   }
 
-  public viewMyPokemonStats(){
+  public viewMyPokemonStats() {
 
     this.tableService.viewMyPokemonStatus(this.user.id);
-}
+  }
 
-public viewMyPokemonPatients(){
+  public viewMyPokemonPatients() {
 
-  this.tableService.viewMyPokePatients(this.user.id);
-}
+    this.tableService.viewMyPokePatients(this.user.id);
+  }
 
-public viewPastPokePatients(){
-  this.tableService.viewPastPokePatients(this.user.id);
-}
+  public viewPastPokePatients() {
+    this.tableService.viewPastPokePatients(this.user.id);
+  }
 
-public viewMyPokePatientsCharts(){
-  this.tableService.viewMyPokePatientCharts(this.user.id);
-}
+  public viewMyPokePatientsCharts() {
+    this.tableService.viewMyPokePatientCharts(this.user.id);
+  }
 
 
 
-public viewAllAdmittedPatients(){
-  this.tableService.viewAllAdmittedPatients();
-}
+  public viewAllAdmittedPatients() {
+    this.tableService.viewAllAdmittedPatients();
+  }
 
-public viewAllPastPokePatients(){
-  this.tableService.viewAllPastPokePatients();
-}
+  public viewAllPastPokePatients() {
+    this.tableService.viewAllPastPokePatients();
+  }
 
-public viewPokeCenterBilling(){
-  this.tableService.viewPokeCenterBilling();
-}
+  public viewPokeCenterBilling() {
+    this.tableService.viewPokeCenterBilling();
+  }
 
-public viewCurrentMedicationStock(){
-  this.tableService.viewCurrentMedicationStock();
-}
+  public viewCurrentMedicationStock() {
+    this.tableService.viewCurrentMedicationStock();
+  }
 
-public viewAllTrainers(){
-  this.tableService.viewAllTrainers();
-}
-public viewMyProfile(){
-  this.dashboardService.viewMyProfile(this.user.id);
-}
+  public viewAllTrainers() {
+    this.tableService.viewAllTrainers();
+  }
+  public viewMyProfile() {
+    this.dashboardService.viewMyProfile(this.user.id);
+  }
 
-public viewAllEmployees(){
-  this.tableService.viewAllEmployees();
-}
+  public viewAllEmployees() {
+    this.tableService.viewAllEmployees();
+  }
 
 
 
