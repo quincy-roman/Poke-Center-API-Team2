@@ -129,4 +129,8 @@ public class NurseService implements EmplService {
 		}
 	}
 
+	public Medicine getMed(int med) {
+		return nurseRepo.getMed(med);
+	}
+
 }
