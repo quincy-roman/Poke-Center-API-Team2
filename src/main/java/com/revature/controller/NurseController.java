@@ -50,7 +50,8 @@ public class NurseController implements EmployeeController {
 	}
 	
 	@PutMapping(path = "/treatment/authorize-discharge", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> declarehealthy(@RequestBody Patient p){
+	public ResponseEntity<ClientMessage> declarehealthy(@RequestBody int patientId){
+		Patient p = nurseService.findPatient(patientId);
 		ClientMessage body = (nurseService.declarehealthy(p)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
