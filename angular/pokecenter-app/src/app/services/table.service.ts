@@ -207,7 +207,25 @@ export class TableService {
         console.log("in view my pokemon patients service...")
         let xhr = new XMLHttpRequest();
 
+        let user = JSON.parse(sessionStorage.getItem('currentUser'))
 
+
+        let role = {
+            roleid: 1,
+            role: "Nurse"
+        }
+
+        let nurseTemplate = {
+
+            employeeId: user.empid,
+            employeeName: user.name,
+            username: user.username,
+            password: user.password,
+            role: role
+        }
+
+
+        console.log(nurseTemplate)
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
             if (xhr.readyState <= 3) {
@@ -216,7 +234,83 @@ export class TableService {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log("Success")
                 sessionStorage.setItem('tableData', xhr.responseText);
-                this.router.navigateByUrl('table/view-my-pokepatients');
+
+                console.log(sessionStorage.getItem('tableData'))
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+
+
+
+
+                            let pokemonPatientId = row.insertCell(0);
+
+                            let pokemonDexId = row.insertCell(1);
+                            let trainersId = row.insertCell(2);
+
+
+                            let admission = row.insertCell(3);
+                            let release = row.insertCell(4);
+                            let currentHP = row.insertCell(5);
+                            let maxHP = row.insertCell(6);
+                            let statusId = row.insertCell(7);
+                            let medId = row.insertCell(8);
+                            let healthy = row.insertCell(9);
+
+                            pokemonPatientId.innerHTML = d.patientid;
+                            pokemonDexId.innerHTML = d.pokemonDexId;
+                            trainersId.innerHTML = d.trainersId;
+
+
+                            admission.innerHTML = this.converttime(d.admission);
+                            release.innerHTML = this.converttime(d.release);
+                            currentHP.innerHTML = d.currentHP;
+                            maxHP.innerHTML = d.maxHP;
+                            switch (d.statusId) {
+                                case 1:
+                                    statusId.innerHTML = "Burn";
+                                    break;
+                                case 2:
+                                    statusId.innerHTML = "Sleep";
+                                    break;
+                                case 3:
+                                    statusId.innerHTML = "Freeze";
+                                    break;
+                                case 4:
+                                    statusId.innerHTML = "Poison";
+                                    break;
+                                case 5:
+                                    statusId.innerHTML = "Paralysis";
+                                    break;
+                                case 6:
+                                    statusId.innerHTML = "Fainted";
+                                    break;
+                            }
+                            medId.innerHTML = d.statusId;
+                            healthy.innerHTML = d.healthy;
+                        })
+                    }
+
+                }
+
+
+
+                //end of table logic
+                this.router.navigateByUrl('nurse/table/view-my-pokepatients');
             }
             if (xhr.readyState === 4 && xhr.status === 204) {
                 console.log("Failed. Status Code: " + xhr.status)
@@ -233,8 +327,152 @@ export class TableService {
             }
             console.log("Processing")
         };
-        xhr.open("GET", `/table/view-my-pokepatients?${nurseId}`, true);
-        xhr.send();
+        xhr.open("POST", `${API_URL}nurse/table/view-my-pokepatients`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(nurseTemplate));
+
+
+    }
+
+
+    public getTreatmentByStatus(statusId: number) {
+
+        console.log("in view treatement by status service...")
+        let xhr = new XMLHttpRequest();
+
+        let status ='';
+        switch (statusId) {
+            case 1:
+                status = "Burn";
+                break;
+            case 2:
+                status = "Sleep";
+                break;
+            case 3:
+                status = "Freeze";
+                break;
+            case 4:
+               status = "Poison";
+                break;
+            case 5:
+               status = "Paralysis";
+                break;
+            case 6:
+                status = "Fainted";
+                break;
+        }
+
+        let statusTemplate ={
+            statusId : statusId,
+            status : status
+
+        }
+       
+
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+            if (xhr.readyState <= 3) {
+                console.log('loading');
+            }
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Success")
+
+                sessionStorage.setItem('tableData', xhr.responseText);
+
+                console.log(sessionStorage.getItem('tableData'))
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+
+
+                           
+            
+
+
+
+
+                            let medicineId = row.insertCell(0);
+
+                            let medName = row.insertCell(1);
+                            let price = row.insertCell(2);
+
+
+                            let quantity = row.insertCell(3);
+                            let useCase = row.insertCell(4);
+                            
+
+                            medicineId.innerHTML = d.medId;
+                            medName.innerHTML = d.medName;
+                            price.innerHTML = d.cost;
+
+
+                            quantity.innerHTML = d.stock;
+                          //  useCase.innerHTML = ///VARIABLE WE COLLECT);
+                           
+                            switch (statusId) {
+                                case 1:
+                                    useCase.innerHTML = "Burn";
+                                    break;
+                                case 2:
+                                    useCase.innerHTML = "Sleep";
+                                    break;
+                                case 3:
+                                    useCase.innerHTML = "Freeze";
+                                    break;
+                                case 4:
+                                    useCase.innerHTML = "Poison";
+                                    break;
+                                case 5:
+                                    useCase.innerHTML = "Paralysis";
+                                    break;
+                                case 6:
+                                    useCase.innerHTML = "Fainted";
+                                    break;
+                            }
+                           
+                        })
+                    }
+
+                }
+
+
+
+                //end of table logic
+                this.router.navigateByUrl('nurse/table/get-poketreatment-by-patient-id');
+            }
+            if (xhr.readyState === 4 && xhr.status === 204) {
+                console.log("Failed. Status Code: " + xhr.status)
+                var reason = {
+                    code: xhr.status,
+                    issue: 'Failed to load table data from server.'
+                    //redirect to error page
+                };
+                console.log(reason);
+                sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                console.log(sessionStorage.getItem('failMessage'));
+                //goes to error interceptor
+                alert('BAD MOJO!')
+            }
+            console.log("Processing")
+        };
+        xhr.open("POST", `${API_URL}nurse/table/get-poketreatment-by-patient-id`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(statusTemplate));
 
 
     }

@@ -1,3 +1,6 @@
+import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
+import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
+import { ViewMyPatientsComponent } from './components/view-my-patients/view-my-patients.component';
 import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.component';
 import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -33,6 +36,18 @@ const routes: Routes = [
   {
     path: "trainer",
     component: DashboardComponent
+  },
+  {
+    path: "nurse/table/view-my-pokepatients",
+    component: ViewMyPatientsComponent
+  },
+  {
+    path: "nurse/update/my-pokepatient-charts",
+    component: TreatPokepatientComponent
+  },
+  {
+    path: "nurse/table/get-poketreatment-by-patient-id",
+    component: SeeTreatmentOptionsComponent
   },
   {
     path: "trainer/admission",

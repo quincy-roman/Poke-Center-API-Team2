@@ -18,18 +18,18 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/trainer" (click)="viewMyProfile()">View My Profile</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/pc-box">Visit PC Box</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/notifications">Check My Notifications</a>
-                </li>
+                </li> -->
             </div>
             <br>
             <div class="NurseControls hide">
                 <h3>Nurse Options</h3>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/table/view-my-pokepatients" (click)="viewMyPokemonPatients()">View
+                    <a class="nav-link" routerLink="/nurse/table/view-my-pokepatients" (click)="viewMyPokemonPatients()">View
                         My PokePatients</a>
                 </li>
                 <li class="nav-item">
@@ -41,11 +41,11 @@
                         (click)="viewMyPokePatientsCharts()">View My PokePatient Charts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/update/my-pokepatient-charts">Update My PokePatient Charts</a>
+                    <a class="nav-link" routerLink="/nurse/table/get-poketreatment-by-patient-id">See Treatment Options</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/table/get-poketreatment-by-patient-id"
-                        (click)="getPokeTreatmentByPatientId()">Get PokeTreatment by PokePatient ID Number</a>
+                        (click)="getPokeTreatmentByPatientId()">Treat Patient</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/treatment/authorize-discharge">Authorize PokePatient Discharge</a>
