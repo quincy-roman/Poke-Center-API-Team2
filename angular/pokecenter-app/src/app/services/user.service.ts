@@ -285,6 +285,49 @@ xhr.send();
 
 }
 
+public authorizeDischarge(patientId: number) {
+
+
+
+  console.log("in view my patient discharge service...")
+  let xhr = new XMLHttpRequest();
+ 
+
+
+  xhr.onreadystatechange = () => {
+      console.log('ReadyState: ' + xhr.readyState);
+      if (xhr.readyState <= 3) {
+          console.log('loading');
+      }
+      if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log("Success")
+          sessionStorage.setItem("alert", xhr.responseText);
+          //alert("Pokemon has been treated! Redirecting to Main Menu")
+          alert(sessionStorage.getItem("alert"))
+          this.router.navigateByUrl('/home');
+      }
+      if (xhr.readyState === 4 && xhr.status === 204) {
+          console.log("Failed. Status Code: " + xhr.status)
+          var reason = {
+              code: xhr.status,
+              issue: 'Failed to update profile information from server.'
+              //redirect to error page
+          };
+          console.log(reason);
+          sessionStorage.setItem('failMessage', JSON.stringify(reason));
+          console.log(sessionStorage.getItem('failMessage'));
+          //goes to error interceptor
+          alert('BAD MOJO!')
+      }
+      console.log("Processing")
+  };
+  xhr.open("PUT", `${API_URL}nurse//treatment/authorize-discharge`, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(patientId));
+
+
+}
+
 
 
   public registerNewTrainer(myUsername: string, myPassword: string, myName: string, myHometown: string){

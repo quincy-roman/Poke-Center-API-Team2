@@ -1,3 +1,4 @@
+import { AuthorizeDischargeComponent } from './components/authorize-discharge/authorize-discharge.component';
 import { ViewAllPatientsComponent } from './components/view-all-patients/view-all-patients.component';
 import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
 import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: "admin/table/view-patients",
     component: ViewAllPatientsComponent
+  },
+  {
+    path: "treatment/authorize-discharge",
+    component: AuthorizeDischargeComponent
   },
   {
     path: "home",

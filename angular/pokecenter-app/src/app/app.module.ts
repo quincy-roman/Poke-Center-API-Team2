@@ -24,6 +24,8 @@ import { ViewMyPatientsComponent } from './components/view-my-patients/view-my-p
 import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
 import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
 import { ViewAllPatientsComponent } from './components/view-all-patients/view-all-patients.component';
+import { AuthorizeDischargeComponent } from './components/authorize-discharge/authorize-discharge.component';
+import { CurrentMedicationStockComponent } from './components/current-medication-stock/current-medication-stock.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { ViewAllPatientsComponent } from './components/view-all-patients/view-al
     ViewMyPatientsComponent,
     TreatPokepatientComponent,
     SeeTreatmentOptionsComponent,
-    ViewAllPatientsComponent
+    ViewAllPatientsComponent,
+    AuthorizeDischargeComponent,
+    CurrentMedicationStockComponent
     
   ],
   imports: [
