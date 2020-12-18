@@ -591,14 +591,12 @@ export class TableService {
     }
 
 
-
     public viewAllAdmittedPatients() {
 
-        console.log("in view my all patients service...")
+        console.log("in view all admitted patients service...")
         let xhr = new XMLHttpRequest();
 
-
-
+        
 
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
@@ -608,7 +606,84 @@ export class TableService {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log("Success")
                 sessionStorage.setItem('tableData', xhr.responseText);
-                this.router.navigateByUrl('table/view-all-admitted-pokepatients');
+
+                console.log(sessionStorage.getItem('tableData'))
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+
+
+
+
+                            let pokemonPatientId = row.insertCell(0);
+
+                            let pokemonDexId = row.insertCell(1);
+                            let trainersId = row.insertCell(2);
+
+
+                            let admission = row.insertCell(3);
+                            let release = row.insertCell(4);
+                            let currentHP = row.insertCell(5);
+                            let maxHP = row.insertCell(6);
+                            let statusId = row.insertCell(7);
+                            let medId = row.insertCell(8);
+                            let healthy = row.insertCell(9);
+
+                            pokemonPatientId.innerHTML = d.patientid;
+                            pokemonDexId.innerHTML = d.pokemonDexId;
+                            trainersId.innerHTML = d.trainersId;
+
+
+                            admission.innerHTML = this.converttime(d.admission);
+                            release.innerHTML = this.converttime(d.release);
+                            currentHP.innerHTML = d.currentHP;
+                            maxHP.innerHTML = d.maxHP;
+                            switch (d.statusId) {
+                                case 1:
+                                    statusId.innerHTML = "Burn";
+                                    break;
+                                case 2:
+                                    statusId.innerHTML = "Sleep";
+                                    break;
+                                case 3:
+                                    statusId.innerHTML = "Freeze";
+                                    break;
+                                case 4:
+                                    statusId.innerHTML = "Poison";
+                                    break;
+                                case 5:
+                                    statusId.innerHTML = "Paralysis";
+                                    break;
+                                case 6:
+                                    statusId.innerHTML = "Fainted";
+                                    break;
+                            }
+                            medId.innerHTML = d.statusId;
+                            healthy.innerHTML = d.healthy;
+                        })
+                    }
+
+                }
+
+
+
+                //end of table logic
+               // alert("All PokePatients have succe")
+                this.router.navigateByUrl('admin/table/view-patients');
             }
             if (xhr.readyState === 4 && xhr.status === 204) {
                 console.log("Failed. Status Code: " + xhr.status)
@@ -625,12 +700,12 @@ export class TableService {
             }
             console.log("Processing")
         };
-        xhr.open("GET", "table/view-all-admitted-pokepatients", true);
+        xhr.open("GET", `${API_URL}admin/table/view-patients`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
 
-
-
     }
+
 
     public viewAllPastPokePatients() {
 

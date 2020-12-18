@@ -244,8 +244,9 @@ xhr.send();
    
 
     let treatTemplate ={
-      medId: medId,
-      patientId: patientId
+      patientid: patientId,
+      medid: medId
+     
     }
 
 
@@ -256,8 +257,9 @@ xhr.send();
         }
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("Success")
-           // sessionStorage.setItem("currentUser", xhr.responseText);
-            alert("Pokemon has been treated! Redirecting to Main Menu")
+            sessionStorage.setItem("alert", xhr.responseText);
+            //alert("Pokemon has been treated! Redirecting to Main Menu")
+            alert(sessionStorage.getItem("alert"))
             this.router.navigateByUrl('/home');
         }
         if (xhr.readyState === 4 && xhr.status === 204) {
@@ -275,7 +277,7 @@ xhr.send();
         }
         console.log("Processing")
     };
-    xhr.open("PUT", `${API_URL}trainer/update`, true);
+    xhr.open("PUT", `${API_URL}nurse/update/my-pokepatient-charts`, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     console.log(treatTemplate)
     xhr.send(JSON.stringify(treatTemplate));

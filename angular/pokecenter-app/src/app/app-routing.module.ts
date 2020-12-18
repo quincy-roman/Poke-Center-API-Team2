@@ -1,3 +1,4 @@
+import { ViewAllPatientsComponent } from './components/view-all-patients/view-all-patients.component';
 import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
 import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
 import { ViewMyPatientsComponent } from './components/view-my-patients/view-my-patients.component';
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: "trainer/admission",
     component: AdmissionComponent
+  },
+  {
+    path: "admin/table/view-patients",
+    component: ViewAllPatientsComponent
   },
   {
     path: "home",

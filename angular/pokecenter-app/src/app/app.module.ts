@@ -23,6 +23,7 @@ import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.com
 import { ViewMyPatientsComponent } from './components/view-my-patients/view-my-patients.component';
 import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
 import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
+import { ViewAllPatientsComponent } from './components/view-all-patients/view-all-patients.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SeeTreatmentOptionsComponent } from './components/see-treatment-options
     AssignNurseComponent,
     ViewMyPatientsComponent,
     TreatPokepatientComponent,
-    SeeTreatmentOptionsComponent
+    SeeTreatmentOptionsComponent,
+    ViewAllPatientsComponent
     
   ],
   imports: [

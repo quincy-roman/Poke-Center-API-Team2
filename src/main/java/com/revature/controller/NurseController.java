@@ -45,8 +45,13 @@ public class NurseController implements EmployeeController {
 
 	@PutMapping(path = "/update/my-pokepatient-charts", consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<ClientMessage> applymeds(@RequestBody TreatmentWrapper t){
+		
+		
+		System.out.println(t.getPatientid());
+		
 		Patient p = nurseService.findPatient(t.getPatientid());
 		Medicine m = nurseService.getMed(t.getMedid());
+		System.out.println("\n"+p+ "\n");
 		ClientMessage body = (nurseService.applytreatment(p, m)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
