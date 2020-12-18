@@ -27,6 +27,20 @@ table{
     margin :auto;
 
 }
+h1{
+    font-family: 'Pokemon Solid', sans-serif;
+    letter-spacing: 2.5px;
+    display: contents;
+    text-align: center;
+    margin: 20px auto;
+    color: #0dc285;
+    -webkit-text-stroke: 1px black;
+}
+
+#form-container,#head-container{
+    width:90%;
+    margin: 20px auto;
+}
 
 .goBack:hover {
     background-color: blue;
