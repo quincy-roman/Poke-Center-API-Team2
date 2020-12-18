@@ -117,7 +117,10 @@ public class NurseRepositoryImpl implements NurseRepository {
 		sf.getCurrentSession().evict(patient);
 
 		patient.setMed(med);
+		patient.setCurrentHP(patient.getMaxHP());
+		//patient.setHealthy(true);
 
+		
 		sf.getCurrentSession().update(patient);
 		
 		return patient;

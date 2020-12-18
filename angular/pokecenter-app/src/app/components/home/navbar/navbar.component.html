@@ -32,32 +32,28 @@
                     <a class="nav-link" routerLink="/nurse/table/view-my-pokepatients" (click)="viewMyPokemonPatients()">View
                         My PokePatients</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/table/view-past-pokepatients" (click)="viewPastPokePatients()">View
                         My Past PokePatients</a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/table/view-my-pokepatient-charts"
                         (click)="viewMyPokePatientsCharts()">View My PokePatient Charts</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/nurse/table/get-poketreatment-by-patient-id">See Treatment Options</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/table/get-poketreatment-by-patient-id"
-                        (click)="getPokeTreatmentByPatientId()">Treat Patient</a>
+                    <a class="nav-link" routerLink="/nurse/update/my-pokepatient-charts">Treat Patient</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/treatment/authorize-discharge">Authorize PokePatient Discharge</a>
+                    <a class="nav-link" routerLink="/admin/table/view-patients" (click)="viewAllAdmittedPatients()">View All Admitted PokePatients</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/table/view-all-admitted-pokepatients"
-                        (click)="viewAllAdmittedPatients()">View All Admitted PokePatients</a>
-                </li>
-                <li class="nav-item">
+                
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/table/view-all-past-pokepatients"
                         (click)="viewMyPokePatientsCharts()">View Past PokePatients</a>
-                </li>
+                </li> -->
             </div>
             <br>
             <div class="AdminControls hide">
@@ -66,28 +62,38 @@
                     <a class="nav-link" routerLink="/admin/assign-nurse">Assign a Nurse</a>
                 </li> 
                 <li class="nav-item">
+                    <a class="nav-link" routerLink="/nurse/treatment/authorize-discharge">Authorize PokePatient Discharge</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/table/view-patients" (click)="viewAllAdmittedPatients()">View All Admitted PokePatients</a>
+                </li>
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/table/view-billing" (click)="viewPokeCenterBilling()">View
                         PokeCenter Billing History</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/table/view-current-med-stock"
                         (click)="viewCurrentMedicationStock()">View Current Medication Stock</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/admin/order-medication">Orders Medication</a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a class="nav-link" routerLink="/admin/modify-user-info">Modify User Information</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/table/view-trainers" (click)="viewAllTrainers()">View All Trainers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/table/view-all-users" (click)="viewAllUsers()">View All Users</a>
+                    <a class="nav-link" routerLink="/admin/table/view-employees" (click)="viewAllEmployees()">View All Employees</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/remove-user">Remove User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/remove-record">Remove Patient Record</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/remove-trainer" (click)="viewAllTrainersRemoval()">Remove Trainer</a>
+                </li> -->
+               
+                <!-- <li class="nav-item">
+                    <a class="nav-link" routerLink="/admin/remove-record" (click)="viewAllPatientsRemoval()">Remove Patient Record</a>
+                </li> -->
             </div>
             <br>
             <li class="nav-item">
@@ -95,4 +101,6 @@
             </li>
         </ul>
     </div>
+
+  <!--<audio src = "../../../../../../pokecenter-app/src/assets/sounds/pokemon-opening.mp3" autoplay loop></audio>-->
 </div>

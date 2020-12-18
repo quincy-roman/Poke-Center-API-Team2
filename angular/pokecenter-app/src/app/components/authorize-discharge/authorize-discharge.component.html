@@ -1,12 +1,9 @@
 <div id="root-body">
     <div class="jumbotron">
-      <h1 class="display-4 text-center">Welcome to the Treatment Center!</h1>
-      <p class="lead text-center">Please enter the Medicine ID you wish to use and the patient ID you wish to heal:</p>
-      <form id="form" #form="ngForm" (submit)="treatPatient(form.value)">
-        <div class="form-group">
-            <label for="medId">Medicine ID:</label>
-            <input type="text" class="form-control" id="medId" name="medId" [(ngModel)]="medId">
-          </div>
+      <h1 class="display-4 text-center">Patient Discharge Authorization!</h1>
+      <p class="lead text-center">Please enter the Patient ID of the patient you wish to discharge:</p>
+      <form id="form" #form="ngForm" (submit)="authorizePatientDischarge(form.value)">
+        
         
         <div class="form-group">
           <label for="patientId">Patient ID:</label>

@@ -340,7 +340,7 @@ export class TableService {
         console.log("in view treatement by status service...")
         let xhr = new XMLHttpRequest();
 
-        let status ='';
+        let status = '';
         switch (statusId) {
             case 1:
                 status = "Burn";
@@ -352,22 +352,22 @@ export class TableService {
                 status = "Freeze";
                 break;
             case 4:
-               status = "Poison";
+                status = "Poison";
                 break;
             case 5:
-               status = "Paralysis";
+                status = "Paralysis";
                 break;
             case 6:
                 status = "Fainted";
                 break;
         }
 
-        let statusTemplate ={
-            statusId : statusId,
-            status : status
+        let statusTemplate = {
+            statusId: statusId,
+            status: status
 
         }
-       
+
 
 
         xhr.onreadystatechange = () => {
@@ -400,8 +400,8 @@ export class TableService {
                             let row = table.insertRow();
 
 
-                           
-            
+
+
 
 
 
@@ -414,7 +414,7 @@ export class TableService {
 
                             let quantity = row.insertCell(3);
                             let useCase = row.insertCell(4);
-                            
+
 
                             medicineId.innerHTML = d.medId;
                             medName.innerHTML = d.medName;
@@ -422,8 +422,8 @@ export class TableService {
 
 
                             quantity.innerHTML = d.stock;
-                          //  useCase.innerHTML = ///VARIABLE WE COLLECT);
-                           
+                            //  useCase.innerHTML = ///VARIABLE WE COLLECT);
+
                             switch (statusId) {
                                 case 1:
                                     useCase.innerHTML = "Burn";
@@ -444,7 +444,7 @@ export class TableService {
                                     useCase.innerHTML = "Fainted";
                                     break;
                             }
-                           
+
                         })
                     }
 
@@ -591,12 +591,10 @@ export class TableService {
     }
 
 
-
     public viewAllAdmittedPatients() {
 
-        console.log("in view my all patients service...")
+        console.log("in view all admitted patients service...")
         let xhr = new XMLHttpRequest();
-
 
 
 
@@ -608,7 +606,84 @@ export class TableService {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log("Success")
                 sessionStorage.setItem('tableData', xhr.responseText);
-                this.router.navigateByUrl('table/view-all-admitted-pokepatients');
+
+                console.log(sessionStorage.getItem('tableData'))
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+
+
+
+
+                            let pokemonPatientId = row.insertCell(0);
+
+                            let pokemonDexId = row.insertCell(1);
+                            let trainersId = row.insertCell(2);
+
+
+                            let admission = row.insertCell(3);
+                            let release = row.insertCell(4);
+                            let currentHP = row.insertCell(5);
+                            let maxHP = row.insertCell(6);
+                            let statusId = row.insertCell(7);
+                            let medId = row.insertCell(8);
+                            let healthy = row.insertCell(9);
+
+                            pokemonPatientId.innerHTML = d.patientid;
+                            pokemonDexId.innerHTML = d.pokemonDexId;
+                            trainersId.innerHTML = d.trainersId;
+
+
+                            admission.innerHTML = this.converttime(d.admission);
+                            release.innerHTML = this.converttime(d.release);
+                            currentHP.innerHTML = d.currentHP;
+                            maxHP.innerHTML = d.maxHP;
+                            switch (d.statusId) {
+                                case 1:
+                                    statusId.innerHTML = "Burn";
+                                    break;
+                                case 2:
+                                    statusId.innerHTML = "Sleep";
+                                    break;
+                                case 3:
+                                    statusId.innerHTML = "Freeze";
+                                    break;
+                                case 4:
+                                    statusId.innerHTML = "Poison";
+                                    break;
+                                case 5:
+                                    statusId.innerHTML = "Paralysis";
+                                    break;
+                                case 6:
+                                    statusId.innerHTML = "Fainted";
+                                    break;
+                            }
+                            medId.innerHTML = d.statusId;
+                            healthy.innerHTML = d.healthy;
+                        })
+                    }
+
+                }
+
+
+
+                //end of table logic
+                // alert("All PokePatients have succe")
+                this.router.navigateByUrl('admin/table/view-patients');
             }
             if (xhr.readyState === 4 && xhr.status === 204) {
                 console.log("Failed. Status Code: " + xhr.status)
@@ -625,10 +700,125 @@ export class TableService {
             }
             console.log("Processing")
         };
-        xhr.open("GET", "table/view-all-admitted-pokepatients", true);
+        xhr.open("GET", `${API_URL}admin/table/view-patients`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
 
+    }
 
+
+    public viewAllPatientsRemoval() {
+
+        console.log("in view all admitted patients service...")
+        let xhr = new XMLHttpRequest();
+
+
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+            if (xhr.readyState <= 3) {
+                console.log('loading');
+            }
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Success")
+                sessionStorage.setItem('tableData', xhr.responseText);
+
+                console.log(sessionStorage.getItem('tableData'))
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+
+
+
+
+                            let pokemonPatientId = row.insertCell(0);
+
+                            let pokemonDexId = row.insertCell(1);
+                            let trainersId = row.insertCell(2);
+
+
+                            let admission = row.insertCell(3);
+                            let release = row.insertCell(4);
+                            let currentHP = row.insertCell(5);
+                            let maxHP = row.insertCell(6);
+                            let statusId = row.insertCell(7);
+                            let medId = row.insertCell(8);
+                            let healthy = row.insertCell(9);
+
+                            pokemonPatientId.innerHTML = d.patientid;
+                            pokemonDexId.innerHTML = d.pokemonDexId;
+                            trainersId.innerHTML = d.trainersId;
+
+
+                            admission.innerHTML = this.converttime(d.admission);
+                            release.innerHTML = this.converttime(d.release);
+                            currentHP.innerHTML = d.currentHP;
+                            maxHP.innerHTML = d.maxHP;
+                            switch (d.statusId) {
+                                case 1:
+                                    statusId.innerHTML = "Burn";
+                                    break;
+                                case 2:
+                                    statusId.innerHTML = "Sleep";
+                                    break;
+                                case 3:
+                                    statusId.innerHTML = "Freeze";
+                                    break;
+                                case 4:
+                                    statusId.innerHTML = "Poison";
+                                    break;
+                                case 5:
+                                    statusId.innerHTML = "Paralysis";
+                                    break;
+                                case 6:
+                                    statusId.innerHTML = "Fainted";
+                                    break;
+                            }
+                            medId.innerHTML = d.statusId;
+                            healthy.innerHTML = d.healthy;
+                        })
+                    }
+
+                }
+
+
+
+                //end of table logic
+                // alert("All PokePatients have succe")
+                this.router.navigateByUrl('admin/remove-record');
+            }
+            if (xhr.readyState === 4 && xhr.status === 204) {
+                console.log("Failed. Status Code: " + xhr.status)
+                var reason = {
+                    code: xhr.status,
+                    issue: 'Failed to load table data from server.'
+                    //redirect to error page
+                };
+                console.log(reason);
+                sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                console.log(sessionStorage.getItem('failMessage'));
+                //goes to error interceptor
+                alert('BAD MOJO!')
+            }
+            console.log("Processing")
+        };
+        xhr.open("GET", `${API_URL}admin/table/view-patients`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
 
     }
 
@@ -713,13 +903,14 @@ export class TableService {
 
     }
 
+
+
+
+
     public viewCurrentMedicationStock() {
 
-        console.log("in view medicine stock service...")
+        console.log("in view current med stock by status service...")
         let xhr = new XMLHttpRequest();
-
-
-
 
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
@@ -728,7 +919,56 @@ export class TableService {
             }
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log("Success")
+
                 sessionStorage.setItem('tableData', xhr.responseText);
+
+                console.log(sessionStorage.getItem('tableData'))
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+
+
+                            let medicineId = row.insertCell(0);
+
+                            let medName = row.insertCell(1);
+                            let price = row.insertCell(2);
+
+
+                            let quantity = row.insertCell(3);
+                            let useCase = row.insertCell(4);
+
+
+                            medicineId.innerHTML = d.medId;
+                            medName.innerHTML = d.medName;
+                            price.innerHTML = d.cost;
+
+
+                            quantity.innerHTML = d.stock;
+
+
+
+                        })
+                    }
+
+                }
+
+
+
+                //end of table logic
                 this.router.navigateByUrl('table/view-current-med-stock');
             }
             if (xhr.readyState === 4 && xhr.status === 204) {
@@ -746,21 +986,16 @@ export class TableService {
             }
             console.log("Processing")
         };
-        xhr.open("GET", "table/view-current-med-stock", true);
+        xhr.open("GET", `${API_URL}admin/table/view-current-med-stock`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
 
 
-
     }
+    public viewAllTrainersRemoval() {
 
-    public viewAllUsers() {
-
-        console.log("in view all users service...")
+        console.log("in view all trainers1 service...")
         let xhr = new XMLHttpRequest();
-
-
-
-
         xhr.onreadystatechange = () => {
             console.log('ReadyState: ' + xhr.readyState);
             if (xhr.readyState <= 3) {
@@ -769,28 +1004,207 @@ export class TableService {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log("Success")
                 sessionStorage.setItem('tableData', xhr.responseText);
-                this.router.navigateByUrl('table/view-all-users');
+                //table logic
+
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+                            let trainerId = row.insertCell(0);
+                            let trainerName = row.insertCell(1);
+                            let hometown = row.insertCell(2);
+                            let username = row.insertCell(3);
+                            let password = row.insertCell(4);
+                            trainerId.innerHTML = d.trainerid;
+                            trainerName.innerHTML = d.name;
+                            hometown.innerHTML = d.hometown;
+                            username.innerHTML = d.username;
+                            password.innerHTML = d.password;
+                        })
+
+                        //end of table logic
+
+                    } this.router.navigate(['/admin/remove-trainer']);
+
+                } 
+            }if (xhr.readyState === 4 && xhr.status > 200) {
+                    console.log("Failed. Status Code: " + xhr.status)
+                    var reason = {
+                        code: xhr.status,
+                        issue: 'Failed to load table data from server.'
+                    };
+                    console.log(reason);
+                    sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                    let message = JSON.parse(sessionStorage.getItem('failMessage'));
+                    //goes to error interceptor
+                    alert(`Status Code: ${message.code} - ${message.issue}`);
+                    //renavigate to home page
+                    this.router.navigateByUrl('/home');
+                }
+                console.log("Processing")
             }
-            if (xhr.readyState === 4 && xhr.status === 204) {
-                console.log("Failed. Status Code: " + xhr.status)
-                var reason = {
-                    code: xhr.status,
-                    issue: 'Failed to load table data from server.'
-                    //redirect to error page
-                };
-                console.log(reason);
-                sessionStorage.setItem('failMessage', JSON.stringify(reason));
-                console.log(sessionStorage.getItem('failMessage'));
-                //goes to error interceptor
-                alert('BAD MOJO!')
+            xhr.open("GET", `${API_URL}admin/table/view-trainers`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+        }
+    public viewAllTrainers() {
+
+        console.log("in view all trainers1 service...")
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+            if (xhr.readyState <= 3) {
+                console.log('loading');
             }
-            console.log("Processing")
-        };
-        xhr.open("POST", "table/view-all-users", true);
-        xhr.send();
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Success")
+                sessionStorage.setItem('tableData', xhr.responseText);
+                //table logic
 
+                //table logic
+                console.log("Successfully retrieved data from server")
 
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
 
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+                            let trainerId = row.insertCell(0);
+                            let trainerName = row.insertCell(1);
+                            let hometown = row.insertCell(2);
+                            let username = row.insertCell(3);
+                            let password = row.insertCell(4);
+                            trainerId.innerHTML = d.trainerid;
+                            trainerName.innerHTML = d.name;
+                            hometown.innerHTML = d.hometown;
+                            username.innerHTML = d.username;
+                            password.innerHTML = d.password;
+                        })
+
+                        //end of table logic
+
+                    } this.router.navigate(['/admin/table/view-trainers']);
+
+                } 
+            }if (xhr.readyState === 4 && xhr.status > 200) {
+                    console.log("Failed. Status Code: " + xhr.status)
+                    var reason = {
+                        code: xhr.status,
+                        issue: 'Failed to load table data from server.'
+                    };
+                    console.log(reason);
+                    sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                    let message = JSON.parse(sessionStorage.getItem('failMessage'));
+                    //goes to error interceptor
+                    alert(`Status Code: ${message.code} - ${message.issue}`);
+                    //renavigate to home page
+                    this.router.navigateByUrl('/home');
+                }
+                console.log("Processing")
+            }
+            xhr.open("GET", `${API_URL}admin/table/view-trainers`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+        }
+    
+
+    public viewAllEmployees() {
+
+        console.log("in view all employees service...")
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+            if (xhr.readyState <= 3) {
+                console.log('loading');
+            }
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Success")
+                sessionStorage.setItem('tableData', xhr.responseText);
+                //table logic
+
+                //table logic
+                console.log("Successfully retrieved data from server")
+
+                const table: HTMLTableElement = <HTMLTableElement>document.getElementById('table-data');
+                let dataString = sessionStorage.getItem('tableData');
+
+                console.log(dataString);
+                if (dataString != null) {
+                    console.log(dataString);
+                    let data = JSON.parse(dataString);
+                    console.log(data);
+                    if (data != null) {
+                        table.innerHTML = "";
+                        // load data into table
+                        data.forEach(d => {
+                            let row = table.insertRow();
+                            let empid = row.insertCell(0);
+                            let username = row.insertCell(1);
+                            let password = row.insertCell(2);
+                            let name = row.insertCell(3);
+                            let roleid = row.insertCell(4);
+
+                            console.log(d.roleid)
+                            if(d.roleId==1){                                 
+                                roleid.innerHTML="Nurse"
+
+                            }else{
+                                roleid.innerHTML ="Admin"
+                            }
+
+                            empid.innerHTML = d.empid;
+                            username.innerHTML = d.username;
+                            password.innerHTML = d.password;
+                            name.innerHTML = d.name;
+                            //roleid.innerHTML = d.roleId;
+                            
+                        })
+
+                        //end of table logic
+
+                    } this.router.navigate(['/admin/table/view-employees']);
+
+                } 
+            }if (xhr.readyState === 4 && xhr.status > 200) {
+                    console.log("Failed. Status Code: " + xhr.status)
+                    var reason = {
+                        code: xhr.status,
+                        issue: 'Failed to load table data from server.'
+                    };
+                    console.log(reason);
+                    sessionStorage.setItem('failMessage', JSON.stringify(reason));
+                    let message = JSON.parse(sessionStorage.getItem('failMessage'));
+                    //goes to error interceptor
+                    alert(`Status Code: ${message.code} - ${message.issue}`);
+                    //renavigate to home page
+                    this.router.navigateByUrl('/home');
+                }
+                console.log("Processing")
+            }
+            xhr.open("GET", `${API_URL}admin/table/view-employees`, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+        }
     }
 
 
@@ -803,4 +1217,4 @@ export class TableService {
 
 
 
-}
+

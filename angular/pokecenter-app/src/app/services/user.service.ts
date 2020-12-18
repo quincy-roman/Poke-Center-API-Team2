@@ -235,6 +235,100 @@ xhr.send();
   }
 
 
+  public treatPatient(medId:number, patientId: number) {
+
+
+
+    console.log("in view my treat patient service...")
+    let xhr = new XMLHttpRequest();
+   
+
+    let treatTemplate ={
+      patientid: patientId,
+      medid: medId
+     
+    }
+
+
+    xhr.onreadystatechange = () => {
+        console.log('ReadyState: ' + xhr.readyState);
+        if (xhr.readyState <= 3) {
+            console.log('loading');
+        }
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Success")
+            sessionStorage.setItem("alert", xhr.responseText);
+            //alert("Pokemon has been treated! Redirecting to Main Menu")
+            alert(sessionStorage.getItem("alert"))
+            this.router.navigateByUrl('/home');
+        }
+        if (xhr.readyState === 4 && xhr.status === 204) {
+            console.log("Failed. Status Code: " + xhr.status)
+            var reason = {
+                code: xhr.status,
+                issue: 'Failed to update profile information from server.'
+                //redirect to error page
+            };
+            console.log(reason);
+            sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+    };
+    xhr.open("PUT", `${API_URL}nurse/update/my-pokepatient-charts`, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    console.log(treatTemplate)
+    xhr.send(JSON.stringify(treatTemplate));
+
+
+}
+
+public authorizeDischarge(patientId: number) {
+
+
+
+  console.log("in view my patient discharge service...")
+  let xhr = new XMLHttpRequest();
+ 
+
+
+  xhr.onreadystatechange = () => {
+      console.log('ReadyState: ' + xhr.readyState);
+      if (xhr.readyState <= 3) {
+          console.log('loading');
+      }
+      if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log("Success")
+          sessionStorage.setItem("alert", xhr.responseText);
+          //alert("Pokemon has been treated! Redirecting to Main Menu")
+          alert(sessionStorage.getItem("alert"))
+          this.router.navigateByUrl('/home');
+      }
+      if (xhr.readyState === 4 && xhr.status === 204) {
+          console.log("Failed. Status Code: " + xhr.status)
+          var reason = {
+              code: xhr.status,
+              issue: 'Failed to update profile information from server.'
+              //redirect to error page
+          };
+          console.log(reason);
+          sessionStorage.setItem('failMessage', JSON.stringify(reason));
+          console.log(sessionStorage.getItem('failMessage'));
+          //goes to error interceptor
+          alert('BAD MOJO!')
+      }
+      console.log("Processing")
+  };
+  xhr.open("PUT", `${API_URL}nurse//treatment/authorize-discharge`, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(patientId));
+
+
+}
+
+
 
   public registerNewTrainer(myUsername: string, myPassword: string, myName: string, myHometown: string){
 
@@ -280,6 +374,95 @@ xhr.send();
         xhr.open("POST", `${API_URL}trainer/registration`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(trainerTemplate));
+
+
+
+  }
+
+  public removePatient(trainerId: number){
+
+    console.log("in remove Trainer service...")
+        let xhr = new XMLHttpRequest();
+
+      
+        
+        
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+    	if(xhr.readyState <= 3){
+    		console.log('loading');
+    	}
+        if(xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("Success")
+           // sessionStorage.setItem('tableData', xhr.responseText);
+           alert(`Patient with Patient ID: ${trainerId} has been removed from our records`)
+            this.router.navigateByUrl('home')
+        }
+        if(xhr.readyState ===4 && xhr.status ===204)
+        {
+            console.log("Failed. Status Code: " + xhr.status)
+			var reason = {
+				code : xhr.status,
+        issue : 'Failed to remove user.'
+        //redirect to error page
+			};
+			console.log(reason);
+			sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+        };
+        xhr.open("DELETE", `${API_URL}admin/remove-record`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(trainerId));
+
+
+
+  }
+  public removeTrainer(trainerId: number){
+
+    console.log("in remove Trainer service...")
+        let xhr = new XMLHttpRequest();
+
+      
+        
+        
+
+        xhr.onreadystatechange = () => {
+            console.log('ReadyState: ' + xhr.readyState);
+    	if(xhr.readyState <= 3){
+    		console.log('loading');
+    	}
+        if(xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("Success")
+           // sessionStorage.setItem('tableData', xhr.responseText);
+           alert(`User with Trainer ID: ${trainerId} has been removed from our records`)
+            this.router.navigateByUrl('home')
+        }
+        if(xhr.readyState ===4 && xhr.status ===204)
+        {
+            console.log("Failed. Status Code: " + xhr.status)
+			var reason = {
+				code : xhr.status,
+        issue : 'Failed to remove user.'
+        //redirect to error page
+			};
+			console.log(reason);
+			sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+        };
+        xhr.open("DELETE", `${API_URL}admin/remove-trainer`, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(trainerId));
 
 
 

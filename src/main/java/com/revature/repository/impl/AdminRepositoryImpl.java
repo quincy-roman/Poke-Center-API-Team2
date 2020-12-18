@@ -74,9 +74,23 @@ public class AdminRepositoryImpl implements AdminRepository {
 		return sf.getCurrentSession().createCriteria(Patient.class).list();
 	}
 
+//	@Override
+//	public <T> void remove(T user) {
+//		sf.getCurrentSession().delete(user);
+//	}
+	
+	public void remove(Patient p) {
+		sf.getCurrentSession().delete(p);
+	}
+	
 	@Override
-	public <T> void remove(T user) {
-		sf.getCurrentSession().delete(user);
+	public void remove(Employee e) {
+		sf.getCurrentSession().delete(e);
+	}
+	
+	@Override
+	public void remove(Trainer t) {
+		sf.getCurrentSession().delete(t);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -111,6 +125,22 @@ public class AdminRepositoryImpl implements AdminRepository {
 	public BillingHistory save(BillingHistory b) {
 		sf.getCurrentSession().save(b);		
 		return b;
+	}
+
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Employee getEmployee(int empid) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(Employee.class);
+			crit.add(Restrictions.idEq(empid));
+			
+			List<Employee> employee = crit.list();
+			
+			return employee.get(0);	
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 }

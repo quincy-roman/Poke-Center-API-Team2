@@ -23,6 +23,13 @@ import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.com
 import { ViewMyPatientsComponent } from './components/view-my-patients/view-my-patients.component';
 import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
 import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
+import { ViewAllPatientsComponent } from './components/view-all-patients/view-all-patients.component';
+import { AuthorizeDischargeComponent } from './components/authorize-discharge/authorize-discharge.component';
+import { CurrentMedicationStockComponent } from './components/current-medication-stock/current-medication-stock.component';
+import { ViewAllUsersComponent } from './components/view-all-users/view-all-users.component';
+import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
+import { RemoveTrainerComponent } from './components/remove-trainer/remove-trainer.component';
+import { RemoveEmployeeComponent } from './components/remove-employee/remove-employee.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,14 @@ import { SeeTreatmentOptionsComponent } from './components/see-treatment-options
     AssignNurseComponent,
     ViewMyPatientsComponent,
     TreatPokepatientComponent,
-    SeeTreatmentOptionsComponent
+    SeeTreatmentOptionsComponent,
+    ViewAllPatientsComponent,
+    AuthorizeDischargeComponent,
+    CurrentMedicationStockComponent,
+    ViewAllUsersComponent,
+    ViewEmployeesComponent,
+    RemoveTrainerComponent,
+    RemoveEmployeeComponent
     
   ],
   imports: [
