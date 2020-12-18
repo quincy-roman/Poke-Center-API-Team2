@@ -1,3 +1,5 @@
+import { RemoveEmployeeComponent } from './components/remove-employee/remove-employee.component';
+import { RemoveTrainerComponent } from './components/remove-trainer/remove-trainer.component';
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
 import { ViewAllUsersComponent } from './components/view-all-users/view-all-users.component';
 import { CurrentMedicationStockComponent } from './components/current-medication-stock/current-medication-stock.component';
@@ -67,7 +69,7 @@ const routes: Routes = [
     component: ViewAllPatientsComponent
   },
   {
-    path: "treatment/authorize-discharge",
+    path: "nurse/treatment/authorize-discharge",
     component: AuthorizeDischargeComponent
   },
   {
@@ -132,6 +134,15 @@ const routes: Routes = [
     path: "admin/assign-nurse",
     component: AssignNurseComponent
   },
+  {
+    path: "admin/remove-record",
+    component: RemoveTrainerComponent
+  },
+  {
+    path: "admin/remove-employee",
+    component: RemoveEmployeeComponent
+  },
+  
   {
     path: "",
     redirectTo: "/signin",

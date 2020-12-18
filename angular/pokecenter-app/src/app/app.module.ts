@@ -29,6 +29,7 @@ import { CurrentMedicationStockComponent } from './components/current-medication
 import { ViewAllUsersComponent } from './components/view-all-users/view-all-users.component';
 import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
 import { RemoveTrainerComponent } from './components/remove-trainer/remove-trainer.component';
+import { RemoveEmployeeComponent } from './components/remove-employee/remove-employee.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { RemoveTrainerComponent } from './components/remove-trainer/remove-train
     CurrentMedicationStockComponent,
     ViewAllUsersComponent,
     ViewEmployeesComponent,
-    RemoveTrainerComponent
+    RemoveTrainerComponent,
+    RemoveEmployeeComponent
     
   ],
   imports: [

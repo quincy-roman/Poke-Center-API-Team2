@@ -1,1 +1,91 @@
-<p>remove-trainer works!</p>
+<div id="home-container">
+    <div id="root-body">
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Welcome to Patient Removal!</h1>
+            <p class="lead text-center">Please enter the Patient ID you wish to remove from our records.</p>
+        
+  
+                <table class="table" >
+                    <thead>
+                      <tr>
+                        <th scope="col">Patient ID</th>
+                        <th scope="col">PokeDex#</th>
+                        <th scope="col">Trainer ID</th>
+                        <th scope="col">Admission</th>
+                        <th scope="col">Release</th>
+                        <th scope="col">Current HP</th>
+                        <th scope="col">Max HP</th>
+                        <th scope="col">Initial Symptoms </th>
+                        <th scope="col">Med ID</th>
+                        <th scope="col">Healed</th>
+                      </tr>
+                    </thead>
+                    <tbody id ="table-data">
+                      <tr>
+                        <th name="row" scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                      </tr>
+                      <tr>
+                        <th name="row"scope="row">2</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                      </tr>
+                      <tr>
+                        <th name="row" scope="row">3</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Mark</td>
+                      </tr>
+                    </tbody>
+                  </table>
+               
+            
+            
+            
+            
+
+
+
+
+
+
+            
+
+
+            <form id="form" #form="ngForm" (submit)="removeTrainer(form.value)">
+                <div class="form-group">
+                    <label for="trainerId">Patient ID:</label>
+                    <input type="text" class="form-control" id="trainerId" name="trainerId" [(ngModel)]="trainerId">
+                </div>
+
+
+
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                </div>
+                <br>
+                <div class="text-center">
+                    <button routerLink="/home" class="btn btn-primary submit-btn">Go Back</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

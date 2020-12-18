@@ -141,6 +141,11 @@ export class NavbarComponent implements OnInit {
 
   public viewAllEmployees() {
     this.tableService.viewAllEmployees();
+
+  }
+
+  viewAllPatientsRemoval(){
+    this.tableService.viewAllPatientsRemoval();
   }
 
 

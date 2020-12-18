@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemoveTrainerComponent implements OnInit {
 
-  constructor() { }
+  trainerId: number;
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
+
+  removeTrainer(value: any){
+    const trainId = document.getElementById("trainerId") as HTMLInputElement;
+    let patId = Number(trainId.value)
+
+this.userService.removePatient(patId);
+  }
 }
