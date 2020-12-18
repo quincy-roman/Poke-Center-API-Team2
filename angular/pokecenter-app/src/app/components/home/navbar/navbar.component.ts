@@ -104,9 +104,7 @@ public viewMyPokePatientsCharts(){
   this.tableService.viewMyPokePatientCharts(this.user.id);
 }
 
-public getPokeTreatmentByPatientId(){
-  this.tableService.getPokeTreatmentByPatientId(this.user.id);
-}
+
 
 public viewAllAdmittedPatients(){
   this.tableService.viewAllAdmittedPatients();
@@ -124,11 +122,15 @@ public viewCurrentMedicationStock(){
   this.tableService.viewCurrentMedicationStock();
 }
 
-public viewAllUsers(){
-  this.tableService.viewAllUsers();
+public viewAllTrainers(){
+  this.tableService.viewAllTrainers();
 }
 public viewMyProfile(){
   this.dashboardService.viewMyProfile(this.user.id);
+}
+
+public viewAllEmployees(){
+  this.tableService.viewAllEmployees();
 }
 
 

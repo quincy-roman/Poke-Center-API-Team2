@@ -1,3 +1,6 @@
+import { ViewEmployeesComponent } from './components/view-employees/view-employees.component';
+import { ViewAllUsersComponent } from './components/view-all-users/view-all-users.component';
+import { CurrentMedicationStockComponent } from './components/current-medication-stock/current-medication-stock.component';
 import { AuthorizeDischargeComponent } from './components/authorize-discharge/authorize-discharge.component';
 import { ViewAllPatientsComponent } from './components/view-all-patients/view-all-patients.component';
 import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
@@ -42,6 +45,10 @@ const routes: Routes = [
   {
     path: "nurse/table/view-my-pokepatients",
     component: ViewMyPatientsComponent
+  },
+  {
+    path: "table/view-current-med-stock",
+    component: CurrentMedicationStockComponent
   },
   {
     path: "nurse/update/my-pokepatient-charts",
@@ -110,12 +117,16 @@ const routes: Routes = [
     component: TableComponent
   },
   {
+    path: "admin/table/view-employees",
+    component: ViewEmployeesComponent
+  },
+  {
     path: "table/view-current-med-stock",
     component: TableComponent
   },
   {
-    path: "table/view-all-users",
-    component: TableComponent
+    path: "admin/table/view-trainers",
+    component: ViewAllUsersComponent
   },
   {
     path: "admin/assign-nurse",
