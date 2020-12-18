@@ -1,1 +1,25 @@
-<p>treat-pokepatient works!</p>
+<div id="root-body">
+    <div class="jumbotron">
+      <h1 class="display-4 text-center">Welcome to the Treatment Center!</h1>
+      <p class="lead text-center">Please enter the Medicine ID you wish to use and the patient ID you wish to heal:</p>
+      <form id="form" #form="ngForm" (submit)="treatPatient(form.value)">
+        <div class="form-group">
+            <label for="medId">Medicine ID:</label>
+            <input type="text" class="form-control" id="medId" name="medId" [(ngModel)]="medId">
+          </div>
+        
+        <div class="form-group">
+          <label for="patientId">Patient ID:</label>
+          <input type="text" class="form-control" id="patientId" name="patientId" [(ngModel)]="patientId">
+        </div>
+        
+  
+       
+  
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+        </div>
+      </form>
+    
+    </div>
+  </div>

@@ -235,6 +235,55 @@ xhr.send();
   }
 
 
+  public treatPatient(medId:number, patientId: number) {
+
+
+
+    console.log("in view my treat patient service...")
+    let xhr = new XMLHttpRequest();
+   
+
+    let treatTemplate ={
+      medId: medId,
+      patientId: patientId
+    }
+
+
+    xhr.onreadystatechange = () => {
+        console.log('ReadyState: ' + xhr.readyState);
+        if (xhr.readyState <= 3) {
+            console.log('loading');
+        }
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("Success")
+           // sessionStorage.setItem("currentUser", xhr.responseText);
+            alert("Pokemon has been treated! Redirecting to Main Menu")
+            this.router.navigateByUrl('/home');
+        }
+        if (xhr.readyState === 4 && xhr.status === 204) {
+            console.log("Failed. Status Code: " + xhr.status)
+            var reason = {
+                code: xhr.status,
+                issue: 'Failed to update profile information from server.'
+                //redirect to error page
+            };
+            console.log(reason);
+            sessionStorage.setItem('failMessage', JSON.stringify(reason));
+            console.log(sessionStorage.getItem('failMessage'));
+            //goes to error interceptor
+            alert('BAD MOJO!')
+        }
+        console.log("Processing")
+    };
+    xhr.open("PUT", `${API_URL}trainer/update`, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    console.log(treatTemplate)
+    xhr.send(JSON.stringify(treatTemplate));
+
+
+}
+
+
 
   public registerNewTrainer(myUsername: string, myPassword: string, myName: string, myHometown: string){
 
