@@ -40,9 +40,9 @@
 	
 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver"/>
-		<property name="url" value="jdbc:postgresql://database-1.cmwalx0cdgly.us-east-2.rds.amazonaws.com/Pokemon" />
-		<property name="username" value="postgres" />
-		<property name="password" value="password" />
+		<property name="url" value="#{systemEnvironment['DB_Pokemon']}" />
+		<property name="username" value="#{systemEnvironment['DB_USERNAME']}" />
+		<property name="password" value="#{systemEnvironment['DB_PASSWORD']}" />
 	</bean>
 
 	<!-- SessionFactory Configuration (Hibernate) -->
