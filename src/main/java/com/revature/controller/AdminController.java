@@ -75,17 +75,21 @@ public class AdminController implements EmployeeController {
 		return ResponseEntity.ok(body);
 	}
 
-	@DeleteMapping(path = "/remove-user", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public <T> ResponseEntity<ClientMessage> removeUser(T user) {
-		ClientMessage body = (adminService.removeUser(user)) ? USER_REMOVED : USER_FAILED;
+	@DeleteMapping(path = "/remove-trainer", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<ClientMessage> removeTrainer(@RequestBody int trainerid) {
+		ClientMessage body = (adminService.removeTrainer(trainerid)) ? USER_REMOVED : USER_FAILED;
+		return ResponseEntity.ok(body);
+	}
+	
+	@DeleteMapping(path = "/remove-employee", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<ClientMessage> removeEmployee(@RequestBody int employeeid) {
+		ClientMessage body = (adminService.removeEmployee(employeeid)) ? USER_REMOVED : USER_FAILED;
 		return ResponseEntity.ok(body);
 	}
 	
 	@DeleteMapping(path = "/remove-record", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> removeRecord(Patient record) {
-		// Since generics were implemented, I called the same method, despite Patient 
-		// not being a user. It'll accept any type and the functionality is the same.
-		ClientMessage body = (adminService.removeUser(record)) ? RECORD_REMOVED : RECORD_FAILED; 
+	public ResponseEntity<ClientMessage> removeRecord(@RequestBody int recordid) {
+		ClientMessage body = (adminService.removeRecord(recordid)) ? RECORD_REMOVED : RECORD_FAILED; 
 		return ResponseEntity.ok(body);
 	}
 
@@ -104,7 +108,7 @@ public class AdminController implements EmployeeController {
 	}
 	
 	@PutMapping(path = "/patient/release", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> release(@RequestBody int  patientid) {
+	public ResponseEntity<ClientMessage> release(@RequestBody int patientid) {
 		Patient patient = nurseService.findPatient(patientid);
 		ClientMessage body = (adminService.release(patient)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;

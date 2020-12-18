@@ -18,6 +18,7 @@ import com.revature.model.dto.PatientDTO;
 import com.revature.model.dto.TrainerDTO;
 import com.revature.repository.AdminRepository;
 import com.revature.repository.NurseRepository;
+import com.revature.repository.TrainerRepo;
 
 @Service("AdminService")
 public class AdminService implements EmplService {
@@ -29,6 +30,9 @@ public class AdminService implements EmplService {
 	
 	@Autowired
 	private NurseRepository nurseRepo;
+	
+	@Autowired
+	private TrainerRepo trainerRepo;
 
 	// Update users.
 	public <T> boolean updateUser(T user) {
@@ -87,11 +91,35 @@ public class AdminService implements EmplService {
 		return patient.getNurseid().getEmployeeId() != 0;
 	}
 
-	// Remove a user.
-	public <T> boolean removeUser(T user) {
-		adminRepo.remove(user);
-
-		return user == null;
+//	// Remove a user.
+//	public <T> boolean removeUser(T user) {
+//		adminRepo.remove(user);
+//
+//		return user == null;
+//	}
+	
+	public boolean removeRecord(int patientid) {
+		Patient patient = nurseRepo.findPatient(patientid);
+		
+		adminRepo.remove(patient);
+		
+		return patient == null;
+	}
+	
+	public boolean removeEmployee(int employeeid) {
+		Employee employee = adminRepo.getEmployee(employeeid);
+		
+		adminRepo.remove(employee);
+		
+		return employee == null;
+	}
+	
+	public boolean removeTrainer(int trainerid) {
+		Trainer trainer = trainerRepo.getTrainerId(trainerid);
+		
+		adminRepo.remove(trainer);
+		
+		return trainer == null;
 	}
 
 	@Override
