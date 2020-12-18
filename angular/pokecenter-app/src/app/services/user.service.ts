@@ -184,6 +184,8 @@ healthy=false, release=null]*/
           if (xhr1.readyState === 4 && xhr1.status === 200) {
             console.log("Successfully sent new patient")
           //  sessionStorage.setItem('newPatient', xhr1.responseText);
+          alert("Congradulations! A new patient has been registered for this trainer!")
+
           this.router.navigate(['/home'])
 
           }
@@ -353,6 +355,7 @@ public authorizeDischarge(patientId: number) {
         {
             console.log("Success")
            // sessionStorage.setItem('tableData', xhr.responseText);
+           alert("Congradulations! A new Trainer has been registered!")
             this.router.navigateByUrl('signin')
         }
         if(xhr.readyState ===4 && xhr.status ===204)
@@ -499,6 +502,8 @@ public authorizeDischarge(patientId: number) {
         {
             console.log("Success")
            // sessionStorage.setItem('tableData', xhr.responseText);
+           alert("Congradulations! A new Nurse has been registered!")
+
             this.router.navigateByUrl('signin')
         }
         if(xhr.readyState ===4 && xhr.status ===204)
@@ -554,6 +559,8 @@ public authorizeDischarge(patientId: number) {
         {
             console.log("Success")
            // sessionStorage.setItem('tableData', xhr.responseText);
+           alert("Congradulations! A new Admin has been registered!")
+
             this.router.navigateByUrl('signin')
         }
         if(xhr.readyState ===4 && xhr.status ===204)
@@ -613,6 +620,8 @@ public authorizeDischarge(patientId: number) {
         {
             console.log("Successfully assign nurse to patient")
            // sessionStorage.setItem('tableData', xhr.responseText);
+           alert(`Congradulations! Nurse: ${username} has been assigned to the pateint with ID${patientId}!`)
+
             this.router.navigateByUrl('home')
         }
         if(xhr.readyState ===4 && xhr.status ===204)
