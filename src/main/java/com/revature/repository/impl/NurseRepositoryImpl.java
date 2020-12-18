@@ -27,29 +27,41 @@ public class NurseRepositoryImpl implements NurseRepository {
 	Criteria crit;
 
 	@SuppressWarnings("unchecked")
-	public Patient findPatient(int patient) { // APPLY INDEX OUT OF BOUNDS EXCEP
-		crit = sf.getCurrentSession().createCriteria(Patient.class);
-		crit.add(Restrictions.idEq(patient));
-		List<Patient> p = crit.list();
-		return p.get(0);
+	public Patient findPatient(int patient) { 
+		try {
+			crit = sf.getCurrentSession().createCriteria(Patient.class);
+			crit.add(Restrictions.idEq(patient));
+			List<Patient> p = crit.list();
+			return p.get(0);
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Medicine treatment(StatusCondition status) {
-		crit = sf.getCurrentSession().createCriteria(Medicine.class);
-		crit.add(Restrictions.eq("status", status));
-		List<Medicine> medicine = crit.list();
-		return medicine.get(0);
+		try {
+			crit = sf.getCurrentSession().createCriteria(Medicine.class);
+			crit.add(Restrictions.eq("status", status));
+			List<Medicine> medicine = crit.list();
+			return medicine.get(0);	
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public StatusCondition problem(String string) {
-		crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
-		crit.add(Restrictions.like("statusName", string));
-		List<StatusCondition> status = crit.list();
-		return status.get(0);
+		try {
+			crit = sf.getCurrentSession().createCriteria(StatusCondition.class);
+			crit.add(Restrictions.like("statusName", string));
+			List<StatusCondition> status = crit.list();
+			return status.get(0);	
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

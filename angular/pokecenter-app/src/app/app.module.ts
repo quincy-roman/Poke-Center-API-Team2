@@ -20,6 +20,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployeeRegistrationComponent } from './components/employee-registration/employee-registration.component';
 import { TickerComponent } from './components/ticker/ticker.component';
 import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.component';
+import { ViewMyPatientsComponent } from './components/view-my-patients/view-my-patients.component';
+import { TreatPokepatientComponent } from './components/treat-pokepatient/treat-pokepatient.component';
+import { SeeTreatmentOptionsComponent } from './components/see-treatment-options/see-treatment-options.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { AssignNurseComponent } from './components/assign-nurse/assign-nurse.com
     DashboardComponent,
     EmployeeRegistrationComponent,
     TickerComponent,
-    AssignNurseComponent
+    AssignNurseComponent,
+    ViewMyPatientsComponent,
+    TreatPokepatientComponent,
+    SeeTreatmentOptionsComponent
     
   ],
   imports: [

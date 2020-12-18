@@ -13,10 +13,13 @@ export class DashboardComponent implements OnInit {
   user : User = JSON.parse(sessionStorage.getItem("currentUser"));
   
 
+  username: string;
+  password : string;
+  name: string;
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    console.log(sessionStorage.getItem("currentUser"));
+    //console.log(sessionStorage.getItem("currentUser"));
 
    
 
@@ -26,9 +29,16 @@ export class DashboardComponent implements OnInit {
 
   
 
-  public updateMyProfile(username: string, name: string, password: string){
+  public updateProfile(value: any){
+  
 
-    this.dashboardService.updateMyProfile(username,name,password);
+    const usernameTest = document.getElementById("username") as HTMLInputElement;
+
+    const passwordTest = document.getElementById("password") as HTMLInputElement;
+    const nameTest = document.getElementById("name") as HTMLInputElement;
+
+
+    this.dashboardService.updateMyProfile(usernameTest.value,nameTest.value,passwordTest.value);
 
   }
 }

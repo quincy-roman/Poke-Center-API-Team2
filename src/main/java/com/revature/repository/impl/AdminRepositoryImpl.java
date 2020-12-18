@@ -82,12 +82,16 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Employee getNurse(String username) {
-		crit = sf.getCurrentSession().createCriteria(Employee.class);
-		crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
-		
-		List<Employee> nurse = crit.list();
-		
-		return nurse.get(0);
+		try {
+			crit = sf.getCurrentSession().createCriteria(Employee.class);
+			crit.add(Restrictions.ilike("username", username, MatchMode.EXACT));
+			
+			List<Employee> nurse = crit.list();
+			
+			return nurse.get(0);	
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -97,14 +101,10 @@ public class AdminRepositoryImpl implements AdminRepository {
 	
 	@Override
 	public void release(Patient patient) { // STAMP WHEN PATIENT LEFT
-//		sf.getCurrentSession().evict(patient);
 
 		patient.setRelease(new Timestamp(System.currentTimeMillis()));
-//		patient.setStatus(null);
 
-		sf.getCurrentSession().update(patient); // TODO Might want to set a trigger to lower med count.
-		// Or we can update the med count directly in this same method.
-
+		sf.getCurrentSession().update(patient); 
 	}
 
 	@Override

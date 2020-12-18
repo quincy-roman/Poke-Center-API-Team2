@@ -406,15 +406,16 @@ xhr.send();
       
         let assignData = {
 
-        nurseTemplate :{
+        
 
-          username: username
+        patientDTO :{
+
+          patientid: patientId
 
         },
+        nurseDTO :{
 
-        patientTemplate :{
-
-          patientId: patientId
+          username: username
 
         }
 
@@ -449,6 +450,7 @@ xhr.send();
         };
         xhr.open("PUT", `${API_URL}admin/assign-nurse`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
+        console.log(assignData)
         xhr.send(JSON.stringify(assignData));
 
 
