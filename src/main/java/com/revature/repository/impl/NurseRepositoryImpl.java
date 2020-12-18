@@ -37,6 +37,18 @@ public class NurseRepositoryImpl implements NurseRepository {
 			return null;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Medicine getMed(int m) {
+		try {
+			crit = sf.getCurrentSession().createCriteria(Medicine.class);
+			crit.add(Restrictions.idEq(m));
+			List<Medicine> m1 = crit.list();
+			return m1.get(0);
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -35,4 +35,6 @@ public interface NurseRepository {
 
 	void medStock(Medicine med);
 
+	Medicine getMed(int med);
+
 }

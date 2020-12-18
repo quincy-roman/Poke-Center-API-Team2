@@ -21,6 +21,7 @@ import com.revature.model.Patient;
 import com.revature.model.StatusCondition;
 import com.revature.model.dto.MedicineDTO;
 import com.revature.model.dto.PatientDTO;
+import com.revature.model.dto.TreatmentWrapper;
 import com.revature.service.NurseService;
 import com.revature.service.PokeService;
 import com.revature.util.ClientMessage;
@@ -43,8 +44,10 @@ public class NurseController implements EmployeeController {
 	}
 
 	@PutMapping(path = "/update/my-pokepatient-charts", consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<ClientMessage> applymeds(@RequestBody Patient p, Medicine med){
-		ClientMessage body = (nurseService.applytreatment(p, med)) ? SUCCESSFULLY_TREATED
+	public ResponseEntity<ClientMessage> applymeds(@RequestBody TreatmentWrapper t){
+		Patient p = nurseService.findPatient(t.getPatientid());
+		Medicine m = nurseService.getMed(t.getMedid());
+		ClientMessage body = (nurseService.applytreatment(p, m)) ? SUCCESSFULLY_TREATED
 				: TREATMENT_FAILED;
 		return ResponseEntity.ok(body);
 	}
