@@ -33,7 +33,15 @@ public interface AdminRepository {
 	void assignNurse(Patient patient);
 
 	// Remove a user, utilizing generics here.
-	<T> void remove(T user);
+//	<T> void remove(T user);
+	
+	void remove(Employee e);
+	
+	void remove(Trainer t);
+	
+	void remove(Patient p);
+	
+	Employee getEmployee(int empid);
 
 	Employee getNurse(String username);
 
