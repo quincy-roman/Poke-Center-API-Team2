@@ -3,13 +3,13 @@
 
 ## Revature Project #2
 
-## Team Members:
+### Team Members:
 - Azhya Knox (FrontEnd Development)
 - Grayson McClellan (FrontEnd Development)
 - Quincy Roman (Team Lead, BackEnd Development)
 - Mareo Yapp  (BackEnd Development)
 
-## Summary
+### Summary
 * Nurses of the PokeCenter calculates the most cost-efficient medication for the pokemon and adminster that treatment.
 * Any admitted pokemon has randomly generate stat values using calculations within PokeCenter API logic. This logic will consume the PokeAPI data and manipulate this data for the PokeCenter API.
 
@@ -28,10 +28,9 @@
 - A Nurse can logout.
 - A Nurse can view the Pokemon under their care.
 - A Nurse can view the status of their Pokemon and stats.
+- A Nurse can receive recommended medicines based on the particular patient. 
 - A Nurse can administer treatment.
-- A Nurse can calculate the best medical treatment based on HP lost and status effects.
 - A Nurse can approve release.
-- A Nurse can update their information. 
 - A Nurse can view all admitted Pokemon.
 - A Nurse can view past records.
 
@@ -41,12 +40,9 @@
 - An Admin can logout.
 - An Admin can discharge patients.
 - An Admin can view current medication stock.
-- An Admin can modify users roles.
-- An Admin can place orders for more medication.
 - An Admin can view all users (trainers, nurses, patients).
-- An Admin can remove users/records if necessary.
 
-## Technical Requirements
+### Technical Requirements
 
 * The back-end system uses **Hibernate** to connect to an **AWS RDS Postgres database**. 
 * The application is deployed onto an Apache Tomcat Server. 

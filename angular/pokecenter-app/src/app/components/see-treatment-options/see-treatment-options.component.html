@@ -1,15 +1,19 @@
 <div id="home-container">
-
+ <div id="head-container">
+  <h1> See Treatment Options</h1>
+ </div> 
+<div id = "form-container">
     <form id="form" #form="ngForm" (submit)="getTreatmentByStatus(form.value)">
         <div class="form-group">
-          <label for="status">Status ID:</label>
+          <label for="status"><strong>Status ID:</strong></label>
           <input type="text" class="form-control" id="status" name="status" [(ngModel)]="status">
         </div>
         
         <div class="text-center">
           <button type="submit" class="btn btn-primary submit-btn">Submit</button>
         </div>
-      </form>
+    </form>
+  </div>
   
     <table class="table" >
         <thead>
